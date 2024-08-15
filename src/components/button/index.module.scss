@@ -1,0 +1,112 @@
+@keyframes buttonLoadingAnimation {
+    100% {
+        rotate: 360deg;
+    }
+}
+
+.button {
+    --button-background: var(--primary-color);
+    --button-height: 52px;
+    --button-font-size: 16px;
+    --button-effect-color: #fff2;
+
+    align-items: center;
+    background-color: var(--button-background);
+    border: none;
+    border-radius: var(--radius);
+    color: #fff;
+    cursor: pointer;
+    display: flex;
+    flex-direction: row;
+    font-size: var(--button-font-size);
+    gap: 14px;
+    height: var(--button-height);
+    overflow: hidden;
+    padding-left: 21px;
+    padding-right: 21px;
+    position: relative;
+    transition: all 0.25s;
+
+    > span {
+        z-index: 1;
+    }
+
+    &::before {
+        background-color: var(--button-effect-color);
+        clip-path: polygon(80% 0, 70% 100%, 0 100%, 0 0);
+        content: '';
+        height: 100%;
+        opacity: 0.7;
+        position: absolute;
+        left: 0;
+        top: 0;
+        transition: all 0.25s;
+        width: 100%;
+    }
+
+    &:hover {
+        --button-effect-color: #fff4;
+
+        &::before {
+            clip-path: polygon(100% 0, 100% 100%, 0 100%, 0 0);
+            opacity: 1;
+        }
+    }
+
+    &:active {
+        --button-effect-color: #fff1;
+    }
+
+    &:disabled {
+        filter: grayscale(1);
+        pointer-events: none;
+
+        > span {
+            opacity: 0.5;
+        }
+    }
+
+    &.secondary {
+        --button-background: #333;
+
+        &:disabled {
+            --button-background: #666;
+            filter: grayscale(1);
+        }
+    }
+
+    &.ghost {
+        --button-effect-color: transparent;
+        --button-background: transparent;
+
+        color: var(--primary-color);
+
+        &:hover {
+            background-color: var(--primary-color-1);
+        }
+
+        &:disabled {
+            > span {
+                text-decoration: line-through;
+            }
+        }
+    }
+
+    .loading {
+        background-color: #1119;
+        color: #fff;
+        display: flex;
+        flex-direction: column;
+        height: 100%;
+        justify-content: center;
+        left: 0;
+        position: absolute;
+        top: 0;
+        width: 100%;
+
+        > i {
+            animation: buttonLoadingAnimation 1.5s infinite linear reverse;
+            font-size: 1.4em;
+        }
+    }
+}
