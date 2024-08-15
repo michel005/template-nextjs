@@ -1,0 +1,109 @@
+@import url('https://fonts.googleapis.com/css2?family=Oxygen:wght@300;400;700&display=swap');
+@import url('https://fonts.googleapis.com/icon?family=Material+Icons');
+
+$base-color: #3399ff;
+
+:root {
+    --border-color: #8697ca;
+    --button-height: 42px;
+    --header-height: 200px;
+    --primary-color: #{$base-color};
+
+    @for $i from 1 through 9 {
+        $opacity: $i * 0.1;
+        --primary-color-#{$i}: rgba(
+            #{red($base-color)},
+            #{green($base-color)},
+            #{blue($base-color)},
+            #{$opacity}
+        );
+    }
+
+    --radius: 10px;
+}
+
+* {
+    box-sizing: border-box;
+    font-family: 'Oxygen', monospace;
+    margin: 0;
+    padding: 0;
+    text-decoration: none;
+}
+
+h1,
+h2,
+h3,
+h4,
+h5 {
+    color: var(--primary-color);
+}
+
+hr {
+    border: none;
+    height: 1em;
+    outline: transparent;
+    position: relative;
+
+    &:before {
+        background-color: #ddd;
+        content: '';
+        height: 1px;
+        left: 0;
+        position: absolute;
+        top: calc(50% - 0.5px);
+        width: 100%;
+    }
+
+    &:after {
+        align-self: center;
+        background-color: #fff;
+        color: #999;
+        content: attr(data-text);
+        left: 50%;
+        padding-inline: 7px;
+        position: absolute;
+        white-space: nowrap;
+        top: 50%;
+        transform: translateY(-50%) translateX(-50%);
+    }
+}
+
+aside,
+button,
+div,
+header,
+nav,
+section {
+    display: flex;
+    flex-direction: column;
+}
+
+body {
+    display: flex;
+    flex-direction: column;
+    height: 100%;
+    max-height: 100%;
+    left: 0;
+    position: fixed;
+    top: 0;
+    width: 100%;
+    z-index: 0;
+
+    main {
+        padding: 14px;
+    }
+}
+
+a {
+    color: var(--primary-color);
+    font-size: 16px;
+    transition: all 0.25s;
+
+    &:hover {
+        opacity: 0.6;
+    }
+
+    &:active {
+        opacity: 1;
+    }
+}

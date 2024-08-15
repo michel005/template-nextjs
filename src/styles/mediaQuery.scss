@@ -1,0 +1,29 @@
+@mixin full-hd-desktop {
+    @media screen and (max-width: 1920px) {
+        @content;
+    }
+}
+
+@mixin medium-desktop {
+    @media screen and (max-width: 1360px) {
+        @content;
+    }
+}
+
+@mixin small-desktop {
+    @media screen and (max-width: 1024px) {
+        @content;
+    }
+}
+
+@mixin tablet {
+    @media screen and (max-width: 600px) {
+        @content;
+    }
+}
+
+@mixin tablet {
+    @media screen and (max-width: 375px) {
+        @content;
+    }
+}

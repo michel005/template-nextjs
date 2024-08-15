@@ -1,0 +1,32 @@
+.header {
+    background-color: #f4f4f4;
+    border-bottom: 1px solid #ccc;
+    display: flex;
+    flex-direction: row;
+    gap: 10px;
+    padding: 14px;
+
+    > i {
+        align-items: center;
+        background-color: #333;
+        border-radius: var(--radius);
+        color: #fff;
+        display: flex;
+        font-size: 2em;
+        justify-content: center;
+        height: 60px;
+        width: 60px;
+    }
+
+    .headerText {
+        display: flex;
+
+        > h1 {
+            color: #111;
+        }
+
+        > p {
+            color: #aaa;
+        }
+    }
+}

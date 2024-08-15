@@ -1,0 +1,19 @@
+@import '../styles/mediaQuery';
+
+.homePage {
+    flex-direction: column;
+    flex-grow: 1;
+    gap: 14px;
+}
+
+@include medium-desktop {
+    .homePage {
+        background-color: blue;
+    }
+}
+
+@include small-desktop {
+    .homePage {
+        background-color: red;
+    }
+}
