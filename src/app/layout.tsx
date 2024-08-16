@@ -1,9 +1,8 @@
 import React from 'react'
 import '@/styles/global.scss'
-import { ConfigProvider } from '@/context/config/config.context'
 import { Metadata } from 'next'
 import definitions from '../../definitions.json'
-import Header from '@/components/header'
+import Main from '@/components/main'
 
 export const metadata: Metadata = {
     title: definitions.appName,
@@ -17,12 +16,7 @@ export default function RootLayout({
 }>) {
     return (
         <html lang="pt-br">
-            <ConfigProvider>
-                <body>
-                    <Header />
-                    {children}
-                </body>
-            </ConfigProvider>
+            <Main>{children}</Main>
         </html>
     )
 }

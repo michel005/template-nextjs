@@ -13,16 +13,18 @@ export class MaskUtils {
         }
     }
 
-    static date = (v: string) => {
-        const valueToUse = v.replaceAll('/', '')
-        let temp = `${valueToUse.substring(0, 2)}/${valueToUse.substring(
-            2,
-            4
-        )}/${valueToUse.substring(4, 8)}`
-        if (temp.endsWith('/')) {
-            temp = temp.replaceAll('/', '')
+    static date = (x: string) => {
+        let value = x.replace(/\D/g, '').substring(0, 8)
+
+        if (value.length <= 2) {
+            value = value.replace(/(\d{0,2})/, '$1')
+        } else if (value.length <= 4) {
+            value = value.replace(/(\d{2})(\d{0,2})/, '$1/$2')
+        } else {
+            value = value.replace(/(\d{2})(\d{2})(\d{0,4})/, '$1/$2/$3')
         }
-        return temp
+
+        return value
     }
 
     static time = (v: string) => {

@@ -1,8 +1,5 @@
-'use client'
-
 import style from './index.module.scss'
 import { ButtonType } from '@/components/button/index.type'
-import { useState } from 'react'
 import Icon from '@/components/icon'
 import clsx from 'clsx'
 
@@ -15,31 +12,31 @@ const Component = ({
     disabled,
     ...props
 }: ButtonType) => {
-    const [loading, setLoading] = useState<boolean>(false)
-
     return (
         <button
             {...props}
             className={clsx(style.button, style[variant], className)}
             onClick={(e) => {
                 if (onClickAsync) {
-                    setLoading(true)
+                    const component = e.currentTarget as any
+                    component.disabled = true
+                    component.setAttribute('data-loading', true)
                     onClickAsync().finally(() => {
-                        setLoading(false)
+                        component.disabled = false
+                        component.setAttribute('data-loading', false)
                     })
                 } else {
                     onClick?.(e)
                 }
             }}
-            disabled={loading || disabled}
+            disabled={disabled}
         >
             {icon && <Icon icon={icon} />}
             {props.children && <span>{props.children}</span>}
-            {loading && (
-                <div className={style.loading}>
-                    <Icon icon="sync" />
-                </div>
-            )}
+
+            <div className={style.loading}>
+                <Icon icon="sync" />
+            </div>
         </button>
     )
 }

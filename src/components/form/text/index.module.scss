@@ -1,0 +1,58 @@
+.text {
+    flex-direction: column;
+    font-size: 16px;
+    gap: 4px;
+    position: relative;
+
+    .label {
+        background-color: #fff;
+        border-radius: var(--radius);
+        color: #aaa;
+        left: 10px;
+        padding: 0 4px;
+        pointer-events: none;
+        position: absolute;
+        top: 50%;
+        transform: translateY(-50%);
+        transition: all 0.25s;
+    }
+
+    .input {
+        border: none;
+        border-radius: var(--radius);
+        font-size: 1em;
+        height: var(--input-height);
+        outline: 1px solid #ccc;
+        padding: 0 14px;
+        transition: all 0.25s;
+
+        &::placeholder {
+            color: transparent;
+            transition: all 0.5s;
+        }
+
+        &:focus-within {
+            outline-color: #666;
+
+            &::placeholder {
+                color: #ccc;
+            }
+
+            ~ .label {
+                color: #666;
+                font-size: 0.8em;
+                top: -8px;
+                transform: none;
+            }
+        }
+
+        &:not(:placeholder-shown) {
+            ~ .label {
+                color: #666;
+                font-size: 0.8em;
+                top: -8px;
+                transform: none;
+            }
+        }
+    }
+}

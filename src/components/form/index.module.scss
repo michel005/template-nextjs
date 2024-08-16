@@ -1,0 +1,23 @@
+.form {
+    display: flex;
+    flex-direction: column;
+    gap: 14px;
+
+    &.loading {
+        label {
+            background: transparent !important;
+            font-size: 1em !important;
+            pointer-events: none;
+            top: 50% !important;
+            transform: translateY(-50%) !important;
+            user-select: none;
+        }
+
+        input {
+            background-color: #ddd;
+            color: transparent;
+            pointer-events: none;
+            user-select: none;
+        }
+    }
+}

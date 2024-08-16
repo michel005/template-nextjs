@@ -69,14 +69,18 @@
     }
 }
 
-.sidebar {
+.sidebar,
+.checkbox,
+.background {
     display: none;
 }
 
 @include small-desktop {
     .header {
         z-index: 90;
+
         .reducerButton {
+            cursor: pointer;
             display: flex;
             margin-left: auto;
         }
@@ -113,11 +117,21 @@
                 font-weight: bold;
             }
         }
+    }
 
-        &.reduced {
+    .background {
+        display: flex;
+    }
+
+    :global(#controlSidebarVisibility):checked {
+        ~ .sidebar {
             opacity: 0;
             pointer-events: none;
             transform: translateY(-10%);
+        }
+
+        ~ .background {
+            display: none;
         }
     }
 }

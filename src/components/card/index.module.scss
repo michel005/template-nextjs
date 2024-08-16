@@ -1,0 +1,16 @@
+.card {
+    align-self: flex-start;
+    background-color: #f9f9f9;
+    border-radius: var(--radius);
+    display: flex;
+    flex-direction: column;
+    gap: 14px;
+    padding: 14px;
+    transition: all 0.25s;
+
+    &:hover {
+        box-shadow:
+            7px 7px 7px #0001,
+            -7px -7px 7px #fff;
+    }
+}

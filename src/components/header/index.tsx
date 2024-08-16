@@ -1,25 +1,24 @@
-'use client'
-
 import style from './index.module.scss'
 import Icon from '@/components/icon'
 import definitions from '../../../definitions.json'
-import Button from '@/components/button'
-import { useState } from 'react'
 import clsx from 'clsx'
 import Link from 'next/link'
-import { usePathname } from 'next/navigation'
 import Background from '@/components/background'
 
-const Component = () => {
-    const [reduced, setReduced] = useState<boolean>(true)
-    const pathname = usePathname()
+const Component = ({ pathname }: { pathname: string }) => {
+    const closeSidebar = () => {
+        const sidebar = document.getElementById(
+            'controlSidebarVisibility'
+        ) as any
+        sidebar.checked = true
+    }
 
     return (
         <>
             <header className={style.header}>
                 <Icon icon="add_alert" />
                 <div className={style.headerText}>
-                    <Link href="/">
+                    <Link href="/" onClick={() => closeSidebar()}>
                         <h1>{definitions.appName}</h1>
                     </Link>
                     <p>{definitions.description}</p>
@@ -30,7 +29,6 @@ const Component = () => {
                             <Link
                                 key={rout.path}
                                 href={rout.path}
-                                onClick={() => setReduced(true)}
                                 className={clsx(
                                     pathname === rout.path && style.current
                                 )}
@@ -40,38 +38,39 @@ const Component = () => {
                         )
                     })}
                 </div>
-                <Button
-                    icon="menu"
-                    variant="ghost"
+                <label
                     className={style.reducerButton}
-                    onClick={() => {
-                        setReduced((x) => !x)
-                    }}
-                />
+                    htmlFor="controlSidebarVisibility"
+                >
+                    <Icon icon="menu" />
+                </label>
             </header>
-            <aside className={clsx(style.sidebar, reduced && style.reduced)}>
+            <input
+                type="checkbox"
+                id="controlSidebarVisibility"
+                className={style.checkbox}
+                defaultChecked={true}
+            />
+            <aside className={clsx(style.sidebar)}>
                 {definitions.router.map((rout) => {
                     return (
                         <Link
                             key={rout.path}
                             href={rout.path}
-                            onClick={() => setReduced(true)}
                             className={clsx(
                                 pathname === rout.path && style.current
                             )}
+                            onClick={() => closeSidebar()}
                         >
                             {rout.label}
                         </Link>
                     )
                 })}
             </aside>
-            {!reduced && (
-                <Background
-                    onClick={() => {
-                        setReduced(true)
-                    }}
-                />
-            )}
+            <Background
+                className={style.background}
+                onClick={() => closeSidebar()}
+            />
         </>
     )
 }

@@ -3,11 +3,15 @@
 import style from './page.module.scss'
 import Button from '@/components/button'
 import Page from '@/components/page'
+import Card from '@/components/card'
 
 const HomePage = () => {
     return (
         <Page className={style.homePage}>
             <h3>Início</h3>
+            <Card>
+                <h1>Exemplo</h1>
+            </Card>
             <Button icon="list">Exemplo</Button>
             <Button icon="list" />
             <Button
