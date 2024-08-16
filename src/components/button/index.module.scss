@@ -5,11 +5,6 @@
 }
 
 .button {
-    --button-background: var(--primary-color);
-    --button-height: 52px;
-    --button-font-size: 16px;
-    --button-effect-color: #fff2;
-
     align-items: center;
     background-color: var(--button-background);
     border: none;
@@ -21,6 +16,7 @@
     font-size: var(--button-font-size);
     gap: 14px;
     height: var(--button-height);
+    min-height: var(--button-height);
     overflow: hidden;
     padding-left: 21px;
     padding-right: 21px;

@@ -2,10 +2,11 @@
 
 import style from './page.module.scss'
 import Button from '@/components/button'
+import Page from '@/components/page'
 
 const HomePage = () => {
     return (
-        <main className={style.homePage}>
+        <Page className={style.homePage}>
             <h3>Início</h3>
             <Button icon="list">Exemplo</Button>
             <Button icon="list" />
@@ -48,7 +49,7 @@ const HomePage = () => {
             <Button icon="list" variant="ghost" disabled={true}>
                 Exemplo
             </Button>
-        </main>
+        </Page>
     )
 }
 

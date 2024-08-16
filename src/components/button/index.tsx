@@ -20,7 +20,7 @@ const Component = ({
     return (
         <button
             {...props}
-            className={clsx(style.button, style[variant])}
+            className={clsx(style.button, style[variant], className)}
             onClick={(e) => {
                 if (onClickAsync) {
                     setLoading(true)

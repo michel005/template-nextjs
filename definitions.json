@@ -1,5 +1,23 @@
 {
   "api": "http://localhost:8080/api",
   "appName": "Template",
-  "description": "Template do NextJS"
+  "description": "Template do NextJS",
+  "router": [
+    {
+      "path": "/",
+      "label": "Início"
+    },
+    {
+      "path": "/settings",
+      "label": "Configuração"
+    },
+    {
+      "path": "/user",
+      "label": "Usuário"
+    },
+    {
+      "path": "/logout",
+      "label": "Sair"
+    }
+  ]
 }

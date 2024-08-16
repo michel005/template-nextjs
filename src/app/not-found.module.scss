@@ -1,3 +1,5 @@
+@import '../styles/mediaQuery';
+
 .notFound {
     align-items: center;
     flex-direction: row;
@@ -18,6 +20,37 @@
 
         > p {
             max-width: 500px;
+        }
+    }
+}
+
+@include small-desktop {
+    .notFound {
+        flex-direction: column;
+
+        > h1 {
+            border-bottom: 1px solid #aaa;
+            border-right: none;
+            font-size: 120px;
+            margin-bottom: 28px;
+            margin-right: 0;
+        }
+
+        > section {
+            padding-left: 14px;
+            padding-right: 14px;
+
+            > h2 {
+                text-align: center;
+            }
+
+            > p {
+                text-align: center;
+            }
+
+            > a {
+                align-self: center;
+            }
         }
     }
 }
