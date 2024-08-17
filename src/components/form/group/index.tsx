@@ -6,14 +6,17 @@ const Component = ({
     label,
     variant = 'vertical',
     className,
+    children,
     ...props
 }: GroupType) => {
     return (
         <div
             {...props}
             className={clsx(style.group, style[variant], className)}
-            data-label={label}
-        />
+        >
+            <h3>{label}</h3>
+            <section>{children}</section>
+        </div>
     )
 }
 

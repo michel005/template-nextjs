@@ -1,44 +1,37 @@
 @import '../../../styles/mediaQuery';
 
 .group {
-    border: 1px solid #999;
+    background-color: #fff;
+    box-shadow:
+        7px 7px 7px #0001,
+        -7px -7px 100px #0001;
     border-radius: var(--radius);
     display: flex;
     flex-direction: column;
     font-size: 16px;
     gap: 21px;
-    padding: 21px 14px 14px;
+    padding: 14px;
     position: relative;
 
-    &::before {
-        background: #fff;
-        border-radius: var(--radius);
-        color: #666;
-        content: attr(data-label);
-        font-size: 0.8em;
-        left: 10px;
-        padding: 0 4px;
-        pointer-events: none;
-        position: absolute;
-        top: -8px;
-        transform: none;
-        transition: all 0.25s;
-    }
-
     &.horizontal {
-        flex-direction: row;
+        > section {
+            flex-direction: row;
+            gap: 21px;
 
-        > div {
-            flex-grow: 1;
-            width: 100%;
+            > div {
+                flex-grow: 1;
+                width: 100%;
+            }
         }
     }
 }
 
-@include small-desktop {
+@include tablet {
     .group {
         &.horizontal {
-            flex-direction: column;
+            > section {
+                flex-direction: column;
+            }
         }
     }
 }

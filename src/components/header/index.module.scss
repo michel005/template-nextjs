@@ -91,10 +91,11 @@
     }
 
     .sidebar {
-        background-color: #fffc;
-        backdrop-filter: blur(14px);
-        border: 1px solid #eee;
+        background-color: #fff;
         border-radius: var(--radius);
+        box-shadow:
+            7px 7px 7px #0001,
+            -7px -7px 100px #0001;
         display: flex;
         flex-direction: column;
         gap: 21px;

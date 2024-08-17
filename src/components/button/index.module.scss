@@ -42,6 +42,9 @@
 
     &:hover {
         --button-effect-color: #fff4;
+        box-shadow:
+            7px 7px 7px #0001,
+            -7px -7px 100px #0001;
 
         &::before {
             clip-path: polygon(100% 0, 100% 100%, 0 100%, 0 0);

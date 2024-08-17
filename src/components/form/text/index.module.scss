@@ -22,7 +22,7 @@
         border-radius: var(--radius);
         font-size: 1em;
         height: var(--input-height);
-        outline: 1px solid #ccc;
+        outline: 1px solid #ddd;
         padding: 0 14px;
         transition: all 0.25s;
 
@@ -41,7 +41,7 @@
             ~ .label {
                 color: #666;
                 font-size: 0.8em;
-                top: -8px;
+                top: -9px;
                 transform: none;
             }
         }
@@ -50,7 +50,7 @@
             ~ .label {
                 color: #666;
                 font-size: 0.8em;
-                top: -8px;
+                top: -9px;
                 transform: none;
             }
         }
