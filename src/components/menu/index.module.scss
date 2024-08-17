@@ -1,0 +1,40 @@
+.menuContainer {
+    align-self: flex-end;
+    margin-left: auto;
+    position: relative;
+}
+
+.menu {
+    background-color: #fff;
+    border-radius: var(--radius);
+    box-shadow: var(--box-shaddow);
+    display: none;
+    flex-direction: column;
+    gap: 21px;
+    justify-content: flex-start;
+    opacity: 1;
+    padding: 14px;
+    position: absolute;
+    right: 14px;
+    top: calc(100% - 14px);
+    transition: all 0.25s;
+    z-index: 100;
+}
+
+.checkbox,
+.background {
+    display: none;
+}
+
+.background {
+    background-color: transparent !important;
+    backdrop-filter: none !important;
+}
+
+.checkbox:checked ~ .menu {
+    display: flex;
+}
+
+.checkbox:checked ~ .background {
+    display: flex;
+}

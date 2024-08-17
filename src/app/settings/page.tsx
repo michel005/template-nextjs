@@ -6,36 +6,75 @@ import Text from '@/components/form/text'
 import Button from '@/components/button'
 import Form from '@/components/form'
 import Group from '@/components/form/group'
+import Buttons from '@/components/buttons'
+import definitions from '../../../definitions.json'
 
 const Component = () => {
     return (
         <Page className={style.page}>
             <Form
-                initialValue={{
-                    full_name: 'Michel',
-                    birthday: '19/12/1991',
-                }}
-                onSubmit={(form) => {
-                    console.log(form)
+                initialValue={JSON.parse(
+                    localStorage.getItem('settings') || '{}'
+                )}
+                onSubmit={(form: any) => {
+                    const localData = Object.keys(
+                        definitions.settings.local
+                    ).map((x) => [x, form?.[x]])
+
+                    const finalLocalData: any = {}
+                    for (const [field, value] of localData) {
+                        finalLocalData[field] = value
+                    }
+
+                    localStorage.setItem(
+                        'settings',
+                        JSON.stringify(finalLocalData)
+                    )
                 }}
             >
-                <Group label="Dados do Usuário" variant="horizontal">
-                    <Text
-                        label="Nome Completo"
-                        id="full_name"
-                        placeholder="Ex: João da Silva"
-                    />
-                    <Text
-                        label="Data de Nascimento"
-                        id="birthday"
-                        placeholder="99/99/9999"
-                        type="date"
-                    />
-                </Group>
-                <div className={style.buttons}>
+                <Buttons>
                     <Button icon="save">Salvar</Button>
-                    <Button variant="secondary" icon="delete" type="reset" />
-                </div>
+                </Buttons>
+                <Group icon="settings" label="Configurações">
+                    <Group
+                        icon="local_activity"
+                        label="Local"
+                        variant="horizontal"
+                    >
+                        {Object.keys(definitions.settings.local).map(
+                            (field) => {
+                                const fieldDef = (
+                                    definitions.settings.local as any
+                                )[field]
+                                return (
+                                    <Text
+                                        key={field}
+                                        label={fieldDef?.label}
+                                        id={field}
+                                        initialValue={fieldDef?.initialValue}
+                                    />
+                                )
+                            }
+                        )}
+                    </Group>
+                    <Group icon="public" label="Remoto" variant="horizontal">
+                        {Object.keys(definitions.settings.remote).map(
+                            (field) => {
+                                const fieldDef = (
+                                    definitions.settings.remote as any
+                                )[field]
+                                return (
+                                    <Text
+                                        key={field}
+                                        label={fieldDef.label}
+                                        id={field}
+                                        initialValue={fieldDef.initialValue}
+                                    />
+                                )
+                            }
+                        )}
+                    </Group>
+                </Group>
             </Form>
         </Page>
     )

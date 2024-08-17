@@ -93,9 +93,7 @@
     .sidebar {
         background-color: #fff;
         border-radius: var(--radius);
-        box-shadow:
-            7px 7px 7px #0001,
-            -7px -7px 100px #0001;
+        box-shadow: var(--box-shaddow);
         display: flex;
         flex-direction: column;
         gap: 21px;

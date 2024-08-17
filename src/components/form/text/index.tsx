@@ -6,14 +6,14 @@ const Component = ({
     id,
     label,
     initialValue,
-    placeholder,
+    placeholder = '',
     type = 'text',
 }: TextType) => {
     return (
         <div className={style.text}>
             <input
                 className={style.input}
-                type="text"
+                type={type === 'password' ? type : 'text'}
                 id={id}
                 name={id}
                 defaultValue={initialValue}

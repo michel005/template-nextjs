@@ -1,10 +1,20 @@
 @import '../../../styles/mediaQuery';
 
+@keyframes showFrameAnimation {
+    from {
+        opacity: 0;
+    }
+
+    to {
+        opacity: 1;
+    }
+}
+
 .group {
+    animation: showFrameAnimation 0.5s linear;
+    align-self: flex-start;
     background-color: #fff;
-    box-shadow:
-        7px 7px 7px #0001,
-        -7px -7px 100px #0001;
+    box-shadow: var(--box-shaddow);
     border-radius: var(--radius);
     display: flex;
     flex-direction: column;
@@ -12,25 +22,52 @@
     gap: 21px;
     padding: 14px;
     position: relative;
+    width: min(var(--screen-width), 100%);
+
+    .group:nth-child(1) {
+        animation: showFrameAnimation 0.3s linear;
+    }
+    .group:nth-child(2) {
+        animation: showFrameAnimation 0.6s linear;
+    }
+    .group:nth-child(3) {
+        animation: showFrameAnimation 0.9s linear;
+    }
+    .group:nth-child(4) {
+        animation: showFrameAnimation 1.2s linear;
+    }
+    .group:nth-child(5) {
+        animation: showFrameAnimation 1.5s linear;
+    }
+
+    > h3 {
+        align-items: center;
+        color: #333;
+        display: flex;
+        flex-direction: row;
+        gap: 7px;
+    }
+
+    > p {
+        color: #aaa;
+    }
+
+    > section {
+        flex-wrap: wrap;
+        gap: 21px;
+
+        > button {
+            align-self: flex-end;
+        }
+    }
 
     &.horizontal {
         > section {
             flex-direction: row;
-            gap: 21px;
 
             > div {
                 flex-grow: 1;
-                width: 100%;
-            }
-        }
-    }
-}
-
-@include tablet {
-    .group {
-        &.horizontal {
-            > section {
-                flex-direction: column;
+                min-width: min(300px, 100%);
             }
         }
     }
