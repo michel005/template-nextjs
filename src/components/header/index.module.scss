@@ -57,25 +57,25 @@
             }
         }
     }
+}
 
-    .bottom {
+.bottom {
+    align-items: center;
+    background-color: #fff;
+    box-shadow: var(--box-shaddow);
+    flex-direction: row;
+    gap: 14px;
+    height: calc(var(--button-height) + 28px);
+    justify-content: center;
+    transition: all 0.25s;
+
+    > center {
         align-items: center;
-        background-color: #fff;
-        box-shadow: var(--box-shaddow);
+        display: flex;
         flex-direction: row;
         gap: 14px;
-        height: calc(var(--button-height) + 28px);
-        justify-content: center;
-        transition: all 0.25s;
-
-        > center {
-            align-items: center;
-            display: flex;
-            flex-direction: row;
-            gap: 14px;
-            padding: 0 14px;
-            width: var(--screen-width);
-        }
+        padding: 0 14px;
+        width: var(--screen-width);
     }
 }
 

@@ -62,12 +62,12 @@ const Component = ({
                         </label>
                     </center>
                 </div>
-                {bottom && (
-                    <div className={style.bottom}>
-                        <center>{bottom}</center>
-                    </div>
-                )}
             </header>
+            {bottom && (
+                <div className={style.bottom}>
+                    <center>{bottom}</center>
+                </div>
+            )}
             <aside className={clsx(style.sidebar)}>
                 {Definitions.router.map((rout) => {
                     return (
