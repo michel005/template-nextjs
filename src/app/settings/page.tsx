@@ -1,51 +1,37 @@
-'use client'
-
 import style from './page.module.scss'
 import Page from '@/components/page'
 import Text from '@/components/form/text'
-import Button from '@/components/button'
 import Form from '@/components/form'
 import Group from '@/components/form/group'
-import Buttons from '@/components/buttons'
-import definitions from '../../../definitions.json'
+import Checkbox from '@/components/form/checkbox'
+import { Definitions } from '@/constants/definitions'
 
 const Component = () => {
     return (
         <Page className={style.page}>
-            <Form
-                initialValue={JSON.parse(
-                    localStorage.getItem('settings') || '{}'
-                )}
-                onSubmit={(form: any) => {
-                    const localData = Object.keys(
-                        definitions.settings.local
-                    ).map((x) => [x, form?.[x]])
-
-                    const finalLocalData: any = {}
-                    for (const [field, value] of localData) {
-                        finalLocalData[field] = value
-                    }
-
-                    localStorage.setItem(
-                        'settings',
-                        JSON.stringify(finalLocalData)
-                    )
-                }}
-            >
-                <Buttons>
-                    <Button icon="save">Salvar</Button>
-                </Buttons>
+            <Form id="form">
                 <Group icon="settings" label="Configurações">
                     <Group
                         icon="local_activity"
                         label="Local"
                         variant="horizontal"
                     >
-                        {Object.keys(definitions.settings.local).map(
+                        {Object.keys(Definitions.settings.local).map(
                             (field) => {
                                 const fieldDef = (
-                                    definitions.settings.local as any
+                                    Definitions.settings.local as any
                                 )[field]
+
+                                if (fieldDef.type === 'boolean') {
+                                    return (
+                                        <Checkbox
+                                            key={field}
+                                            label={fieldDef?.label}
+                                            id={field}
+                                        />
+                                    )
+                                }
+
                                 return (
                                     <Text
                                         key={field}
@@ -57,12 +43,22 @@ const Component = () => {
                             }
                         )}
                     </Group>
-                    <Group icon="public" label="Remoto" variant="horizontal">
-                        {Object.keys(definitions.settings.remote).map(
+                    <Group icon="public" label="Remoto" variant="vertical">
+                        {Object.keys(Definitions.settings.remote).map(
                             (field) => {
                                 const fieldDef = (
-                                    definitions.settings.remote as any
+                                    Definitions.settings.remote as any
                                 )[field]
+
+                                if (fieldDef.type === 'boolean') {
+                                    return (
+                                        <Checkbox
+                                            key={field}
+                                            label={fieldDef?.label}
+                                            id={field}
+                                        />
+                                    )
+                                }
                                 return (
                                     <Text
                                         key={field}

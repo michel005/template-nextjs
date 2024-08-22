@@ -1,0 +1,32 @@
+.appName {
+    align-items: center;
+    display: flex;
+    flex-direction: row;
+    gap: 14px;
+
+    > i {
+        align-items: center;
+        background-color: #fff2;
+        border-radius: var(--radius);
+        color: #fff;
+        display: flex;
+        font-size: 2em;
+        justify-content: center;
+        height: 60px;
+        width: 60px;
+    }
+
+    .headerText {
+        display: flex;
+
+        h1 {
+            color: #fff;
+        }
+
+        > p {
+            color: #aaa;
+            font-size: 0.8em;
+            text-align: left;
+        }
+    }
+}

@@ -1,70 +1,80 @@
 @import '../../styles/mediaQuery';
 
 .header {
-    align-items: center;
-    background-color: #111;
-    display: flex;
-    flex-direction: row;
-    gap: 14px;
-    height: var(--header-height);
-    min-height: var(--header-height);
-    padding: 0 14px;
+    flex-direction: column;
+    z-index: 90;
 
-    > i {
+    .top {
         align-items: center;
-        background-color: #fff2;
-        border-radius: var(--radius);
-        color: #fff;
-        display: flex;
-        font-size: 2em;
-        justify-content: center;
-        height: 60px;
-        width: 60px;
-    }
-
-    .headerText {
-        display: flex;
-
-        h1 {
-            color: #fff;
-        }
-
-        > p {
-            color: #aaa;
-        }
-    }
-
-    .options {
-        align-items: center;
+        background-color: #111;
         display: flex;
         flex-direction: row;
-        flex-grow: 1;
-        gap: 28px;
-        justify-content: flex-end;
-        padding: 0 14px;
+        justify-content: center;
+        z-index: 103;
 
-        > a {
-            color: #fff5;
-            font-size: 18px;
+        > center {
+            align-items: center;
+            display: flex;
+            flex-direction: row;
+            gap: 14px;
+            height: var(--header-height);
+            min-height: var(--header-height);
+            padding: 0 14px;
+            width: var(--screen-width);
+        }
 
-            &.current {
+        .options {
+            align-items: center;
+            display: flex;
+            flex-direction: row;
+            flex-grow: 1;
+            gap: 28px;
+            justify-content: flex-end;
+            padding: 0 14px;
+
+            > a {
+                color: #fff5;
+                font-size: 18px;
+
+                &.current {
+                    color: #fff;
+                }
+            }
+        }
+
+        .reducerButton {
+            --button-background: #1111 !important;
+            --button-effect-color: #1111 !important;
+
+            align-items: center;
+            display: none;
+            justify-content: center;
+            width: var(--button-height);
+
+            > i {
                 color: #fff;
+                font-size: 1.5em;
             }
         }
     }
 
-    .reducerButton {
-        --button-background: #1111 !important;
-        --button-effect-color: #1111 !important;
-
+    .bottom {
         align-items: center;
-        display: none;
+        background-color: #fff;
+        box-shadow: var(--box-shaddow);
+        flex-direction: row;
+        gap: 14px;
+        height: calc(var(--button-height) + 28px);
         justify-content: center;
-        width: var(--button-height);
+        transition: all 0.25s;
 
-        > i {
-            color: #fff;
-            font-size: 1.5em;
+        > center {
+            align-items: center;
+            display: flex;
+            flex-direction: row;
+            gap: 14px;
+            padding: 0 14px;
+            width: var(--screen-width);
         }
     }
 }
@@ -77,16 +87,16 @@
 
 @include small-desktop {
     .header {
-        z-index: 90;
+        .top {
+            .options {
+                display: none;
+            }
 
-        .reducerButton {
-            cursor: pointer;
-            display: flex;
-            margin-left: auto;
-        }
-
-        .options {
-            display: none;
+            .reducerButton {
+                cursor: pointer;
+                display: flex;
+                margin-left: auto;
+            }
         }
     }
 
@@ -104,7 +114,7 @@
         right: 21px;
         top: calc(var(--header-height) - 14px);
         transition: all 0.25s;
-        z-index: 100;
+        z-index: 102;
 
         > a {
             color: #666;
@@ -120,6 +130,7 @@
 
     .background {
         display: flex;
+        z-index: 101;
     }
 
     :global(#controlSidebarVisibility):checked {

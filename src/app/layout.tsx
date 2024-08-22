@@ -1,13 +1,9 @@
+'use client'
+
 import React from 'react'
 import '@/styles/global.scss'
-import { Metadata } from 'next'
-import definitions from '../../definitions.json'
 import Main from '@/components/main'
-
-export const metadata: Metadata = {
-    title: definitions.appName,
-    description: definitions.description,
-}
+import { ModalProvider } from '@/context/modal.context'
 
 export default function RootLayout({
     children,
@@ -16,7 +12,9 @@ export default function RootLayout({
 }>) {
     return (
         <html lang="pt-br">
-            <Main>{children}</Main>
+            <ModalProvider>
+                <Main>{children}</Main>
+            </ModalProvider>
         </html>
     )
 }

@@ -1,23 +1,26 @@
 import style from './index.module.scss'
-import { TextType } from '@/components/form/text/index.type'
+import { CheckboxType } from '@/components/form/checkbox/index.type'
+import Icon from '@/components/icon'
 
 const Component = ({
     id,
     label,
     initialValue,
     placeholder = '',
-    type = 'text',
-}: TextType) => {
+}: CheckboxType) => {
     return (
-        <div className={style.text}>
+        <div className={style.checkbox}>
             <input
                 className={style.input}
-                type={type === 'password' ? type : 'text'}
+                type="checkbox"
                 id={id}
                 name={id}
-                defaultValue={initialValue}
+                defaultChecked={initialValue ?? false}
                 placeholder={placeholder}
             />
+            <div tabIndex={0} className={style.checkbox}>
+                <Icon icon="check" />
+            </div>
             {label && (
                 <label className={style.label} htmlFor={id}>
                     {label}

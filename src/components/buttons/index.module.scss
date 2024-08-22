@@ -8,6 +8,7 @@
     flex-direction: row;
     gap: 14px;
     height: calc(var(--button-height) + 28px);
+    overflow: auto;
     padding: 14px;
     position: sticky;
     right: 0;
@@ -30,18 +31,4 @@
 
 .moreOptions {
     margin-left: auto;
-}
-
-@include tablet {
-    .buttons {
-        overflow: auto;
-
-        > section {
-            > button {
-                span {
-                    display: none;
-                }
-            }
-        }
-    }
 }

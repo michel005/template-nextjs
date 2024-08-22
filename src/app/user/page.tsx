@@ -1,40 +1,14 @@
-'use client'
-
 import style from './page.module.scss'
 import Page from '@/components/page'
 import Text from '@/components/form/text'
 import Button from '@/components/button'
 import Form from '@/components/form'
 import Group from '@/components/form/group'
-import Buttons from '@/components/buttons'
 
 const Component = () => {
     return (
         <Page className={style.page}>
-            <Form
-                initialValue={{
-                    full_name: 'Michel',
-                    birthday: '19/12/1991',
-                    email: 'mdgrigoli@hotmail.com.br',
-                    zip_code: '87030-050',
-                    street: 'Rua Francisco Glicério',
-                    number: '1370',
-                    neighborhood: 'Zona 07',
-                    complement: 'Apto 102',
-                }}
-                onSubmit={(form) => {
-                    console.log(form)
-                }}
-            >
-                <Buttons>
-                    <Button icon="save">Salvar</Button>
-                    <Button variant="ghost" icon="delete">
-                        Excluir
-                    </Button>
-                    <Button variant="ghost" icon="clear_all">
-                        Limpar
-                    </Button>
-                </Buttons>
+            <Form id="user_form">
                 <Group icon="person" label="Meu Usuário">
                     <Group
                         icon="description"
@@ -76,12 +50,7 @@ const Component = () => {
                     </Group>
                 </Group>
             </Form>
-            <Form
-                initialValue={{}}
-                onSubmit={(form) => {
-                    console.log(form)
-                }}
-            >
+            <Form id="change_password_form">
                 <Group
                     icon="password"
                     label="Senha de Acesso"

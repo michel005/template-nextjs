@@ -1,11 +1,21 @@
 import style from './index.module.scss'
 import Icon from '@/components/icon'
-import definitions from '../../../definitions.json'
 import clsx from 'clsx'
 import Link from 'next/link'
 import Background from '@/components/background'
+import AppName from '@/components/header/appName'
+import { ReactNode } from 'react'
+import { Definitions } from '@/constants/definitions'
 
-const Component = ({ pathname }: { pathname: string }) => {
+const Component = ({
+    pathname,
+    bottom,
+    onExit,
+}: {
+    pathname: string
+    bottom: ReactNode | null
+    onExit: () => void
+}) => {
     const closeSidebar = () => {
         const sidebar = document.getElementById(
             'controlSidebarVisibility'
@@ -15,44 +25,51 @@ const Component = ({ pathname }: { pathname: string }) => {
 
     return (
         <>
-            <header className={style.header}>
-                <Icon icon="add_alert" />
-                <div className={style.headerText}>
-                    <Link href="/" onClick={() => closeSidebar()}>
-                        <h1>{definitions.appName}</h1>
-                    </Link>
-                    <p>{definitions.description}</p>
-                </div>
-                <div className={style.options}>
-                    {definitions.router.map((rout) => {
-                        return (
-                            <Link
-                                key={rout.path}
-                                href={rout.path}
-                                className={clsx(
-                                    pathname === rout.path && style.current
-                                )}
-                            >
-                                {rout.label}
-                            </Link>
-                        )
-                    })}
-                </div>
-                <label
-                    className={style.reducerButton}
-                    htmlFor="controlSidebarVisibility"
-                >
-                    <Icon icon="menu" />
-                </label>
-            </header>
             <input
                 type="checkbox"
                 id="controlSidebarVisibility"
                 className={style.checkbox}
                 defaultChecked={true}
             />
+            <header className={style.header}>
+                <div className={style.top}>
+                    <center>
+                        <AppName />
+                        <div className={style.options}>
+                            {Definitions.router.map((rout) => {
+                                return (
+                                    <Link
+                                        key={rout.path}
+                                        href={rout.path}
+                                        className={clsx(
+                                            pathname === rout.path &&
+                                                style.current
+                                        )}
+                                    >
+                                        {rout.label}
+                                    </Link>
+                                )
+                            })}
+                            <Link href={pathname} onClick={() => onExit()}>
+                                Sair
+                            </Link>
+                        </div>
+                        <label
+                            className={style.reducerButton}
+                            htmlFor="controlSidebarVisibility"
+                        >
+                            <Icon icon="menu" />
+                        </label>
+                    </center>
+                </div>
+                {bottom && (
+                    <div className={style.bottom}>
+                        <center>{bottom}</center>
+                    </div>
+                )}
+            </header>
             <aside className={clsx(style.sidebar)}>
-                {definitions.router.map((rout) => {
+                {Definitions.router.map((rout) => {
                     return (
                         <Link
                             key={rout.path}
@@ -66,6 +83,15 @@ const Component = ({ pathname }: { pathname: string }) => {
                         </Link>
                     )
                 })}
+                <Link
+                    href={pathname}
+                    onClick={() => {
+                        closeSidebar()
+                        onExit()
+                    }}
+                >
+                    Sair
+                </Link>
             </aside>
             <Background
                 className={style.background}

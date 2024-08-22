@@ -1650,6 +1650,7 @@ export type GoogleIconType =
     | 'menu_open'
     | 'merge'
     | 'merge_type'
+    | 'message'
     | 'metabolism'
     | 'mfg_nest_yale_lock'
     | 'mic'

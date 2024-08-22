@@ -1,3 +1,5 @@
+'use client'
+
 import style from './index.module.scss'
 import { ButtonType } from '@/components/button/index.type'
 import Icon from '@/components/icon'

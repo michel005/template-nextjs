@@ -5,7 +5,5 @@ export interface FormType<T>
         DetailedHTMLProps<FormHTMLAttributes<HTMLFormElement>, HTMLFormElement>,
         'onSubmit'
     > {
-    onSubmit: (form: T) => void
-    initialValue?: T | null
     loading?: boolean
 }
