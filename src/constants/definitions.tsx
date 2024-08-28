@@ -1,8 +1,9 @@
 import { HomeMenu } from '@/app/page.menu'
-import SettingsMenu from '@/app/settings/page.menu'
+import { SettingsMenu } from '@/app/settings/page.menu'
 import { ExampleModal } from '@/modals/example/index.modal'
 import { MessageModal } from '@/modals/message/index.modal'
 import { QuestionModal } from '@/modals/question/index.modal'
+import { UserMenu } from '@/app/user/page.menu'
 
 export const Definitions = {
     api: 'http://localhost:8080/api',
@@ -22,6 +23,7 @@ export const Definitions = {
         {
             path: '/user',
             label: 'Usuário',
+            menu: <UserMenu />,
         },
     ],
     modal: {

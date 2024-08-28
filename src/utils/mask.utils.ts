@@ -92,7 +92,9 @@ export class MaskUtils {
 
     static phone = (value: string) => {
         const v = this.onlyNumbers(value)
-        return `(${v.substring(0, 2)}) ${v.substring(2, 7)}-${v.substring(7, 11)}`
+        return v === ''
+            ? ''
+            : `(${v.substring(0, 2)}) ${v.substring(2, 7)}-${v.substring(7, 11)}`
     }
 
     static cep = (value: string) => {

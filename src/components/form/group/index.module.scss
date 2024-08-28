@@ -1,17 +1,6 @@
 @import '../../../styles/mediaQuery';
 
-@keyframes showFrameAnimation {
-    from {
-        opacity: 0;
-    }
-
-    to {
-        opacity: 1;
-    }
-}
-
 .group {
-    animation: showFrameAnimation 0.5s linear;
     align-self: flex-start;
     background-color: #fff;
     box-shadow: var(--box-shaddow);

@@ -1,7 +1,7 @@
 export class FormUtils {
     static values = <T = any>(form: string) => {
         const values: any = {}
-        const formValues = new FormData(document.getElementById('form') as any)
+        const formValues = new FormData(document.getElementById(form) as any)
 
         formValues.forEach((value, key) => {
             values[key] = value
@@ -19,5 +19,9 @@ export class FormUtils {
                 }
             }
         }
+    }
+
+    static getElement = (id: string) => {
+        return document.getElementById(id) as any
     }
 }

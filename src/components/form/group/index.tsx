@@ -12,15 +12,17 @@ const Component = ({
     ...props
 }: GroupType) => {
     return (
-        <div
+        <span
             {...props}
             className={clsx(style.group, style[variant], className)}
         >
-            <h3>
-                {icon && <Icon icon={icon} />} {label}
-            </h3>
+            {label && (
+                <h3>
+                    {icon && <Icon icon={icon} />} {label}
+                </h3>
+            )}
             <section>{children}</section>
-        </div>
+        </span>
     )
 }
 

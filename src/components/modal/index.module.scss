@@ -3,6 +3,7 @@
 .modal {
     display: flex;
     justify-content: center;
+    z-index: var(--zindex-modal-background) !important;
 }
 
 .checkbox {
@@ -18,6 +19,7 @@
     min-width: 600px;
     padding: 28px !important;
     position: relative;
+    z-index: var(--zindex-modal-content) !important;
 
     &:hover {
         box-shadow: var(--box-shaddow) !important;

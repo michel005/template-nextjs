@@ -12,11 +12,13 @@ const Component = ({
     onClick,
     onClickAsync,
     disabled,
+    type = 'button',
     ...props
 }: ButtonType) => {
     return (
         <button
             {...props}
+            type={type}
             className={clsx(style.button, style[variant], className)}
             onClick={(e) => {
                 if (onClickAsync) {

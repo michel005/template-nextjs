@@ -7,8 +7,14 @@
         display: flex;
         flex-direction: column;
     }
-}
 
-.moreOptions {
-    margin-left: auto;
+    .group {
+        box-shadow: none;
+        padding: 0;
+    }
+
+    .picture {
+        flex-direction: column;
+        gap: 14px;
+    }
 }

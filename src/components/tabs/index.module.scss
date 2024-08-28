@@ -1,0 +1,58 @@
+.tabs {
+    flex-direction: column;
+
+    .tabList {
+        align-self: flex-start;
+        flex-direction: row;
+        padding-left: 14px;
+
+        .tab {
+            --tab-background-color: #fcfcfc;
+            --tab-color: #ccc;
+            --tab-transform: translateY(4px);
+
+            align-items: center;
+            background-color: var(--tab-background-color);
+            border-radius: var(--radius) var(--radius) 0 0;
+            color: var(--tab-color);
+            cursor: pointer;
+            display: flex;
+            font-weight: bold;
+            height: var(--button-height);
+            padding: 0 28px 0 21px;
+            transition: all 0.25s;
+            transform: var(--tab-transform);
+            user-select: none;
+
+            &:hover {
+                --tab-background-color: #f9f9f9;
+                --tab-color: #777;
+                --tab-transform: translateY(0);
+
+                opacity: 1;
+            }
+
+            &.active {
+                --tab-background-color: #fff;
+                --tab-color: var(--primary-color);
+                --tab-transform: translateY(0);
+
+                box-shadow: -7px -7px 4px #aaa1;
+                opacity: 1;
+                z-index: 2;
+            }
+        }
+    }
+
+    > section {
+        background-color: #fff;
+        border-radius: var(--radius);
+        box-shadow: var(--box-shaddow);
+        flex-direction: column;
+        gap: 14px;
+        min-height: 60px;
+        padding: 21px;
+        transition: all 0.25s;
+        z-index: 1;
+    }
+}

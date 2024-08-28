@@ -1,8 +1,12 @@
+import { FocusEventHandler } from 'react'
+
 export interface TextType {
     label: string
     id: string
     initialValue?: string
     placeholder?: string
+    grow?: number
+    mask?: 'date' | 'time' | 'rg' | 'cpf' | 'cnpj' | 'cep' | 'phone'
     type?:
         | 'color'
         | 'email'
@@ -12,5 +16,6 @@ export interface TextType {
         | 'radio'
         | 'range'
         | 'text'
+        | 'textarea'
         | 'date'
 }
