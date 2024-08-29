@@ -1,90 +1,76 @@
 .picture {
+    --picture-size: 260px;
+
     align-self: flex-start;
-    border: 1px solid #ddd;
     border-radius: var(--radius);
     display: flex;
     flex-direction: column;
-    flex-grow: initial !important;
-    gap: 14px;
-    height: 250px;
-    min-width: auto !important;
     position: relative;
-    width: 250px;
+    width: var(--picture-size);
 
-    &::after {
+    .label {
+        background-color: #fff;
+        backdrop-filter: blur(4px);
+        border-radius: 4px;
+        color: #666;
+        font-size: 0.8em;
+        left: 10px;
+        padding: 0 4px;
+        pointer-events: none;
+        position: absolute;
+        top: -9px;
+        transition: all 0.25s;
+        z-index: 4;
+    }
+
+    .personIcon {
+        background-color: #fff;
         background-image: var(--picture);
         background-position: center;
         background-size: cover;
+        border: 1px solid #ddd;
         border-radius: var(--radius);
-        content: '';
-        height: 100%;
-        left: 0;
-        position: absolute;
-        top: 0;
+        color: #ccc !important;
+        cursor: pointer;
+        height: var(--picture-size);
+        font-size: 5em;
+        justify-content: center;
         transition: all 0.25s;
-        width: 100%;
-    }
+        width: var(--picture-size);
+        z-index: 1;
 
-    &:hover {
-        .buttons,
-        .label {
-            opacity: 0.1;
+        > i {
+            transition:
+                all 0.25s,
+                opacity 0s;
+        }
 
-            &:hover {
-                opacity: 1 !important;
+        &:hover {
+            > i {
+                scale: 1.1;
             }
         }
     }
 
-    .personIcon {
-        color: #ccc !important;
-        height: 100%;
-        font-size: 5em;
-        justify-content: center;
-        width: 100%;
-
-        &:hover {
-            background-color: transparent !important;
-            box-shadow: none !important;
-            scale: 1.1;
-        }
-    }
-
-    .label,
     .buttons {
-        background-color: #1116;
-        backdrop-filter: blur(4px);
-        border-radius: var(--radius);
-        flex-direction: row;
-        justify-content: flex-end;
-        gap: 14px;
-        position: absolute;
-        transition: all 0.25s;
-        z-index: 2;
-    }
-
-    .label {
-        border-radius: var(--radius) var(--radius) 0 0;
-        color: #fff;
-        left: 0;
-        padding: 14px;
-        top: 0;
-        width: 100%;
-    }
-
-    .buttons {
-        bottom: 0;
+        align-self: center;
+        background-color: #fff;
         border-radius: 0 0 var(--radius) var(--radius);
-        color: #fff;
+        color: #333;
         display: flex;
-        gap: 14px;
-        padding: 14px;
-        right: 0;
-        width: 100%;
+        flex-direction: row;
+        gap: 10px;
+        justify-content: flex-end;
+        margin-top: -44px;
+        opacity: 0;
+        padding: 10px;
+        pointer-events: none;
+        transition: all 0.25s;
+        user-select: none;
 
         > button {
-            color: #fff;
-            font-size: 1.5em;
+            color: inherit;
+            font-size: 1.2em;
             height: auto !important;
             min-height: auto !important;
             padding: 0;
@@ -100,36 +86,20 @@
         display: none;
     }
 
-    &:not(.haveValue) {
-        .label {
-            background-color: transparent !important;
-            backdrop-filter: none !important;
-            color: #999;
-        }
-
+    &.haveValue {
         .buttons {
-            background-color: transparent !important;
-            backdrop-filter: none !important;
-            display: none;
-
-            > button {
-                color: #aaa !important;
-                font-size: 2.5em;
-            }
-
-            .removeButton {
-                display: none;
-            }
+            box-shadow: 7px 7px 7px #0001;
+            margin-top: -2px;
+            opacity: 1;
+            pointer-events: auto;
+            user-select: none;
         }
 
         .personIcon {
-            z-index: 1;
-        }
+            pointer-events: none;
 
-        &:hover {
-            .label,
-            .buttons {
-                opacity: 1;
+            > i {
+                opacity: 0;
             }
         }
     }

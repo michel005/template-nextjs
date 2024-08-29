@@ -26,9 +26,11 @@ const Component = ({
     }
 
     const loadPicture = (file: File) => {
-        FileUtils.fileToBase64(file, (response) => {
-            setPicture(response)
-        })
+        if (file) {
+            FileUtils.fileToBase64(file, (response) => {
+                setPicture(response)
+            })
+        }
     }
 
     return (
@@ -51,31 +53,6 @@ const Component = ({
                     {label}
                 </label>
             )}
-            <div className={style.buttons}>
-                <Button
-                    icon="image_search"
-                    variant="ghost"
-                    type="button"
-                    title="Escolher imagem"
-                    onClick={() => {
-                        FormUtils.getElement(`file_${id}`).click()
-                    }}
-                />
-                <Button
-                    className={style.removeButton}
-                    icon="close"
-                    variant="ghost"
-                    type="button"
-                    onClick={() => {
-                        FormUtils.getElement(`image_${id}`).style = null
-                        FormUtils.getElement(`file_${id}`).value = ''
-                        FormUtils.getElement(id).value = ''
-                        FormUtils.getElement(`image_${id}`).classList.remove(
-                            style.haveValue
-                        )
-                    }}
-                />
-            </div>
             <input
                 accept="image/*"
                 className={style.input}
@@ -86,15 +63,59 @@ const Component = ({
                     loadPicture(e.target.files[0])
                 }}
             />
-            <Button
+            <button
                 className={style.personIcon}
-                icon="add_photo_alternate"
                 title="Escolher imagem"
-                variant="ghost"
+                type="button"
                 onClick={() => {
                     FormUtils.getElement(`file_${id}`).click()
                 }}
-            />
+            >
+                <Icon icon="add_photo_alternate" />
+            </button>
+            <div className={style.buttons}>
+                <Button
+                    icon="image_search"
+                    variant="ghost"
+                    type="button"
+                    title="Visualizar"
+                    onClick={() => {
+                        const newWindow = window.open()
+                        if (newWindow) {
+                            newWindow.document.write(
+                                '<img src="' +
+                                    FormUtils.getElement(id).value +
+                                    '" />'
+                            )
+                            newWindow.document.close()
+                        }
+                    }}
+                />
+                <Button
+                    icon="photo_camera"
+                    variant="ghost"
+                    type="button"
+                    title="Alterar"
+                    onClick={() => {
+                        FormUtils.getElement(`file_${id}`).click()
+                    }}
+                />
+                <Button
+                    className={style.removeButton}
+                    icon="close"
+                    variant="ghost"
+                    type="button"
+                    title="Remover"
+                    onClick={() => {
+                        FormUtils.getElement(`image_${id}`).style = null
+                        FormUtils.getElement(`file_${id}`).value = ''
+                        FormUtils.getElement(id).value = ''
+                        FormUtils.getElement(`image_${id}`).classList.remove(
+                            style.haveValue
+                        )
+                    }}
+                />
+            </div>
             <input
                 type="hidden"
                 id={id}

@@ -4,25 +4,36 @@
     .tabList {
         align-self: flex-start;
         flex-direction: row;
+        flex-wrap: nowrap;
+        overflow-y: hidden;
+        overflow-x: auto;
+        padding-top: 14px;
         padding-left: 14px;
+        max-width: calc(100% - 14px);
+
+        &::-webkit-scrollbar {
+            height: 0;
+            width: 0;
+        }
 
         .tab {
             --tab-background-color: #fcfcfc;
             --tab-color: #ccc;
             --tab-transform: translateY(4px);
 
-            align-items: center;
+            align-items: flex-start;
             background-color: var(--tab-background-color);
             border-radius: var(--radius) var(--radius) 0 0;
             color: var(--tab-color);
             cursor: pointer;
             display: flex;
             font-weight: bold;
-            height: var(--button-height);
-            padding: 0 28px 0 21px;
+            min-height: var(--button-height);
+            padding: 14px 28px 10px 21px;
             transition: all 0.25s;
             transform: var(--tab-transform);
             user-select: none;
+            white-space: nowrap;
 
             &:hover {
                 --tab-background-color: #f9f9f9;

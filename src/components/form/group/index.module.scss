@@ -61,3 +61,13 @@
         }
     }
 }
+
+@include small-desktop {
+    .group.horizontal {
+        flex-direction: column;
+
+        > section {
+            flex-direction: column !important;
+        }
+    }
+}
