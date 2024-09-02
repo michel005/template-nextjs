@@ -2,21 +2,24 @@
 
 import style from './index.module.scss'
 import { SelectType } from '@/components/form/select/index.type'
+import { useRef } from 'react'
 
 const Component = ({
-    id,
     label,
-    initialValue,
-    grow = 1,
+    value,
+    onChange,
     options,
+    disabled,
 }: SelectType) => {
     return (
-        <div className={style.select} style={{ flexGrow: grow }}>
+        <div className={style.select}>
             <select
-                id={id}
-                name={id}
-                defaultValue={initialValue}
+                value={value}
                 className={style.input}
+                onChange={(e) => {
+                    onChange?.(e.target.value)
+                }}
+                disabled={disabled}
             >
                 <option value={''}></option>
                 {options.map((option) => {
@@ -27,11 +30,7 @@ const Component = ({
                     )
                 })}
             </select>
-            {label && (
-                <label className={style.label} htmlFor={id}>
-                    {label}
-                </label>
-            )}
+            {label && <label className={style.label}>{label}</label>}
         </div>
     )
 }

@@ -1,28 +1,28 @@
 import style from './index.module.scss'
 import { CheckboxType } from '@/components/form/checkbox/index.type'
 import Icon from '@/components/icon'
+import clsx from 'clsx'
 
-const Component = ({
-    id,
-    label,
-    initialValue,
-    placeholder = '',
-}: CheckboxType) => {
+const Component = ({ label, value, onChange }: CheckboxType) => {
+    console.log({ value })
     return (
-        <div className={style.checkbox}>
-            <input
-                className={style.input}
-                type="checkbox"
-                id={id}
-                name={id}
-                defaultChecked={initialValue ?? false}
-                placeholder={placeholder}
-            />
-            <div tabIndex={0} className={style.checkbox}>
+        <div className={clsx(style.checkbox, value && style.checked)}>
+            <div
+                tabIndex={0}
+                className={style.checkbox}
+                onClick={() => {
+                    onChange?.(!value)
+                }}
+            >
                 <Icon icon="check" />
             </div>
             {label && (
-                <label className={style.label} htmlFor={id}>
+                <label
+                    className={style.label}
+                    onClick={() => {
+                        onChange?.(!value)
+                    }}
+                >
                     {label}
                 </label>
             )}

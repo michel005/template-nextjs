@@ -2,15 +2,14 @@
     align-self: flex-start;
     background-color: #fafafa;
     border-radius: var(--radius);
+    box-shadow: var(--box-shaddow);
     display: flex;
     flex-direction: column;
     gap: 14px;
     padding: 14px;
     transition: all 0.25s;
 
-    &:hover {
-        box-shadow:
-            7px 7px 7px #0001,
-            -7px -7px 100px #0001;
+    > p {
+        color: #ccc;
     }
 }

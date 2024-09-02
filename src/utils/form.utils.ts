@@ -1,27 +1,30 @@
 export class FormUtils {
-    static values = <T = any>(form: string) => {
-        const values: any = {}
-        const formValues = new FormData(document.getElementById(form) as any)
-
-        formValues.forEach((value, key) => {
-            values[key] = value
-        })
-
-        return values as T
-    }
-
-    static initialValues = (values: any) => {
-        if (values) {
-            for (const field of Object.keys(values)) {
-                const input = document.getElementById(field) as any
-                if (input) {
-                    input.value = (values as any)[field]
-                }
+    static inputFieldValue = (
+        value: any,
+        setter: any,
+        field: string,
+        subField?: string
+    ) => {
+        if (!subField) {
+            return {
+                value: value?.[field],
+                onChange: (val: any) => {
+                    setter((x: any) => {
+                        x[field] = val
+                        return { ...x }
+                    })
+                },
+            }
+        } else {
+            return {
+                value: value?.[field]?.[subField],
+                onChange: (val: any) => {
+                    setter((x: any) => {
+                        x[field][subField] = val
+                        return { ...x }
+                    })
+                },
             }
         }
-    }
-
-    static getElement = (id: string) => {
-        return document.getElementById(id) as any
     }
 }

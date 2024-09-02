@@ -1,14 +1,23 @@
+@keyframes showTabContentAnimation {
+    from {
+        opacity: 0;
+    }
+
+    to {
+        opacity: 1;
+    }
+}
+
 .tabs {
     flex-direction: column;
 
     .tabList {
         align-self: flex-start;
+        border-radius: var(--radius) var(--radius) 0 0;
+        box-shadow: -7px -7px 4px #aaa1;
         flex-direction: row;
         flex-wrap: nowrap;
-        overflow-y: hidden;
-        overflow-x: auto;
-        padding-top: 14px;
-        padding-left: 14px;
+        overflow: auto;
         max-width: calc(100% - 14px);
 
         &::-webkit-scrollbar {
@@ -17,30 +26,29 @@
         }
 
         .tab {
-            --tab-background-color: #fcfcfc;
+            --tab-background-color: #f4f4f4;
             --tab-color: #ccc;
             --tab-transform: translateY(4px);
 
             align-items: flex-start;
             background-color: var(--tab-background-color);
-            border-radius: var(--radius) var(--radius) 0 0;
             color: var(--tab-color);
             cursor: pointer;
             display: flex;
             font-weight: bold;
-            min-height: var(--button-height);
-            padding: 14px 28px 10px 21px;
+            opacity: 0.5;
+            padding: 14px 21px;
             transition: all 0.25s;
-            transform: var(--tab-transform);
             user-select: none;
             white-space: nowrap;
 
             &:hover {
-                --tab-background-color: #f9f9f9;
+                --tab-background-color: #fff;
                 --tab-color: #777;
                 --tab-transform: translateY(0);
 
                 opacity: 1;
+                z-index: 2;
             }
 
             &.active {
@@ -48,22 +56,40 @@
                 --tab-color: var(--primary-color);
                 --tab-transform: translateY(0);
 
-                box-shadow: -7px -7px 4px #aaa1;
                 opacity: 1;
                 z-index: 2;
             }
         }
     }
 
-    > section {
-        background-color: #fff;
-        border-radius: var(--radius);
-        box-shadow: var(--box-shaddow);
-        flex-direction: column;
-        gap: 14px;
-        min-height: 60px;
-        padding: 21px;
+    .tabContent {
+        height: fit-content;
+        max-width: 100%;
+        position: relative;
         transition: all 0.25s;
+        width: 100%;
         z-index: 1;
+
+        &::-webkit-scrollbar {
+            height: 0;
+            width: 0;
+        }
+
+        > section {
+            animation: showTabContentAnimation 1s;
+            background-color: #fff;
+            border-radius: 0 var(--radius) var(--radius);
+            box-shadow: var(--box-shaddow);
+            display: none;
+            flex-direction: column;
+            gap: 14px;
+            padding: 21px;
+            transition: all 0.25s;
+            width: 100%;
+
+            &.currentTab {
+                display: flex;
+            }
+        }
     }
 }

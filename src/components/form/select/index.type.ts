@@ -2,10 +2,10 @@ import { ReactNode } from 'react'
 
 export interface SelectType {
     label: string
-    id: string
-    initialValue?: string
+    value?: string
+    onChange?: (newValue: string) => void
     placeholder?: string
-    grow?: number
+    disabled?: boolean
     options: {
         key: string
         label: ReactNode

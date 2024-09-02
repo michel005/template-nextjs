@@ -6,7 +6,7 @@
 
 .button {
     align-items: center;
-    background-color: var(--button-background);
+    background-color: var(--primary-color);
     border: none;
     border-radius: var(--radius);
     color: #fff;
@@ -71,7 +71,7 @@
     }
 
     &.secondary {
-        --button-background: #333;
+        --primary-color: #333;
 
         &:disabled {
             --button-background: #666;
@@ -81,7 +81,7 @@
 
     &.ghost {
         --button-effect-color: transparent;
-        --button-background: transparent;
+        --primary-color: transparent;
 
         color: #333;
 

@@ -7,17 +7,14 @@ $base-color: #3399ff;
 :root {
     --box-shaddow: 7px 7px 7px #0001, -7px -7px 4px #aaa1;
 
-    --button-background: var(--primary-color);
-    --border-color: #8697ca;
     --button-effect-color: #fff2;
     --button-font-size: 16px;
     --button-height: 52px;
 
     --header-height: 92px;
 
-    --input-height: 52px;
-
-    --primary-color: #{$base-color};
+    --input-border: 2px solid #ddd;
+    --input-height: 50px;
 
     --screen-width: 1500px;
 
@@ -27,16 +24,6 @@ $base-color: #3399ff;
     --zindex-header-botom: 90;
     --zindex-modal-background: 110;
     --zindex-modal-content: 120;
-
-    @for $i from 1 through 9 {
-        $opacity: $i * 0.1;
-        --primary-color-#{$i}: rgba(
-            #{red($base-color)},
-            #{green($base-color)},
-            #{blue($base-color)},
-            #{$opacity}
-        );
-    }
 
     --radius: 10px;
 }
@@ -112,7 +99,6 @@ body {
     left: 0;
     position: fixed;
     top: 0;
-    transition: all 0.25s;
     width: 100%;
     z-index: 0;
 

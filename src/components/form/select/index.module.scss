@@ -43,9 +43,14 @@
         font-size: 1em;
         height: var(--input-height);
         min-height: var(--input-height);
-        outline: 1px solid #ddd;
+        outline: var(--input-border);
         padding: 0 14px;
         transition: all 0.25s;
+
+        &:disabled {
+            background-color: #f9f9f9;
+            pointer-events: none;
+        }
 
         &::placeholder {
             color: transparent;
@@ -54,7 +59,7 @@
 
         &:focus-within {
             box-shadow: var(--box-shaddow);
-            outline-color: #666;
+            outline-color: var(--input-border-color-focus);
 
             &::placeholder {
                 color: #ccc;
@@ -62,11 +67,17 @@
 
             ~ .label {
                 background-color: #fff;
-                color: #666;
+                color: var(--primary-color);
                 font-size: 0.8em;
-                pointer-events: auto;
-                top: -9px;
+                top: -10px;
                 transform: none;
+            }
+
+            &:has(option:checked:not([value])),
+            &:has(option:checked:not([value=''])) {
+                ~ .label {
+                    color: var(--primary-color);
+                }
             }
         }
 
@@ -74,10 +85,9 @@
         &:has(option:checked:not([value=''])) {
             ~ .label {
                 background-color: #fff;
-                color: #666;
+                color: #999;
                 font-size: 0.8em;
-                pointer-events: auto;
-                top: -9px;
+                top: -10px;
                 transform: none;
             }
         }

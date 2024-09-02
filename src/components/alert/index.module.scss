@@ -1,0 +1,15 @@
+@import '../../styles/mediaQuery';
+
+.grid {
+    align-self: flex-start;
+    display: grid;
+    gap: 21px 28px;
+    width: 100%;
+}
+
+@include small-desktop {
+    .grid {
+        grid-template-columns: 1fr !important;
+        grid-column: span 1 !important;
+    }
+}

@@ -2,41 +2,24 @@ import style from './index.module.scss'
 import { PictureType } from '@/components/form/picture/index.type'
 import { FileUtils } from '@/utils/file.utils'
 import Button from '@/components/button'
-import { FormUtils } from '@/utils/form.utils'
 import Icon from '@/components/icon'
-import { useLayoutEffect } from 'react'
+import { CSSProperties, useRef } from 'react'
+import clsx from 'clsx'
 
-const Component = ({
-    id,
-    label,
-    initialValue,
-    placeholder = '',
-}: PictureType) => {
-    useLayoutEffect(() => {
-        if (FormUtils.getElement(id).value) {
-            setPicture(FormUtils.getElement(id).value)
-        }
-    }, [])
-
-    const setPicture = (response: string) => {
-        FormUtils.getElement(`image_${id}`).style =
-            `--picture: url(${response})`
-        FormUtils.getElement(`image_${id}`).classList.add(style.haveValue)
-        FormUtils.getElement(id).value = response
-    }
+const Component = ({ label, value, onChange }: PictureType) => {
+    const fileRef = useRef<HTMLInputElement>(null)
 
     const loadPicture = (file: File) => {
         if (file) {
             FileUtils.fileToBase64(file, (response) => {
-                setPicture(response)
+                onChange?.(response)
             })
         }
     }
 
     return (
         <div
-            className={style.picture}
-            id={`image_${id}`}
+            className={clsx(style.picture, !!value && style.haveValue)}
             onDragOver={(e) => {
                 e.preventDefault()
             }}
@@ -48,27 +31,26 @@ const Component = ({
                 loadPicture(e.dataTransfer.files[0])
             }}
         >
-            {label && (
-                <label className={style.label} htmlFor={id}>
-                    {label}
-                </label>
-            )}
+            {label && <label className={style.label}>{label}</label>}
             <input
                 accept="image/*"
                 className={style.input}
                 type="file"
-                id={`file_${id}`}
-                placeholder={placeholder}
                 onChange={(e: any) => {
                     loadPicture(e.target.files[0])
                 }}
+                ref={fileRef}
             />
             <button
                 className={style.personIcon}
-                title="Escolher imagem"
                 type="button"
+                style={
+                    {
+                        '--picture': `url(${value})`,
+                    } as CSSProperties
+                }
                 onClick={() => {
-                    FormUtils.getElement(`file_${id}`).click()
+                    fileRef.current?.click()
                 }}
             >
                 <Icon icon="add_photo_alternate" />
@@ -83,9 +65,7 @@ const Component = ({
                         const newWindow = window.open()
                         if (newWindow) {
                             newWindow.document.write(
-                                '<img src="' +
-                                    FormUtils.getElement(id).value +
-                                    '" />'
+                                '<img src="' + value + '" />'
                             )
                             newWindow.document.close()
                         }
@@ -97,7 +77,7 @@ const Component = ({
                     type="button"
                     title="Alterar"
                     onClick={() => {
-                        FormUtils.getElement(`file_${id}`).click()
+                        fileRef.current?.click()
                     }}
                 />
                 <Button
@@ -107,21 +87,10 @@ const Component = ({
                     type="button"
                     title="Remover"
                     onClick={() => {
-                        FormUtils.getElement(`image_${id}`).style = null
-                        FormUtils.getElement(`file_${id}`).value = ''
-                        FormUtils.getElement(id).value = ''
-                        FormUtils.getElement(`image_${id}`).classList.remove(
-                            style.haveValue
-                        )
+                        onChange?.('')
                     }}
                 />
             </div>
-            <input
-                type="hidden"
-                id={id}
-                name={id}
-                defaultValue={initialValue}
-            />
         </div>
     )
 }

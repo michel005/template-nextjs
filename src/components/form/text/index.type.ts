@@ -1,14 +1,12 @@
-import { FocusEventHandler } from 'react'
-
 export interface TextType {
     label: string
-    id: string
-    initialValue?: string
+    value?: string
+    onChange?: (currentValue: string) => void
     placeholder?: string
+    disabled?: boolean
     grow?: number
     mask?: 'date' | 'time' | 'rg' | 'cpf' | 'cnpj' | 'cep' | 'phone'
     type?:
-        | 'color'
         | 'email'
         | 'file'
         | 'number'

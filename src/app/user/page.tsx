@@ -1,6 +1,6 @@
 'use client'
 
-import { useState } from 'react'
+import { useEffect, useState } from 'react'
 import { UserPageComponent } from '@/app/user/page.component'
 
 const Component = () => {
@@ -9,8 +9,21 @@ const Component = () => {
         address: {},
         password: {},
     })
+    const [loading, setLoading] = useState<boolean>(true)
 
-    return <UserPageComponent setAllForms={setAllForms} allForms={allForms} />
+    useEffect(() => {
+        setTimeout(() => {
+            setLoading(false)
+        }, 2000)
+    }, [])
+
+    return (
+        <UserPageComponent
+            loading={loading}
+            setAllForms={setAllForms}
+            allForms={allForms}
+        />
+    )
 }
 
 export default Component

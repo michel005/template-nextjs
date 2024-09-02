@@ -47,7 +47,7 @@ export const Definitions = {
         local: {
             colorSchema: {
                 label: 'Cor Principal',
-                type: 'string',
+                type: 'color',
                 initialValue: '#3399ff',
             },
             configuration1: {

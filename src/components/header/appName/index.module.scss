@@ -6,7 +6,7 @@
 
     > i {
         align-items: center;
-        background-color: #fff2;
+        background-color: var(--primary-color);
         border-radius: var(--radius);
         color: #fff;
         display: flex;
@@ -17,10 +17,14 @@
     }
 
     .headerText {
+        align-items: flex-start;
         display: flex;
+        flex-direction: column;
+        justify-content: center;
 
         h1 {
             color: #fff;
+            text-align: left;
         }
 
         > p {

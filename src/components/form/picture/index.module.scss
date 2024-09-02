@@ -28,9 +28,9 @@
         background-image: var(--picture);
         background-position: center;
         background-size: cover;
-        border: 1px solid #ddd;
+        border: var(--input-border);
         border-radius: var(--radius);
-        color: #ccc !important;
+        color: #ccc;
         cursor: pointer;
         height: var(--picture-size);
         font-size: 5em;

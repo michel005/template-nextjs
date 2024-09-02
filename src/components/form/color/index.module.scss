@@ -1,0 +1,74 @@
+.color {
+    flex-direction: column;
+    font-size: 16px;
+    gap: 4px;
+    position: relative;
+
+    .label {
+        background-color: #fff;
+        border-radius: var(--radius);
+        color: #aaa;
+        font-size: 0.8em;
+        left: 10px;
+        padding: 0 4px;
+        pointer-events: none;
+        position: absolute;
+        top: -10px;
+        transition: all 0.25s;
+    }
+
+    .colorInput {
+        height: 100%;
+        opacity: 0;
+        pointer-events: none;
+        position: absolute;
+        right: 0;
+        top: 0;
+    }
+
+    .input {
+        align-items: center;
+        border: none;
+        border-radius: var(--radius);
+        display: flex;
+        flex-direction: row;
+        font-size: 1em;
+        gap: 14px;
+        height: var(--input-height);
+        min-height: var(--input-height);
+        outline: var(--input-border);
+        padding: 0 14px;
+        position: relative;
+        transition: all 0.25s;
+        width: 100%;
+
+        > span {
+            width: 100px;
+        }
+
+        &:focus-within {
+            box-shadow: var(--box-shaddow);
+            outline-color: var(--input-border-color-focus);
+
+            ~ .label {
+                color: var(--primary-color);
+            }
+        }
+
+        .colorPreview {
+            background-color: var(--color);
+            border-radius: var(--radius);
+            cursor: pointer;
+            height: calc(var(--input-height) - 8px);
+            position: absolute;
+            right: 4px;
+            top: 4px;
+            transition: all 0.25s;
+            width: calc(var(--input-height) - 8px);
+
+            &:hover {
+                opacity: 0.8;
+            }
+        }
+    }
+}

@@ -11,10 +11,6 @@
         display: flex;
         font-size: 1em;
         height: 100%;
-        left: 0;
-        padding-left: 24px;
-        position: absolute;
-        top: 0;
         transition: all 0.25s;
         user-select: none;
     }
@@ -23,6 +19,7 @@
         align-self: center;
         border: 1px solid #aaa;
         border-radius: 2px;
+        cursor: pointer;
         flex-direction: row;
         height: 16px;
         justify-content: center;
@@ -41,10 +38,8 @@
         }
     }
 
-    .input {
-        display: none;
-
-        &:checked ~ .checkbox {
+    &.checked {
+        .checkbox {
             > i {
                 opacity: 1;
             }

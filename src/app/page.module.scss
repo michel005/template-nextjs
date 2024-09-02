@@ -5,3 +5,15 @@
     flex-direction: column;
     gap: 14px;
 }
+
+.cards {
+    > div {
+        background-color: #fff;
+    }
+}
+
+.canvas {
+    border: 1px solid #eee;
+    border-radius: var(--radius);
+    padding: 14px;
+}
