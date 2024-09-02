@@ -4,7 +4,6 @@ import Icon from '@/components/icon'
 import clsx from 'clsx'
 
 const Component = ({ label, value, onChange }: CheckboxType) => {
-    console.log({ value })
     return (
         <div className={clsx(style.checkbox, value && style.checked)}>
             <div

@@ -1,7 +1,8 @@
 'use client'
 
-import { useEffect, useState } from 'react'
+import { Suspense, useEffect, useState } from 'react'
 import { UserPageComponent } from '@/app/user/page.component'
+import Skeleton from '@/components/skeleton'
 
 const Component = () => {
     const [allForms, setAllForms] = useState<any>({
@@ -18,11 +19,13 @@ const Component = () => {
     }, [])
 
     return (
-        <UserPageComponent
-            loading={loading}
-            setAllForms={setAllForms}
-            allForms={allForms}
-        />
+        <Suspense fallback={<Skeleton style={{ height: '300px' }} />}>
+            <UserPageComponent
+                loading={loading}
+                setAllForms={setAllForms}
+                allForms={allForms}
+            />
+        </Suspense>
     )
 }
 

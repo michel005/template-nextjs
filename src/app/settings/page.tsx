@@ -12,17 +12,22 @@ import { useEffect, useState } from 'react'
 import Grid from '@/components/grid'
 
 const Component = () => {
-    const [configs, setConfigs] = useState<any>(
-        JSON.parse(
-            localStorage.getItem('settings') || '{ "colorSchema": "#3399ff" }'
-        )
-    )
+    const [configs, setConfigs] = useState<any>()
 
     useEffect(() => {
         ;(window as any).shell = {
             configs: configs,
         }
     }, [configs])
+
+    useEffect(() => {
+        setConfigs(
+            JSON.parse(
+                localStorage.getItem('settings') ||
+                    '{ "colorSchema": "#3399ff" }'
+            )
+        )
+    }, [])
 
     return (
         <Page className={style.page}>
