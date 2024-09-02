@@ -21,7 +21,12 @@ const Component = () => {
     }, [configs])
 
     useEffect(() => {
-        setConfigs(JSON.parse('{ "colorSchema": "#3399ff" }'))
+        setConfigs(
+            JSON.parse(
+                localStorage.getItem('settings') ||
+                    '{ "colorSchema": "#3399ff" }'
+            )
+        )
     }, [])
 
     return (
@@ -29,7 +34,7 @@ const Component = () => {
             <h1>Configuração</h1>
             <Group icon="local_activity" label="Local" variant="horizontal">
                 <p>
-                    Estas configurações ficam armazenadas, no seu navegador.
+                    Estas configurações ficam armazenadas no seu navegador.
                     Fique atento, pois caso você acesse sua conta de outro
                     navegador ou de outro computador, estas configurações podem
                     estar diferentes.

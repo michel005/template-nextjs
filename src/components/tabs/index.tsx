@@ -3,26 +3,16 @@
 import style from './index.module.scss'
 import clsx from 'clsx'
 import { TabsType } from '@/components/tabs/index.type'
-import { Suspense, useEffect, useMemo, useState } from 'react'
-import { usePathname, useRouter, useSearchParams } from 'next/navigation'
+import { Suspense, useMemo, useState } from 'react'
 import Skeleton from '@/components/skeleton'
 
 const Component = ({ tabs, initialSelected, onChangeTab }: TabsType) => {
-    const router = useRouter()
-    const pathname = usePathname()
-    const searchParams = useSearchParams()
-    const [current, setCurrent] = useState<string | null>(
-        searchParams.get('tab') || initialSelected
-    )
+    const [current, setCurrent] = useState<string | null>(initialSelected)
 
     const currentTab = useMemo(
         () => tabs.find((x) => x.id === current) || null,
         [current, tabs]
     )
-
-    useEffect(() => {
-        router.push(`${pathname}?tab=${current}`)
-    }, [current])
 
     return (
         <Suspense fallback={<Skeleton style={{ height: '300px' }} />}>
