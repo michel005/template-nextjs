@@ -52,7 +52,7 @@ const Component = ({ children }: { children: ReactNode }) => {
                 hexToRgbA(colorSchema, i)
             )
         }
-    }, [pathname])
+    }, [])
 
     return (
         <body className={style.body}>
