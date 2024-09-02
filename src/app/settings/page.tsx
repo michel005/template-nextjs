@@ -21,12 +21,7 @@ const Component = () => {
     }, [configs])
 
     useEffect(() => {
-        setConfigs(
-            JSON.parse(
-                localStorage.getItem('settings') ||
-                    '{ "colorSchema": "#3399ff" }'
-            )
-        )
+        setConfigs(JSON.parse('{ "colorSchema": "#3399ff" }'))
     }, [])
 
     return (
