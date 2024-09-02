@@ -1,5 +1,9 @@
+const isProd = process.env.NODE_ENV === 'production';
+
 module.exports = {
-    images: {
-        domains: ['play-lh.googleusercontent.com'],
-    },
+  assetPrefix: isProd ? '/template-nextjs/' : '',
+  basePath: '/template-nextjs',
+  images: {
+    unoptimized: true,
+  },
 }
