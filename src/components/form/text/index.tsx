@@ -37,7 +37,7 @@ const Component = ({
         if (mask === 'time') {
             return '99:99:99'
         }
-        return placeholder
+        return placeholder || label
     }, [mask, placeholder])
 
     if (type === 'textarea') {
@@ -46,7 +46,7 @@ const Component = ({
                 <textarea
                     className={style.input}
                     value={value}
-                    placeholder={placeholder}
+                    placeholder={placeholder || label}
                     disabled={disabled}
                     onChange={(e) => {
                         onChange?.(e.target.value)
