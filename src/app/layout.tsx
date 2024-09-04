@@ -2,7 +2,6 @@ import React from 'react'
 import '@/styles/global.scss'
 import Main from '@/components/main'
 import { ModalProvider } from '@/context/modal.context'
-import Head from 'next/head'
 import { Metadata } from 'next'
 
 export const metadata: Metadata = {
@@ -17,9 +16,6 @@ export default function RootLayout({
 }>) {
     return (
         <html lang="pt-br">
-            <Head>
-                <title>Template - Configurações</title>
-            </Head>
             <ModalProvider>
                 <Main>{children}</Main>
             </ModalProvider>

@@ -1,8 +1,12 @@
+const isProd = process.env.NODE_ENV === 'production'
+
 module.exports = {
     output: 'export',
-    assetPrefix: '/template-nextjs/',
-    basePath: '/template-nextjs',
-    images: {
-        unoptimized: true,
-    },
+    assetPrefix: isProd ? '/template-nextjs/' : '',
+    basePath: isProd ? '/template-nextjs/' : '',
+    images: isProd
+        ? {
+              unoptimized: true,
+          }
+        : undefined,
 }
