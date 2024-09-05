@@ -1,29 +1,23 @@
-import style2 from './index.module.scss'
+import style from './index.module.scss'
 import clsx from 'clsx'
-import { GridType } from '@/components/grid/index.type'
-import { CSSProperties } from 'react'
+import { AlertType } from '@/components/alert/index.type'
+import Icon from '@/components/icon'
 
 const Component = ({
     className,
-    style,
-    columns = '1fr',
-    rows,
-    span,
+    variant = 'info',
+    icon,
+    children,
     ...props
-}: GridType) => {
+}: AlertType) => {
     return (
         <div
             {...props}
-            style={
-                {
-                    ...style,
-                    gridTemplateColumns: columns,
-                    gridTemplateRows: rows,
-                    gridColumn: `span ${span}`,
-                } as CSSProperties
-            }
-            className={clsx(style2.grid, className)}
-        />
+            className={clsx(style.alert, style[variant as any], className)}
+        >
+            {icon && <Icon icon={icon} />}
+            <div>{children}</div>
+        </div>
     )
 }
 

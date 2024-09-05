@@ -7,6 +7,7 @@ import Grid from '@/components/grid'
 import Card from '@/components/card'
 import Skeleton from '@/components/skeleton'
 import { Suspense } from 'react'
+import Alert from '@/components/alert'
 
 const HomePage = () => {
     return (
@@ -66,6 +67,7 @@ const HomePage = () => {
                         </p>
                     </Card>
                 </Grid>
+                <Alert icon="add_alert">Exemplo de alert</Alert>
             </Page>
         </Suspense>
     )
