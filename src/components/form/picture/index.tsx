@@ -6,7 +6,7 @@ import Icon from '@/components/icon'
 import { CSSProperties, useRef } from 'react'
 import clsx from 'clsx'
 
-const Component = ({ label, value, onChange }: PictureType) => {
+const Component = ({ label, value, size = '260px', onChange }: PictureType) => {
     const fileRef = useRef<HTMLInputElement>(null)
 
     const loadPicture = (file: File) => {
@@ -20,6 +20,7 @@ const Component = ({ label, value, onChange }: PictureType) => {
     return (
         <div
             className={clsx(style.picture, !!value && style.haveValue)}
+            style={{ '--picture-size': size } as CSSProperties}
             onDragOver={(e) => {
                 e.preventDefault()
             }}

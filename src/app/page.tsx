@@ -67,7 +67,12 @@ const HomePage = () => {
                         </p>
                     </Card>
                 </Grid>
-                <Alert icon="add_alert">Exemplo de alert</Alert>
+                <Alert icon="notification_important">
+                    <p>
+                        Você possui 8 alertas pendêntes. Deseja{' '}
+                        <a href="">resolver</a> isso agora?
+                    </p>
+                </Alert>
             </Page>
         </Suspense>
     )

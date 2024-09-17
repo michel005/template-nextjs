@@ -68,6 +68,7 @@ export const UserGeneralTab = ({ loading, allForms, setAllForms }: any) => {
         <Grid columns="250px 1fr">
             <Picture
                 label="Imagem de Perfil"
+                size="250px"
                 {...FormUtils.inputFieldValue(
                     allForms,
                     setAllForms,

@@ -2,6 +2,8 @@
 
 .header {
     flex-direction: column;
+    position: sticky;
+    top: 0;
     z-index: var(--zindex-header-top);
 
     .top {
@@ -33,9 +35,16 @@
             justify-content: flex-end;
             padding: 0 14px;
 
-            > a {
+            > a,
+            .link {
                 color: #fff5;
+                cursor: pointer;
                 font-size: 18px;
+                transition: all 0.25s;
+
+                &:hover {
+                    opacity: 0.5;
+                }
 
                 &.current {
                     color: #fff;

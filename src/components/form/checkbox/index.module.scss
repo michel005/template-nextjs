@@ -15,17 +15,18 @@
         user-select: none;
     }
 
-    .checkbox {
+    .box {
         align-self: center;
         border: 1px solid #aaa;
-        border-radius: 2px;
+        border-radius: 4px;
         cursor: pointer;
         flex-direction: row;
-        height: 16px;
+        height: 18px;
         justify-content: center;
         position: relative;
         user-select: none;
-        width: 16px;
+        transition: all 0.25s;
+        width: 18px;
         z-index: 0;
 
         > i {
@@ -39,8 +40,12 @@
     }
 
     &.checked {
-        .checkbox {
+        .box {
+            background-color: var(--primary-color-2);
+            border-color: var(--primary-color);
+
             > i {
+                color: var(--primary-color);
                 opacity: 1;
             }
         }

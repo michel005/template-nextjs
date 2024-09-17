@@ -3,6 +3,7 @@ import '@/styles/global.scss'
 import Main from '@/components/main'
 import { ModalProvider } from '@/context/modal.context'
 import { Metadata } from 'next'
+import Footer from '@/components/footer'
 
 export const metadata: Metadata = {
     title: 'Template',
@@ -17,7 +18,9 @@ export default function RootLayout({
     return (
         <html lang="pt-br">
             <ModalProvider>
-                <Main>{children}</Main>
+                <Main>
+                    <section>{children}</section>
+                </Main>
             </ModalProvider>
         </html>
     )

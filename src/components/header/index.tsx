@@ -50,9 +50,12 @@ const Component = ({
                                     </Link>
                                 )
                             })}
-                            <Link href={pathname} onClick={() => onExit()}>
+                            <label
+                                className={style.link}
+                                onClick={() => onExit()}
+                            >
                                 Sair
-                            </Link>
+                            </label>
                         </div>
                         <label
                             className={style.reducerButton}

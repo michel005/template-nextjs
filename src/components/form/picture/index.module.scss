@@ -1,10 +1,10 @@
 .picture {
     --picture-size: 260px;
 
-    align-self: flex-start;
     border-radius: var(--radius);
     display: flex;
     flex-direction: column;
+    margin: 0 auto;
     position: relative;
     width: var(--picture-size);
 

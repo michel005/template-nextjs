@@ -5,7 +5,7 @@
 $base-color: #3399ff;
 
 :root {
-    --box-shaddow: 7px 7px 7px #0001, -7px -7px 4px #aaa1;
+    --box-shaddow: 7px 7px 7px #9991, -7px -7px 4px #aaa1;
 
     --button-effect-color: #fff2;
     --button-font-size: 16px;
@@ -91,29 +91,13 @@ span {
 }
 
 body {
-    background-color: #fcfcfc;
     display: flex;
     flex-direction: column;
-    height: 100%;
-    max-height: 100%;
-    left: 0;
-    position: fixed;
-    top: 0;
-    width: 100%;
-    z-index: 0;
-
-    main {
-        align-self: center;
-        overflow: auto;
-        padding: 14px;
-        position: fixed;
-        transition: all 0.25s;
-        width: min(100%, var(--screen-width));
-    }
+    overflow: auto;
 }
 
 a {
-    color: var(--primary-color);
+    color: #39f;
     transition: all 0.25s;
 
     &:hover {

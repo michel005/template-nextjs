@@ -14,6 +14,7 @@ import { StringUtils } from '@/utils/string.utils'
 import { Definitions } from '@/constants/definitions'
 import { ModalContext } from '@/context/modal.context'
 import useMessage from '@/hook/useMessage'
+import Footer from '@/components/footer'
 
 const hexToRgbA = (hex: string, opacity: number) => {
     let r = parseInt(hex.slice(1, 3), 16)
@@ -55,24 +56,31 @@ const Component = ({ children }: { children: ReactNode }) => {
     }, [])
 
     return (
-        <body className={style.body}>
-            <Header
-                pathname={pathname}
-                bottom={bottomHeader}
-                onExit={() => {
-                    message.question('Você realmente quer sair?', '', () => {})
-                }}
-            />
-            {children}
-            {modalList.map((modal) => {
-                return (
-                    <Fragment key={modal.name}>
-                        {Definitions.modal?.[
-                            modal.name as keyof typeof Definitions.modal
-                        ] || <></>}
-                    </Fragment>
-                )
-            })}
+        <body>
+            <div className={style.body}>
+                <Header
+                    pathname={pathname}
+                    bottom={bottomHeader}
+                    onExit={() => {
+                        message.question(
+                            'Você realmente quer sair?',
+                            '',
+                            () => {}
+                        )
+                    }}
+                />
+                <section>{children}</section>
+                <Footer />
+                {modalList.map((modal) => {
+                    return (
+                        <Fragment key={modal.name}>
+                            {Definitions.modal?.[
+                                modal.name as keyof typeof Definitions.modal
+                            ] || <></>}
+                        </Fragment>
+                    )
+                })}
+            </div>
         </body>
     )
 }

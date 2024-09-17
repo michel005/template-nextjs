@@ -8,7 +8,7 @@ const Component = ({ label, value, onChange }: CheckboxType) => {
         <div className={clsx(style.checkbox, value && style.checked)}>
             <div
                 tabIndex={0}
-                className={style.checkbox}
+                className={style.box}
                 onClick={() => {
                     onChange?.(!value)
                 }}

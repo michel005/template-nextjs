@@ -26,6 +26,39 @@ export const Definitions = {
             menu: <UserMenu />,
         },
     ],
+    footer: [
+        {
+            title: 'Suporte',
+            options: [
+                ['Opção 1', 'http://support.com'],
+                ['Opção 2', 'http://support.com'],
+                ['Opção 3', 'http://support.com'],
+                ['Opção 4', 'http://support.com'],
+                ['Opção 5', 'http://support.com'],
+            ],
+        },
+        {
+            title: 'Download',
+            options: [
+                ['Opção 1', 'http://support.com'],
+                ['Opção 2', 'http://support.com'],
+                ['Opção 3', 'http://support.com'],
+                ['Opção 4', 'http://support.com'],
+                ['Opção 5', 'http://support.com'],
+                ['Opção 6', 'http://support.com'],
+                ['Opção 7', 'http://support.com'],
+            ],
+        },
+        {
+            title: 'Contato',
+            options: [
+                ['Opção 1', 'http://support.com'],
+                ['Opção 2', 'http://support.com'],
+                ['Opção 3', 'http://support.com'],
+            ],
+        },
+    ],
+    footerDetails: 'Template é um projeto com direitos reservados. 2024',
     modal: {
         example: <ExampleModal />,
         message: <MessageModal />,

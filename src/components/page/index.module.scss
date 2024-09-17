@@ -1,8 +1,11 @@
 .page {
+    align-self: center;
     display: flex;
     flex-direction: column;
     flex-grow: 1;
     gap: 28px;
     padding: 14px;
     position: relative;
+    transition: all 0.25s;
+    width: min(100%, var(--screen-width));
 }

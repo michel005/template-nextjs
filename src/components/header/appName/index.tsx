@@ -15,7 +15,7 @@ const Component = () => {
         <div className={style.appName}>
             <Icon icon="add_alert" />
             <div className={style.headerText}>
-                <Link href="/" onClick={() => closeSidebar()}>
+                <Link href="/">
                     <h1>{Definitions.appName}</h1>
                 </Link>
                 <p>{Definitions.description}</p>
