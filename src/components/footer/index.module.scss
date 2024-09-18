@@ -20,6 +20,7 @@
         .icons {
             border-top: 1px solid #fff1;
             flex-direction: row;
+            flex-wrap: wrap;
             gap: 28px;
             margin-top: -28px;
             padding-top: 28px;
@@ -90,6 +91,21 @@
                         text-align: left;
                     }
                 }
+            }
+            .icons {
+                p {
+                    text-align: left;
+                }
+            }
+        }
+    }
+}
+
+@include tablet {
+    .footer {
+        > center {
+            .options {
+                display: none;
             }
         }
     }
