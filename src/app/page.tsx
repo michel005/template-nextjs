@@ -8,6 +8,8 @@ import Card from '@/components/card'
 import Skeleton from '@/components/skeleton'
 import { Suspense } from 'react'
 import Alert from '@/components/alert'
+import Accordion from '@/components/accordion'
+import { AccordionGroup } from '@/components/accordion/group'
 
 const HomePage = () => {
     return (
@@ -73,6 +75,29 @@ const HomePage = () => {
                         <a href="">resolver</a> isso agora?
                     </p>
                 </Alert>
+                <Accordion header={<p>Exemplo de Accordion</p>}>
+                    <p>Exemplo de Texto</p>
+                </Accordion>
+                <AccordionGroup>
+                    <Accordion header={<p>Exemplo de Accordion</p>}>
+                        <p>Exemplo de Texto</p>
+                    </Accordion>
+                    <Accordion header={<p>Exemplo de Accordion</p>}>
+                        <p>Exemplo de Texto</p>
+                    </Accordion>
+                    <Accordion header={<p>Exemplo de Accordion</p>}>
+                        <p>Exemplo de Texto</p>
+                    </Accordion>
+                    <Accordion header={<p>Exemplo de Accordion</p>}>
+                        <p>Exemplo de Texto</p>
+                    </Accordion>
+                    <Accordion header={<p>Exemplo de Accordion</p>}>
+                        <p>Exemplo de Texto</p>
+                    </Accordion>
+                    <Accordion header={<p>Exemplo de Accordion</p>}>
+                        <p>Exemplo de Texto</p>
+                    </Accordion>
+                </AccordionGroup>
             </Page>
         </Suspense>
     )

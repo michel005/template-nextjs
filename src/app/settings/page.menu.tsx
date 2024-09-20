@@ -2,21 +2,34 @@
 
 import Button from '@/components/button'
 import useMessage from '@/hook/useMessage'
+import { ColorUtils } from '@/utils/color.utils'
 
 export const SettingsMenu = () => {
-    const { question } = useMessage()
+    const { question, message } = useMessage()
 
     return (
         <>
             <Button
                 icon="save"
                 onClick={() => {
-                    localStorage.setItem(
-                        'settings',
-                        JSON.stringify((window as any).shell.configs)
-                    )
+                    if (
+                        !ColorUtils.checkContrast(
+                            '#f9f9f9',
+                            (window as any).shell.configs.colorSchema
+                        )
+                    ) {
+                        message(
+                            'Cor Inválida!',
+                            'Esta cor é muito dificil de visualizar. Utilize outra cor.'
+                        )
+                    } else {
+                        localStorage.setItem(
+                            'settings',
+                            JSON.stringify((window as any).shell.configs)
+                        )
 
-                    window.location.reload()
+                        window.location.reload()
+                    }
                 }}
             >
                 Salvar

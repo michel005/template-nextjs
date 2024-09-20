@@ -68,6 +68,15 @@ export const Definitions = {
                 ['Opção 3', 'http://support.com'],
             ],
         },
+        {
+            title: 'Ajuda',
+            options: [
+                ['Opção 1', 'http://support.com'],
+                ['Opção 2', 'http://support.com'],
+                ['Opção 3', 'http://support.com'],
+                ['Opção 4', 'http://support.com'],
+            ],
+        },
     ],
     footerDetails: 'Template é um projeto com direitos reservados. 2024',
     modal: {
