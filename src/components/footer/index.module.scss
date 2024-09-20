@@ -4,108 +4,92 @@
     align-items: center;
     background-color: #111;
     display: flex;
+    //filter: invert(1);
     flex-direction: column;
     gap: 1px;
     justify-content: center;
+    padding: 0 28px;
+
+    > hr {
+        height: 1px;
+        opacity: 0.2;
+        width: var(--screen-width);
+    }
 
     > center {
         background-color: #111;
         display: flex;
         flex-direction: row;
         gap: 14px;
-        justify-content: space-between;
-        padding: 28px;
+        padding: 14px 0;
         width: var(--screen-width);
+    }
 
-        .icons {
-            border-top: 1px solid #fff1;
-            flex-direction: row;
-            flex-wrap: wrap;
-            gap: 28px;
-            margin-top: -28px;
-            padding-top: 28px;
-            width: 100%;
+    .logo {
+        padding: 21px 0;
 
-            > i {
-                align-self: flex-start;
+        > p {
+            color: #aaa;
+        }
+    }
+
+    .options {
+        display: flex;
+        flex-direction: row;
+        flex-wrap: wrap;
+        gap: 28px;
+        justify-content: flex-end;
+
+        .column {
+            flex-direction: column;
+            font-size: 16px;
+            gap: 7px;
+            width: 120px;
+
+            h3 {
                 color: #fff;
-                flex-grow: 0;
+                font-size: 1em;
+                font-weight: normal;
+                text-align: right;
             }
 
-            > p {
+            a {
                 color: #aaa;
-            }
-        }
+                cursor: pointer;
+                font-size: 1em;
+                opacity: 0.5;
+                text-align: right;
+                transition: all 0.25s;
 
-        .logo {
-            align-self: flex-start;
-            justify-self: left;
-            filter: grayscale(1);
-        }
-
-        .options {
-            display: grid;
-            grid-template-columns: repeat(3, 120px);
-            gap: 28px;
-
-            .column {
-                flex-direction: column;
-                font-size: 16px;
-                gap: 10px;
-
-                h3 {
-                    color: #fff;
-                    font-size: 1em;
-                    font-weight: normal;
-                    text-align: right;
-                }
-
-                a {
-                    color: #aaa;
-                    cursor: pointer;
-                    font-size: 1em;
-                    opacity: 0.5;
-                    text-align: right;
-                    transition: all 0.25s;
-
-                    &:hover {
-                        opacity: 1;
-                    }
+                &:hover {
+                    opacity: 1;
                 }
             }
+        }
+    }
+
+    .icons {
+        display: flex;
+        flex-direction: row;
+        flex-wrap: wrap;
+        gap: 28px;
+        padding: 21px 0;
+
+        > i {
+            color: #fff;
         }
     }
 }
 
 @include small-desktop {
     .footer {
-        > center {
-            flex-direction: column;
+        .options {
+            justify-content: center;
+            gap: 14px;
 
-            .options {
-                margin-top: 21px;
-
-                .column {
-                    h3,
-                    a {
-                        text-align: left;
-                    }
-                }
-            }
-            .icons {
-                p {
-                    text-align: left;
-                }
-            }
-        }
-    }
-}
-
-@include tablet {
-    .footer {
-        > center {
-            .options {
-                display: none;
+            .column {
+                align-items: center;
+                flex-grow: 1;
             }
         }
     }

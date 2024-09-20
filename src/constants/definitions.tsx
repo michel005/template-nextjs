@@ -28,6 +28,17 @@ export const Definitions = {
     ],
     footer: [
         {
+            title: 'Compras',
+            options: [
+                ['Opção 1', 'http://support.com'],
+                ['Opção 2', 'http://support.com'],
+                ['Opção 3', 'http://support.com'],
+                ['Opção 4', 'http://support.com'],
+                ['Opção 5', 'http://support.com'],
+                ['Opção 6', 'http://support.com'],
+            ],
+        },
+        {
             title: 'Suporte',
             options: [
                 ['Opção 1', 'http://support.com'],
