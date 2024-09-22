@@ -123,7 +123,7 @@ const HomePage = () => {
                         </p>
                     </Card>
                 </Grid>
-                <Alert icon="notification_important" variant="warning">
+                <Alert icon="notification_important" variant="error">
                     <p>
                         Você possui 8 alertas pendêntes. Deseja{' '}
                         <a href="">resolver</a> isso agora?
