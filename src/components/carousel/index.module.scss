@@ -1,0 +1,78 @@
+.carousel {
+    --carousel-min-height: 200px;
+    --carousel-max-height: 500px;
+
+    background-color: #fafafa;
+    border-radius: var(--radius);
+    box-shadow: var(--box-shaddow);
+    display: flex;
+    flex-direction: row;
+    position: relative;
+
+    .nextButton,
+    .backButton {
+        padding: 7px;
+        position: absolute;
+        top: 50%;
+        transform: translateY(-50%);
+        width: auto;
+        z-index: 1;
+    }
+
+    .nextButton {
+        border-radius: 50% 0 0 50%;
+        right: 0;
+    }
+
+    .backButton {
+        border-radius: 0 50% 50% 0;
+        left: 0;
+    }
+
+    .allSteps {
+        border-radius: var(--radius);
+        display: flex;
+        flex-direction: row;
+        min-height: var(--carousel-min-height);
+        max-height: var(--carousel-max-height);
+        overflow: hidden;
+        width: 100%;
+    }
+
+    .step {
+        display: flex;
+        flex-direction: column;
+        flex-grow: 1;
+        min-width: 100%;
+        transition: all 0.5s;
+    }
+
+    .currentStep {
+        display: flex;
+    }
+
+    .stepIndicator {
+        bottom: 0;
+        display: flex;
+        flex-direction: row;
+        flex-wrap: wrap;
+        gap: 10px;
+        justify-content: center;
+        padding: 14px;
+        position: absolute;
+        width: 100%;
+    }
+
+    .dot {
+        background-color: #ccc;
+        border-radius: 50%;
+        height: 10px;
+        transition: all 0.25s;
+        width: 10px;
+        z-index: 1;
+    }
+
+    .currentStepDot {
+        background-color: #111;
+    }
+}

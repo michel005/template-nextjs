@@ -5,7 +5,7 @@ export interface TextType {
     placeholder?: string
     disabled?: boolean
     grow?: number
-    mask?: 'date' | 'time' | 'rg' | 'cpf' | 'cnpj' | 'cep' | 'phone'
+    mask?: 'date' | 'time' | 'rg' | 'cpf' | 'cnpj' | 'cep'
     type?:
         | 'email'
         | 'file'

@@ -7,6 +7,15 @@ import { ColorUtils } from '@/utils/color.utils'
 export const SettingsMenu = () => {
     const { question, message } = useMessage()
 
+    const save = () => {
+        localStorage.setItem(
+            'settings',
+            JSON.stringify((window as any).shell.configs)
+        )
+
+        window.location.reload()
+    }
+
     return (
         <>
             <Button
@@ -18,17 +27,15 @@ export const SettingsMenu = () => {
                             (window as any).shell.configs.colorSchema
                         )
                     ) {
-                        message(
-                            'Cor Inválida!',
-                            'Esta cor é muito dificil de visualizar. Utilize outra cor.'
+                        question(
+                            'Anteção ao escolher uma cor!',
+                            'Esta cor pode deixar alguns textos difíceis de se ler. Deseja realmente utilizala?',
+                            () => {
+                                save()
+                            }
                         )
                     } else {
-                        localStorage.setItem(
-                            'settings',
-                            JSON.stringify((window as any).shell.configs)
-                        )
-
-                        window.location.reload()
+                        save()
                     }
                 }}
             >

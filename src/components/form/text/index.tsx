@@ -28,9 +28,6 @@ const Component = ({
         if (mask === 'cep') {
             return '99999-999'
         }
-        if (mask === 'phone') {
-            return '(99) 99999-9999'
-        }
         if (mask === 'date') {
             return '99/99/9999'
         }

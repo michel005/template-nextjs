@@ -6,16 +6,70 @@ import Tabs from '@/components/tabs'
 import Grid from '@/components/grid'
 import Card from '@/components/card'
 import Skeleton from '@/components/skeleton'
-import { Suspense } from 'react'
+import { CSSProperties, Suspense } from 'react'
 import Alert from '@/components/alert'
 import Accordion from '@/components/accordion'
 import { AccordionGroup } from '@/components/accordion/group'
+import Carousel from '@/components/carousel'
 
 const HomePage = () => {
     return (
         <Suspense fallback={<Skeleton style={{ height: '300px' }} />}>
             <Page className={style.homePage}>
-                <h1>Exemplo</h1>
+                <Carousel
+                    steps={[
+                        <article key={1} className={style.article}>
+                            <h1>Bem vindo ao Template</h1>
+                            <p>
+                                Aqui você encontra exemplos para a utilização de
+                                vários componentes emum novo projeto.
+                            </p>
+                            <Grid columns="1fr 1fr 1fr" className={style.cards}>
+                                <Card>
+                                    <h3>Informação 1</h3>
+                                    <p>
+                                        Exemplo de texto de um cartão que vai
+                                        ser exibido no dashboard do site.
+                                    </p>
+                                </Card>
+                                <Card>
+                                    <h3>Informação 2</h3>
+                                    <p>
+                                        Exemplo de texto de um cartão que vai
+                                        ser exibido no dashboard do site.
+                                    </p>
+                                </Card>
+                                <Card>
+                                    <h3>Informação 3</h3>
+                                    <p>
+                                        Exemplo de texto de um cartão que vai
+                                        ser exibido no dashboard do site.
+                                    </p>
+                                </Card>
+                            </Grid>
+                        </article>,
+                        <img
+                            key={2}
+                            src="https://images.pexels.com/photos/346529/pexels-photo-346529.jpeg?cs=srgb&dl=pexels-bri-schneiter-28802-346529.jpg&fm=jpg"
+                            alt=""
+                        />,
+                        <img
+                            key={3}
+                            src="https://images.pexels.com/photos/346529/pexels-photo-346529.jpeg?cs=srgb&dl=pexels-bri-schneiter-28802-346529.jpg&fm=jpg"
+                            alt=""
+                        />,
+                        <img
+                            key={4}
+                            src="https://images.pexels.com/photos/346529/pexels-photo-346529.jpeg?cs=srgb&dl=pexels-bri-schneiter-28802-346529.jpg&fm=jpg"
+                            alt=""
+                        />,
+                        <img
+                            key={5}
+                            src="https://images.pexels.com/photos/346529/pexels-photo-346529.jpeg?cs=srgb&dl=pexels-bri-schneiter-28802-346529.jpg&fm=jpg"
+                            alt=""
+                        />,
+                    ]}
+                />
                 <Tabs
                     tabs={[
                         {
@@ -69,7 +123,7 @@ const HomePage = () => {
                         </p>
                     </Card>
                 </Grid>
-                <Alert icon="notification_important">
+                <Alert icon="notification_important" variant="warning">
                     <p>
                         Você possui 8 alertas pendêntes. Deseja{' '}
                         <a href="">resolver</a> isso agora?

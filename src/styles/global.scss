@@ -84,6 +84,10 @@ section {
     flex-direction: column;
 }
 
+img {
+    object-fit: cover;
+}
+
 a,
 p,
 span {

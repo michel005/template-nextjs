@@ -180,7 +180,6 @@ export const UserGeneralTab = ({ loading, allForms, setAllForms }: any) => {
                     />
                     <Text
                         label="Telefone"
-                        mask="phone"
                         {...FormUtils.inputFieldValue(
                             allForms,
                             setAllForms,
