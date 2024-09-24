@@ -10,6 +10,7 @@ import Color from '@/components/form/color'
 import { FormUtils } from '@/utils/form.utils'
 import { useEffect, useState } from 'react'
 import Grid from '@/components/grid'
+import Toggle from '@/components/form/toggle'
 
 const Component = () => {
     const [configs, setConfigs] = useState<any>()
@@ -95,7 +96,7 @@ const Component = () => {
 
                         if (fieldDef.type === 'boolean') {
                             return (
-                                <Checkbox
+                                <Toggle
                                     key={field}
                                     label={fieldDef?.label}
                                     {...FormUtils.inputFieldValue(

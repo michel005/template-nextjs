@@ -11,6 +11,7 @@ import Alert from '@/components/alert'
 import Accordion from '@/components/accordion'
 import { AccordionGroup } from '@/components/accordion/group'
 import Carousel from '@/components/carousel'
+import Button from '@/components/button'
 
 const HomePage = () => {
     return (
@@ -134,7 +135,22 @@ const HomePage = () => {
                 </Accordion>
                 <AccordionGroup>
                     <Accordion header={<p>Exemplo de Accordion</p>}>
-                        <p>Exemplo de Texto</p>
+                        <Grid columns="200px 1fr">
+                            <img
+                                alt="Exemplo de Imagem"
+                                src="https://i.pinimg.com/564x/ca/e0/63/cae063337b5ff1f22e6e79a64f44eeaa.jpg"
+                                width="200px"
+                            />
+                            <article>
+                                <h1>Esse é um exemplo de accordion</h1>
+                                <p>
+                                    Aqui você pode expressar qualquer idéia e
+                                    apenas expandir essa sessão quando for
+                                    realmente necessário.
+                                </p>
+                                <Button icon="book">Aprenda mais...</Button>
+                            </article>
+                        </Grid>
                     </Accordion>
                     <Accordion header={<p>Exemplo de Accordion</p>}>
                         <p>Exemplo de Texto</p>
