@@ -7,7 +7,7 @@
     .label {
         border-radius: var(--radius);
         color: #aaa;
-        left: 10px;
+        left: 1em;
         padding: 0 4px;
         pointer-events: none;
         position: absolute;
@@ -69,7 +69,7 @@
                 background-color: #fff;
                 color: var(--primary-color);
                 font-size: 0.8em;
-                top: -10px;
+                top: -0.6em;
                 transform: none;
             }
 

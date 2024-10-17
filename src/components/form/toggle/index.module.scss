@@ -23,17 +23,17 @@
         border-radius: var(--radius);
         cursor: pointer;
         flex-direction: row;
-        height: calc(var(--toggle-size) + 4px + 4px);
+        height: calc(var(--toggle-size) + 6px);
         justify-content: center;
         position: relative;
         user-select: none;
         transition: all 0.25s;
-        width: calc((var(--toggle-size) * 3) - 8px); //32px;
+        width: calc((var(--toggle-size) * 3) - 8px);
         z-index: 0;
 
         &:before {
             background-color: #ccc;
-            border-radius: 50%;
+            border-radius: var(--radius);
             content: '';
             height: var(--toggle-size);
             position: absolute;

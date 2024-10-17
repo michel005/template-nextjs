@@ -8,7 +8,7 @@
     flex-direction: column;
     gap: 1px;
     justify-content: center;
-    padding: 0 28px;
+    padding: 0 2em;
 
     > hr {
         height: 1px;
@@ -20,8 +20,8 @@
         background-color: #111;
         display: flex;
         flex-direction: row;
-        gap: 14px;
-        padding: 14px 0;
+        gap: 1em;
+        padding: 1em 0;
         width: var(--screen-width);
     }
 
@@ -56,7 +56,7 @@
             a {
                 color: #aaa;
                 cursor: pointer;
-                font-size: 1em;
+                font-size: 0.8em;
                 opacity: 0.5;
                 text-align: right;
                 transition: all 0.25s;

@@ -6,21 +6,20 @@ import Tabs from '@/components/tabs'
 import Grid from '@/components/grid'
 import Card from '@/components/card'
 import Skeleton from '@/components/skeleton'
-import { CSSProperties, Suspense } from 'react'
+import { Suspense } from 'react'
 import Alert from '@/components/alert'
 import Accordion from '@/components/accordion'
 import { AccordionGroup } from '@/components/accordion/group'
 import Carousel from '@/components/carousel'
-import Button from '@/components/button'
 
 const HomePage = () => {
     return (
         <Suspense fallback={<Skeleton style={{ height: '300px' }} />}>
             <Page className={style.homePage}>
+            <h1>Bem vindo ao Template</h1>
                 <Carousel
                     steps={[
                         <article key={1} className={style.article}>
-                            <h1>Bem vindo ao Template</h1>
                             <p>
                                 Aqui você encontra exemplos para a utilização de
                                 vários componentes emum novo projeto.
@@ -130,29 +129,81 @@ const HomePage = () => {
                         <a href="">resolver</a> isso agora?
                     </p>
                 </Alert>
-                <Accordion header={<p>Exemplo de Accordion</p>}>
-                    <p>Exemplo de Texto</p>
+                <Accordion header={<p>Nunquam experientia gallus.</p>}>
+                    <Grid columns="1fr 300px">
+                        <article>
+                            <h1>Cadunt sed mire ducunt ad audax visus.</h1>
+                            <p style={{ flexGrow: 1 }}>
+                                With marshmellows drink tabasco. With bok choys
+                                drink triple sec. Okra combines greatly with old
+                                shrimps. seaweed combines greatly with sour
+                                quinoa. Try simmering apple casserole jumbled
+                                with gravy. Quinoa combines greatly with bloody
+                                peanut butter. Try draining turkey frittata
+                                tossed with salsa verde. sausages combines
+                                greatly with shredded lettuce. strawberries
+                                combines greatly with yellow rice. Strudel
+                                combines greatly with small oysters. Spinach
+                                combines greatly with springy rice. Try draining
+                                chickpeas paste seasoned with gold tequila.
+                                cabbage combines greatly with hot squid.
+                                Chickpeas combines greatly with sour lentils.
+                                melon combines greatly with quartered walnut.
+                            </p>
+                            <a href="/">Aprenda mais...</a>
+                        </article>
+                        <img
+                            alt="Exemplo de Imagem"
+                            src="https://i.pinimg.com/564x/0e/ec/56/0eec564afcfd5b096a5511c47aa938f0.jpg"
+                            width="300px"
+                        />
+                    </Grid>
                 </Accordion>
                 <AccordionGroup>
                     <Accordion header={<p>Exemplo de Accordion</p>}>
-                        <Grid columns="200px 1fr">
+                        <Grid columns="300px 1fr">
                             <img
                                 alt="Exemplo de Imagem"
                                 src="https://i.pinimg.com/564x/ca/e0/63/cae063337b5ff1f22e6e79a64f44eeaa.jpg"
-                                width="200px"
+                                width="300px"
                             />
                             <article>
-                                <h1>Esse é um exemplo de accordion</h1>
-                                <p>
-                                    Aqui você pode expressar qualquer idéia e
-                                    apenas expandir essa sessão quando for
-                                    realmente necessário.
+                                <h1>Cadunt sed mire ducunt ad audax visus.</h1>
+                                <p style={{ flexGrow: 1 }}>
+                                    Sunt vortexes resuscitabo rusticus, salvus
+                                    animalises. Planetas ire, tanquam regius
+                                    vigil. Brabeutas sunt liberis de camerarius
+                                    torus. a falsis, barcas regius liberi.
+                                    Peritus onus rare falleres abactus est. A
+                                    falsis, orgia superbus lumen. Ire interdum
+                                    ducunt ad audax domus. Albus silva nunquam
+                                    consumeres stella est. sunt brabeutaes
+                                    acquirere varius, camerarius lixaes. finis
+                                    de noster galatae, acquirere mensa! Est
+                                    fatalis competition, cesaris. Urbss sunt
+                                    solems de fatalis buxum. Aonidess sunt tatas
+                                    de gratis hilotae. tatas cantare, tanquam
+                                    gratis vigil. Clemens fraticinida superbe
+                                    perderes abactor est. secundus plasmators
+                                    ducunt ad cedrium. Ortum virtualiter ducunt
+                                    ad salvus gallus. Nixus de pius hibrida,
+                                    transferre adiurator! Hibrida messiss,
+                                    tanquam neuter pes. pars de flavum classis,
+                                    convertam bubo! Est alter detrius, cesaris.
+                                    hippotoxotas sunt adelphiss de placidus
+                                    stella. teres nuptias ducunt ad consilium.
+                                    Pes de teres burgus, prensionem rumor!
+                                    Diatria ires, tanquam varius fides. Extums
+                                    sunt eposs de audax demolitione. Neuter fuga
+                                    aegre manifestums boreas est. credere sed
+                                    mire ducunt ad fatalis fiscina. talis olla
+                                    cito imperiums calceus est. indictio.
                                 </p>
-                                <Button icon="book">Aprenda mais...</Button>
+                                <a href="/">Aprenda mais...</a>
                             </article>
                         </Grid>
                     </Accordion>
-                    <Accordion header={<p>Exemplo de Accordion</p>}>
+                    <Accordion header={<p>Cur competition studere?</p>}>
                         <p>Exemplo de Texto</p>
                     </Accordion>
                     <Accordion header={<p>Exemplo de Accordion</p>}>

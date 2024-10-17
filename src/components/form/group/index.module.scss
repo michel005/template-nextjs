@@ -7,27 +7,11 @@
     border-radius: var(--radius);
     display: flex;
     flex-direction: column;
-    font-size: 16px;
-    gap: 21px;
-    padding: 14px;
+    font-size: 1em;
+    gap: 1em;
+    padding: 1em;
     position: relative;
     width: min(var(--screen-width), 100%);
-
-    .group:nth-child(1) {
-        animation: showFrameAnimation 0.3s linear;
-    }
-    .group:nth-child(2) {
-        animation: showFrameAnimation 0.6s linear;
-    }
-    .group:nth-child(3) {
-        animation: showFrameAnimation 0.9s linear;
-    }
-    .group:nth-child(4) {
-        animation: showFrameAnimation 1.2s linear;
-    }
-    .group:nth-child(5) {
-        animation: showFrameAnimation 1.5s linear;
-    }
 
     > h3 {
         align-items: center;
@@ -43,7 +27,7 @@
 
     > section {
         flex-wrap: wrap;
-        gap: 21px;
+        gap: 1em;
 
         > button {
             align-self: flex-end;

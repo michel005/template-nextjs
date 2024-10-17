@@ -18,7 +18,7 @@
             align-items: center;
             display: flex;
             flex-direction: row;
-            gap: 14px;
+            gap: 1em;
             height: var(--header-height);
             min-height: var(--header-height);
             padding: 0 14px;
@@ -31,7 +31,7 @@
             display: flex;
             flex-direction: row;
             flex-grow: 1;
-            gap: 28px;
+            gap: 2em;
             justify-content: flex-end;
             padding: 0 14px;
 
@@ -39,7 +39,7 @@
             .link {
                 color: #fff5;
                 cursor: pointer;
-                font-size: 18px;
+                font-size: 1em;
                 transition: all 0.25s;
 
                 &:hover {
@@ -74,10 +74,10 @@
     background-color: #fff;
     box-shadow: var(--box-shaddow);
     flex-direction: row;
-    gap: 14px;
-    height: calc(var(--button-height) + 28px);
+    gap: 1em;
+    height: calc(var(--button-height) + 2em);
     justify-content: center;
-    min-height: calc(var(--button-height) + 28px);
+    min-height: calc(var(--button-height) + 2em);
     transition: all 0.25s;
     z-index: var(--zindex-header-botom);
 
@@ -119,13 +119,13 @@
         box-shadow: var(--box-shaddow);
         display: flex;
         flex-direction: column;
-        gap: 21px;
+        gap: 1em;
         justify-content: flex-start;
         opacity: 1;
-        padding: 21px;
+        padding: 1em;
         position: fixed;
-        right: 21px;
-        top: calc(var(--header-height) - 14px);
+        right: 2em;
+        top: calc(var(--header-height) - 1em);
         transition: all 0.25s;
         z-index: 102;
 

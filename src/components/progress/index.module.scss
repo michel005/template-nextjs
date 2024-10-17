@@ -1,0 +1,66 @@
+@keyframes skeletonLoading {
+    0% {
+        background-position: 500% 0;
+    }
+    100% {
+        background-position: 0 0;
+    }
+}
+
+.progress {
+    background-color: #fff;
+    border-radius: var(--radius);
+    box-shadow: var(--box-shaddow);
+    height: 32px;
+    outline: 0 solid var(--primary-color);
+    position: relative;
+    min-width: 300px;
+
+    &:after {
+        animation: skeletonLoading 5s linear infinite;
+        background-image: linear-gradient(
+            90deg,
+            transparent,
+            #fff8,
+            transparent
+        );
+        background-size: 500% 100%;
+        border-radius: var(--radius);
+        content: '';
+        height: 100%;
+        left: 0;
+        position: absolute;
+        top: 0;
+        transition: all 0.75s;
+        width: calc(100% * var(--value));
+    }
+
+    &:before {
+        background-color: var(--primary-color);
+        border-radius: var(--radius);
+        content: '';
+        height: 100%;
+        left: 0;
+        position: absolute;
+        top: 0;
+        transition: all 0.75s;
+        width: calc(100% * var(--value));
+    }
+
+    &.completed {
+        &:after {
+            animation: none;
+            background-color: green;
+        }
+    }
+
+    > span {
+        align-items: center;
+        display: flex;
+        flex-direction: row;
+        font-weight: bold;
+        height: 100%;
+        justify-content: center;
+        z-index: 1;
+    }
+}

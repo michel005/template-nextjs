@@ -24,7 +24,7 @@ const Component = ({
                     setExpand((x) => !x)
                 }}
             >
-                {header} <Button icon="keyboard_arrow_down" disabled={true} />
+                {header} <Button icon="keyboard_arrow_down" />
             </div>
             <div className={style.content}>{children}</div>
         </div>

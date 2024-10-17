@@ -8,5 +8,5 @@ module.exports = {
         ? {
               unoptimized: true,
           }
-        : undefined,
+        : undefined
 }

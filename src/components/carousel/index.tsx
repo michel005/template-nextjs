@@ -44,7 +44,7 @@ const Component = ({
             {(infinite || currentStep > 0) && (
                 <Button
                     className={style.backButton}
-                    icon="keyboard_arrow_left"
+                    icon="keyboard_arrow_right"
                     onClick={() => {
                         if (currentStep === 0) {
                             setCurrentStep(steps.length - 1)

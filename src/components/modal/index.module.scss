@@ -15,9 +15,9 @@
     box-shadow: var(--box-shaddow);
     display: flex;
     flex-grow: 0;
-    gap: 28px;
+    gap: 2em;
     min-width: 600px;
-    padding: 28px !important;
+    padding: 2em !important;
     position: relative;
     z-index: var(--zindex-modal-content) !important;
 
@@ -30,7 +30,7 @@
         box-shadow: none !important;
         height: auto;
         min-height: auto;
-        padding: 14px;
+        padding: 1em;
         position: absolute;
         right: 0;
         top: 0;
@@ -45,16 +45,16 @@
         align-items: flex-start;
         display: flex;
         flex-direction: column;
-        gap: 28px;
+        gap: 2em;
     }
 
     .buttons {
         background-color: transparent;
         box-shadow: none;
-        gap: 28px !important;
+        gap: 2em !important;
         height: auto;
         justify-content: flex-end;
-        margin-top: 28px;
+        margin-top: 2em;
         overflow: initial;
         padding: 0;
     }
@@ -66,6 +66,6 @@
 
 @include tablet {
     .modalContent {
-        min-width: calc(100% - 28px);
+        min-width: calc(100% - 2em);
     }
 }

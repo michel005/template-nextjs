@@ -47,6 +47,10 @@ const Component = ({ children }: { children: ReactNode }) => {
         body.style.setProperty('--primary-color', colorSchema)
         body.style.setProperty('--input-border-color-focus', colorSchema)
 
+        body.style.setProperty(
+            `--primary-color-05`,
+            hexToRgbA(colorSchema, 0.05)
+        )
         for (let i = 0.1; i <= 0.9; i = i + 0.1) {
             body.style.setProperty(
                 `--primary-color-${Math.round(i * 10)}`,

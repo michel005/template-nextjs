@@ -9,16 +9,16 @@
 }
 
 .tabs {
+    filter: drop-shadow(0 0 0.5em #aaa3);
     flex-direction: column;
 
     .tabList {
         align-self: flex-start;
         border-radius: var(--radius) var(--radius) 0 0;
-        box-shadow: -7px -7px 4px #aaa1;
         flex-direction: row;
         flex-wrap: nowrap;
         overflow: auto;
-        max-width: calc(100% - 14px);
+        max-width: calc(100% - 1em);
 
         &::-webkit-scrollbar {
             height: 0;
@@ -36,7 +36,6 @@
             cursor: pointer;
             display: flex;
             font-weight: bold;
-            opacity: 0.5;
             padding: 14px 21px;
             transition: all 0.25s;
             user-select: none;
@@ -76,14 +75,12 @@
         }
 
         > section {
-            animation: showTabContentAnimation 1s;
             background-color: #fff;
             border-radius: 0 var(--radius) var(--radius);
-            box-shadow: var(--box-shaddow);
             display: none;
             flex-direction: column;
-            gap: 14px;
-            padding: 21px;
+            gap: 1em;
+            padding: 1.5em;
             transition: all 0.25s;
             width: 100%;
 

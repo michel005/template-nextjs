@@ -11,7 +11,8 @@
 
     .nextButton,
     .backButton {
-        padding: 7px;
+        border-radius: 50% 0 0 50%;
+        padding: 0.8em;
         position: absolute;
         top: 50%;
         transform: translateY(-50%);
@@ -20,13 +21,20 @@
     }
 
     .nextButton {
-        border-radius: 50% 0 0 50%;
         right: 0;
+
+        &:hover {
+            scale: 1 !important;
+        }
     }
 
     .backButton {
-        border-radius: 0 50% 50% 0;
+        scale: -1 1 1;
         left: 0;
+
+        &:hover {
+            scale: -1 1 1 !important;
+        }
     }
 
     .allSteps {
@@ -43,12 +51,14 @@
         display: flex;
         flex-direction: column;
         flex-grow: 1;
+        height: 0;
         min-width: 100%;
         transition: all 0.5s;
     }
 
     .currentStep {
         display: flex;
+        height: auto;
     }
 
     .stepIndicator {
@@ -56,9 +66,9 @@
         display: flex;
         flex-direction: row;
         flex-wrap: wrap;
-        gap: 10px;
+        gap: 1em;
         justify-content: center;
-        padding: 14px;
+        padding: 1em;
         width: 100%;
     }
 

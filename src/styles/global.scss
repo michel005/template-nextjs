@@ -1,4 +1,4 @@
-@import url('https://fonts.googleapis.com/css2?family=Oxygen:wght@300;400;700&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Montserrat:wght@300;400;700&display=swap');
 @import url('https://fonts.googleapis.com/icon?family=Material+Icons');
 @import './mediaQuery';
 
@@ -11,15 +11,14 @@ $base-color: #3399ff;
 }
 
 :root {
-    --box-shaddow: 7px 7px 7px #9991, -7px -7px 4px #aaa1;
+    --box-shaddow: 7px 7px 7px #6661, -7px -7px 4px #ccc1;
 
-    --button-effect-color: #fff2;
-    --button-font-size: 16px;
+    --button-effect-color: #fff4;
     --button-height: 52px;
 
     --header-height: 92px;
 
-    --input-border: 2px solid #ddd;
+    --input-border: 1px solid #ddd;
     --input-height: 50px;
 
     --screen-width: 1500px;
@@ -36,7 +35,9 @@ $base-color: #3399ff;
 
 * {
     box-sizing: border-box;
-    font-family: 'Oxygen', monospace;
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
+    font-family: 'Montserrat', monospace;
     margin: 0;
     padding: 0;
     text-decoration: none;
@@ -48,12 +49,7 @@ h3,
 h4,
 h5 {
     color: var(--primary-color);
-    font-size: 16px;
     line-height: 1em;
-}
-
-h1 {
-    font-size: 36px;
 }
 
 hr {

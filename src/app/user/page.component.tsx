@@ -3,11 +3,18 @@ import Page from '@/components/page'
 import { UserGeneralTab } from '@/app/user/general.tab'
 import { UserAddressTab } from '@/app/user/address.tab'
 import { UserPasswordTab } from '@/app/user/password.tab'
+import Progress from '@/components/progress'
 
-export const UserPageComponent = ({ loading, setAllForms, allForms }: any) => {
+export const UserPageComponent = ({
+    progress,
+    loading,
+    setAllForms,
+    allForms,
+}: any) => {
     return (
         <Page>
             <h1>Meu Usuário</h1>
+            <Progress value={progress}>{Math.round(progress * 100)}%</Progress>
             <Tabs
                 tabs={[
                     {
