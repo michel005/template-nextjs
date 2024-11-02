@@ -1,15 +1,14 @@
 @import '../../styles/mediaQuery';
 
 .buttons {
-    align-items: center;
+    // align-items: center;
     background-color: #fff;
     box-shadow: var(--box-shaddow);
     border-radius: var(--radius);
     flex-direction: row;
-    gap: 14px;
     height: calc(var(--button-height) + 28px);
     overflow: auto;
-    padding: 14px;
+    padding: 1em;
     position: sticky;
     right: 0;
     top: 0;
@@ -25,7 +24,7 @@
     > section {
         display: flex;
         flex-direction: row;
-        gap: 14px;
+        gap: 1.5em;
     }
 }
 

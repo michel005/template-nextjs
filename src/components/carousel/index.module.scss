@@ -59,6 +59,10 @@
     .currentStep {
         display: flex;
         height: auto;
+
+        img {
+            width: 100%;
+        }
     }
 
     .stepIndicator {

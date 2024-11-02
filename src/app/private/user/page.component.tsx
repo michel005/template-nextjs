@@ -1,8 +1,8 @@
 import Tabs from '@/components/tabs'
 import Page from '@/components/page'
-import { UserGeneralTab } from '@/app/user/general.tab'
-import { UserAddressTab } from '@/app/user/address.tab'
-import { UserPasswordTab } from '@/app/user/password.tab'
+import { UserGeneralTab } from '@/app/private/user/general.tab'
+import { UserAddressTab } from '@/app/private/user/address.tab'
+import { UserPasswordTab } from '@/app/private/user/password.tab'
 import Progress from '@/components/progress'
 
 export const UserPageComponent = ({

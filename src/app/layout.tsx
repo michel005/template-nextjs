@@ -1,9 +1,10 @@
-import React from 'react'
-import '@/styles/global.scss'
 import Main from '@/components/main'
+import { FormProvider } from '@/context/form.context'
 import { ModalProvider } from '@/context/modal.context'
+import { UserProvider } from '@/context/user.context'
+import '@/styles/global.scss'
 import { Metadata } from 'next'
-import Footer from '@/components/footer'
+import React from 'react'
 
 export const metadata: Metadata = {
     title: 'Template',
@@ -17,11 +18,15 @@ export default function RootLayout({
 }>) {
     return (
         <html lang="pt-br">
-            <ModalProvider>
-                <Main>
-                    <section>{children}</section>
-                </Main>
-            </ModalProvider>
+            <FormProvider>
+                <UserProvider>
+                    <ModalProvider>
+                        <Main>
+                            <section>{children}</section>
+                        </Main>
+                    </ModalProvider>
+                </UserProvider>
+            </FormProvider>
         </html>
     )
 }

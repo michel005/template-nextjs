@@ -10,9 +10,34 @@
     width: 100%;
     z-index: 0;
 
+    &:before {
+        background-color: var(--primary-color-05);
+        clip-path: polygon(70% 100%, 80% 0, 100% 0, 100% 100%);
+        content: '';
+        height: 100%;
+        left: 0;
+        position: fixed;
+        top: 0;
+        width: 100%;
+        z-index: 0;
+    }
+
+    &::after {
+        background-color: var(--primary-color-05);
+        clip-path: polygon(50% 100%, 70% 0, 100% 0, 100% 100%);
+        content: '';
+        height: 100%;
+        left: 0;
+        position: fixed;
+        top: 0;
+        width: 100%;
+        z-index: 0;
+    }
+
     > section {
         display: flex;
         flex-direction: column;
         flex-grow: 1;
+        z-index: 1;
     }
 }

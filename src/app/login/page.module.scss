@@ -1,0 +1,27 @@
+.loginPage {
+    align-items: flex-start;
+    justify-content: flex-start;
+    padding: 1.5em;
+
+    .modal {
+        gap: 1.5em;
+        margin: auto auto;
+        min-height: 400px;
+
+        > hr {
+            margin: 2em 0 1em;
+        }
+
+        > h3 {
+            color: #333;
+        }
+
+        .buttons {
+            > button {
+                flex-grow: 1;
+                justify-content: center;
+                width: 100%;
+            }
+        }
+    }
+}

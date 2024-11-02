@@ -4,8 +4,11 @@ import clsx from 'clsx'
 import Link from 'next/link'
 import Background from '@/components/background'
 import AppName from '@/components/header/appName'
-import { ReactNode } from 'react'
+import { ReactNode, useContext } from 'react'
 import { Definitions } from '@/constants/definitions'
+import { UserContext } from '@/context/user.context'
+import Button from '../button'
+import { useRouter } from 'next/navigation'
 
 const Component = ({
     pathname,
@@ -16,11 +19,106 @@ const Component = ({
     bottom: ReactNode | null
     onExit: () => void
 }) => {
+    const router = useRouter()
+    const { loading, isLogedIn } = useContext(UserContext)
+
     const closeSidebar = () => {
         const sidebar = document.getElementById(
             'controlSidebarVisibility'
         ) as any
         sidebar.checked = true
+    }
+
+    if (loading) {
+        return (
+            <header className={style.header}>
+                <div className={style.top}>
+                    <center>
+                        <AppName />
+                        <div className={style.options}>
+                            <Button
+                                icon="person"
+                                onClick={() => {
+                                    router.push('/login')
+                                }}
+                            >
+                                Cadastrar-se / Entrar
+                            </Button>
+                        </div>
+                        <label
+                            className={style.reducerButton}
+                            htmlFor="controlSidebarVisibility"
+                        >
+                            <Icon icon="menu" />
+                        </label>
+                    </center>
+                </div>
+            </header>
+        )
+    }
+
+    if (!isLogedIn) {
+        return (
+            <>
+                <input
+                    type="checkbox"
+                    id="controlSidebarVisibility"
+                    className={style.checkbox}
+                    defaultChecked={true}
+                />
+                <header className={style.header}>
+                    <div className={style.top}>
+                        <center>
+                            <AppName />
+                            <div className={style.options}>
+                                <Button
+                                    icon="person"
+                                    onClick={() => {
+                                        router.push('/login')
+                                    }}
+                                >
+                                    Cadastrar-se / Entrar
+                                </Button>
+                            </div>
+                            <label
+                                className={style.reducerButton}
+                                htmlFor="controlSidebarVisibility"
+                            >
+                                <Icon icon="menu" />
+                            </label>
+                        </center>
+                    </div>
+                </header>
+                {bottom && (
+                    <div className={style.bottom}>
+                        <center>{bottom}</center>
+                    </div>
+                )}
+                <aside className={clsx(style.sidebar)}>
+                    <Button
+                        icon="person"
+                        onClick={() => {
+                            router.push('/login')
+                        }}
+                    >
+                        Cadastrar-se / Entrar
+                    </Button>
+                    <Link
+                        href={pathname}
+                        onClick={() => {
+                            closeSidebar()
+                            onExit()
+                        }}
+                    >
+                        Sair
+                    </Link>
+                </aside>
+                <Background
+                    className={style.background}
+                    onClick={() => closeSidebar()}
+                />
+            </>
+        )
     }
 
     return (
@@ -36,7 +134,7 @@ const Component = ({
                     <center>
                         <AppName />
                         <div className={style.options}>
-                            {Definitions.router.map((rout) => {
+                            {Definitions.privateRoutes.map((rout) => {
                                 return (
                                     <Link
                                         key={rout.path}
@@ -72,7 +170,7 @@ const Component = ({
                 </div>
             )}
             <aside className={clsx(style.sidebar)}>
-                {Definitions.router.map((rout) => {
+                {Definitions.privateRoutes.map((rout) => {
                     return (
                         <Link
                             key={rout.path}

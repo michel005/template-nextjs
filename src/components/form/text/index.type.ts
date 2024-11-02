@@ -1,5 +1,6 @@
 export interface TextType {
-    label: string
+    field?: string
+    label?: string
     value?: string
     onChange?: (currentValue: string) => void
     placeholder?: string

@@ -18,6 +18,16 @@
         z-index: 2;
     }
 
+    &.haveValue {
+        .label {
+            background-color: #fff;
+            color: #666;
+            font-size: 0.8em;
+            top: -10px;
+            transform: none;
+        }
+    }
+
     .input {
         align-items: center;
         background-color: #fff;

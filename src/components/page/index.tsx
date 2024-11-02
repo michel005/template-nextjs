@@ -5,11 +5,9 @@ import React from 'react'
 
 const Component = ({ className, children, ...props }: PageType) => {
     return (
-        <>
-            <main {...props} className={clsx(style.page, className)}>
-                {children}
-            </main>
-        </>
+        <main {...props} className={clsx(style.page, className)}>
+            {children}
+        </main>
     )
 }
 

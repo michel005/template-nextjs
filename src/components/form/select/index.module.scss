@@ -37,6 +37,7 @@
 
     .input {
         appearance: none;
+        background-color: #fff;
         border: none;
         border-radius: var(--radius);
         cursor: pointer;
@@ -87,7 +88,7 @@
                 background-color: #fff;
                 color: #999;
                 font-size: 0.8em;
-                top: -10px;
+                top: -0.6em;
                 transform: none;
             }
         }

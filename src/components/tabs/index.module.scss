@@ -28,7 +28,6 @@
         .tab {
             --tab-background-color: #f4f4f4;
             --tab-color: #ccc;
-            --tab-transform: translateY(4px);
 
             align-items: flex-start;
             background-color: var(--tab-background-color);
@@ -36,7 +35,8 @@
             cursor: pointer;
             display: flex;
             font-weight: bold;
-            padding: 14px 21px;
+            opacity: 0.75;
+            padding: 1em 1.5em;
             transition: all 0.25s;
             user-select: none;
             white-space: nowrap;
@@ -44,7 +44,6 @@
             &:hover {
                 --tab-background-color: #fff;
                 --tab-color: #777;
-                --tab-transform: translateY(0);
 
                 opacity: 1;
                 z-index: 2;
@@ -53,7 +52,6 @@
             &.active {
                 --tab-background-color: #fff;
                 --tab-color: var(--primary-color);
-                --tab-transform: translateY(0);
 
                 opacity: 1;
                 z-index: 2;

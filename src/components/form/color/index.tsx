@@ -2,12 +2,13 @@
 
 import style from './index.module.scss'
 import { ColorType } from '@/components/form/color/index.type'
+import clsx from 'clsx'
 import { useRef } from 'react'
 
 const Component = ({ label, value, onChange, disabled }: ColorType) => {
     const inputRef = useRef<HTMLInputElement>(null)
     return (
-        <div className={style.color}>
+        <div className={clsx(style.color, !!value && style.haveValue)}>
             <div
                 className={style.input}
                 tabIndex={0}

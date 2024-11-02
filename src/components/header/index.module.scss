@@ -39,15 +39,18 @@
             .link {
                 color: #fff5;
                 cursor: pointer;
-                font-size: 1em;
+                font-size: 1.2em;
                 transition: all 0.25s;
 
                 &:hover {
+                    color: #fff;
                     opacity: 0.5;
                 }
 
-                &.current {
+                &.current,
+                &.current:hover {
                     color: #fff;
+                    opacity: 1;
                 }
             }
         }
@@ -78,6 +81,7 @@
     height: calc(var(--button-height) + 2em);
     justify-content: center;
     min-height: calc(var(--button-height) + 2em);
+    position: relative;
     transition: all 0.25s;
     z-index: var(--zindex-header-botom);
 
@@ -89,6 +93,7 @@
         padding: 0 14px;
         transition: all 0.25s;
         width: var(--screen-width);
+        z-index: 1;
     }
 }
 

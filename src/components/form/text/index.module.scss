@@ -31,6 +31,7 @@
 
         &::placeholder {
             color: transparent;
+            font-size: 1em;
             transition: all 0.5s;
         }
 
@@ -66,7 +67,7 @@
                 background-color: #fff;
                 color: #666;
                 font-size: 0.8em;
-                top: -10px;
+                top: -0.6em;
                 transform: none;
             }
         }

@@ -1,0 +1,13 @@
+.loginPage {
+    display: flex;
+    flex-direction: column;
+    gap: 1em;
+
+    .buttons {
+        box-shadow: none;
+        height: auto;
+        justify-content: flex-end;
+        overflow: initial;
+        padding: 0;
+    }
+}

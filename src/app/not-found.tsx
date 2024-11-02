@@ -1,9 +1,10 @@
 import Link from 'next/link'
 import style from './not-found.module.scss'
+import Page from '@/components/page'
 
 export default function NotFound() {
     return (
-        <div className={style.notFound}>
+        <Page className={style.notFound}>
             <h1>404</h1>
             <section>
                 <h2>Página não encontrada</h2>
@@ -13,6 +14,6 @@ export default function NotFound() {
                 </p>
                 <Link href="/">Voltar para o início</Link>
             </section>
-        </div>
+        </Page>
     )
 }

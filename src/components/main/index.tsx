@@ -15,6 +15,7 @@ import { Definitions } from '@/constants/definitions'
 import { ModalContext } from '@/context/modal.context'
 import useMessage from '@/hook/useMessage'
 import Footer from '@/components/footer'
+import { UserContext } from '@/context/user.context'
 
 const hexToRgbA = (hex: string, opacity: number) => {
     let r = parseInt(hex.slice(1, 3), 16)
@@ -26,11 +27,12 @@ const hexToRgbA = (hex: string, opacity: number) => {
 
 const Component = ({ children }: { children: ReactNode }) => {
     const { modalList } = useContext(ModalContext)
+    const { isLogedIn, loading, logout } = useContext(UserContext)
     const message = useMessage()
     const pathname = usePathname()
 
     const bottomHeader = useMemo(() => {
-        const current = Definitions.router.find((x) =>
+        const current = Definitions.privateRoutes.find((x) =>
             StringUtils.comparePaths(pathname, x.path)
         )
         return current?.menu || null
@@ -69,12 +71,14 @@ const Component = ({ children }: { children: ReactNode }) => {
                         message.question(
                             'Você realmente quer sair?',
                             '',
-                            () => {}
+                            () => {
+                                logout()
+                            }
                         )
                     }}
                 />
-                <section>{children}</section>
-                <Footer />
+                <section>{!loading && children}</section>
+                {!isLogedIn && <Footer />}
                 {modalList.map((modal) => {
                     return (
                         <Fragment key={modal.name}>

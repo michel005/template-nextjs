@@ -9,11 +9,13 @@ const Component = ({
     variant = 'vertical',
     className,
     children,
+    form,
     ...props
 }: GroupType) => {
     return (
         <span
             {...props}
+            data-form={form}
             className={clsx(style.group, style[variant], className)}
         >
             {label && (

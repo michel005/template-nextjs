@@ -7,6 +7,7 @@ import { useMemo } from 'react'
 
 const Component = ({
     label,
+    field,
     value = '',
     onChange,
     placeholder = '',
@@ -36,6 +37,50 @@ const Component = ({
         }
         return placeholder || label
     }, [mask, placeholder])
+
+    if (field) {
+        if (type === 'textarea') {
+            return (
+                <div className={style.text} style={{ flexGrow: grow }}>
+                    <textarea
+                        className={style.input}
+                        value={value}
+                        placeholder={placeholder || label}
+                        disabled={disabled}
+                        onChange={(e) => {
+                            onChange?.(e.target.value)
+                            e.target.style.height = 'auto'
+                            if (e.target.value.split('\n').length > 1) {
+                                e.target.style.height = `min(calc(${e.target.scrollHeight}px + 14px), 400px)`
+                            } else {
+                                e.target.style.height = 'var(--input-height)'
+                            }
+                        }}
+                    />
+                    {label && <label className={style.label}>{label}</label>}
+                </div>
+            )
+        }
+        return (
+            <div className={style.text} style={{ flexGrow: grow }}>
+                <input
+                    className={style.input}
+                    type={type === 'password' ? 'password' : type}
+                    value={value}
+                    placeholder={defaultPlaceholder}
+                    disabled={disabled}
+                    onChange={(e) => {
+                        if (mask) {
+                            onChange?.((MaskUtils[mask] as any)(e.target.value))
+                        } else {
+                            onChange?.(e.target.value)
+                        }
+                    }}
+                />
+                {label && <label className={style.label}>{label}</label>}
+            </div>
+        )
+    }
 
     if (type === 'textarea') {
         return (

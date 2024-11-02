@@ -6,4 +6,5 @@ export interface GroupType
     icon?: GoogleIconType
     label?: string
     variant?: 'horizontal' | 'vertical'
+    form?: string
 }

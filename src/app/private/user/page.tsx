@@ -1,8 +1,9 @@
 'use client'
 
 import { Suspense, useEffect, useState } from 'react'
-import { UserPageComponent } from '@/app/user/page.component'
+import { UserPageComponent } from '@/app/private/user/page.component'
 import Skeleton from '@/components/skeleton'
+import { useApi } from '@/hook/useMessage/useApi'
 
 const Component = () => {
     const [allForms, setAllForms] = useState<any>({
@@ -12,6 +13,7 @@ const Component = () => {
     })
     const [loading, setLoading] = useState<boolean>(true)
     const [progress, setProgress] = useState<number>(0)
+    const { user } = useApi()
 
     useEffect(() => {
         const interval = setInterval(() => {
@@ -27,9 +29,18 @@ const Component = () => {
     }, [])
 
     useEffect(() => {
-        setTimeout(() => {
-            setLoading(false)
-        }, 2000)
+        user.me()
+            .then((response) => {
+                setAllForms((x: any) => {
+                    return {
+                        ...x,
+                        general: response,
+                    }
+                })
+            })
+            .finally(() => {
+                setLoading(false)
+            })
     }, [])
 
     return (

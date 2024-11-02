@@ -19,7 +19,7 @@
 
     .box {
         align-self: center;
-        border: var(--input-border);
+        background-color: #ccc;
         border-radius: var(--radius);
         cursor: pointer;
         flex-direction: row;
@@ -28,17 +28,17 @@
         position: relative;
         user-select: none;
         transition: all 0.25s;
-        width: calc((var(--toggle-size) * 3) - 8px);
+        width: calc(var(--toggle-size) * 2.5);
         z-index: 0;
 
         &:before {
-            background-color: #ccc;
+            background-color: #fff;
             border-radius: var(--radius);
             content: '';
             height: var(--toggle-size);
             position: absolute;
-            right: 2px;
-            top: 2px;
+            right: 3px;
+            top: 3px;
             transition: all 0.25s;
             width: var(--toggle-size);
         }
@@ -46,11 +46,10 @@
 
     &.checked {
         .box {
-            border-color: var(--primary-color);
+            background-color: var(--primary-color);
 
             &:before {
-                background-color: var(--primary-color);
-                right: calc(100% - var(--toggle-size) - 2px);
+                right: calc(100% - var(--toggle-size) - 3px);
             }
         }
     }
