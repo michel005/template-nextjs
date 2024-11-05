@@ -93,4 +93,10 @@
             }
         }
     }
+
+    &.error {
+        .input {
+            outline-color: red;
+        }
+    }
 }

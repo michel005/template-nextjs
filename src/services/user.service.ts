@@ -25,7 +25,7 @@ export class UserService extends AbstractService {
     }
 
     login = async ({ email, password }: LoginType) => {
-        const resposne = await fetch(`${this.HOST}/user/login`, {
+        const response = await fetch(`${this.HOST}/user/login`, {
             method: 'POST',
             headers: {
                 'Content-Type': 'application/json',
@@ -36,46 +36,61 @@ export class UserService extends AbstractService {
             }),
         })
 
-        if (resposne.status > 299) {
-            throw await resposne.json()
+        if (response.status > 299) {
+            throw await response.json()
         }
 
-        return await resposne.json()
+        return await response.json()
     }
 
-    create = async ({ full_name, email, birthday, password }: UserType) => {
+    create = async (user: UserType) => {
         await fetch(`${this.HOST}/user`, {
             method: 'POST',
             headers: {
                 'Content-Type': 'application/json',
             },
-            body: JSON.stringify({
-                full_name,
-                email,
-                birthday,
-                password,
-            }),
+            body: JSON.stringify(user),
         })
     }
 
-    update = async ({
-        full_name,
-        birthday,
+    update = async (user: UserType) => {
+        const response = await fetch(`${this.HOST}/user`, {
+            method: 'PUT',
+            headers: {
+                'Content-Type': 'application/json',
+                Authorization: `Bearier ${this.token}`,
+            },
+            body: JSON.stringify(user),
+        })
+        if (response.status < 200 || response.status > 299) {
+            throw await response.json()
+        }
+    }
+
+    changePassword = async ({
+        current,
+        new_password,
+        confirmation,
     }: {
-        full_name: string
-        birthday: string
+        current?: string
+        new_password?: string
+        confirmation?: string
     }) => {
-        await fetch(`${this.HOST}/user`, {
+        const response = await fetch(`${this.HOST}/user/password`, {
             method: 'PUT',
             headers: {
                 'Content-Type': 'application/json',
                 Authorization: `Bearier ${this.token}`,
             },
             body: JSON.stringify({
-                full_name,
-                birthday,
+                current,
+                new_password,
+                confirmation,
             }),
         })
+        if (response.status < 200 || response.status > 299) {
+            throw await response.json()
+        }
     }
 
     remove = async ({ password }: { password: string }) => {

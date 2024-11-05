@@ -1,92 +1,23 @@
+'use client'
+
 import Grid from '@/components/grid'
 import Picture from '@/components/form/picture'
 import Text from '@/components/form/text'
 import Select from '@/components/form/select'
-import { FormUtils } from '@/utils/form.utils'
-import Skeleton from '@/components/skeleton'
+import useForm from '@/hook/useForm/useForm'
 
-export const UserGeneralTab = ({ loading, allForms, setAllForms }: any) => {
-    if (loading) {
-        return (
-            <Grid columns="250px 1fr">
-                <Skeleton style={{ height: '250px', width: '250px' }} />
-                <Grid columns="1fr 1fr">
-                    <Grid span={2}>
-                        <Skeleton
-                            style={{
-                                height: 'var(--input-height)',
-                            }}
-                        />
-                    </Grid>
-                    <Grid span={2} columns="1fr 1fr 1fr">
-                        <Skeleton
-                            style={{
-                                height: 'var(--input-height)',
-                            }}
-                        />
-                        <Skeleton
-                            style={{
-                                height: 'var(--input-height)',
-                            }}
-                        />
-                        <Skeleton
-                            style={{
-                                height: 'var(--input-height)',
-                            }}
-                        />
-                    </Grid>
-                    <Grid span={2} columns="1fr 1fr 1fr">
-                        <Skeleton
-                            style={{
-                                height: 'var(--input-height)',
-                            }}
-                        />
-                        <Skeleton
-                            style={{
-                                height: 'var(--input-height)',
-                            }}
-                        />
-                        <Skeleton
-                            style={{
-                                height: 'var(--input-height)',
-                            }}
-                        />
-                    </Grid>
-                    <Grid span={2}>
-                        <Skeleton
-                            style={{
-                                height: 'var(--input-height)',
-                            }}
-                        />
-                    </Grid>
-                </Grid>
-            </Grid>
-        )
-    }
+export const UserGeneralTab = () => {
+    const form = useForm('myUser')
 
     return (
         <Grid columns="250px 1fr">
-            <Picture
-                label="Imagem de Perfil"
-                size="250px"
-                {...FormUtils.inputFieldValue(
-                    allForms,
-                    setAllForms,
-                    'general',
-                    'picture'
-                )}
-            />
+            <Picture label="Imagem de Perfil" size="250px" field="picture" />
             <Grid columns="1fr 1fr">
                 <Grid span={2}>
                     <Text
                         label="Nome Completo"
                         placeholder="Ex: João da Silva"
-                        {...FormUtils.inputFieldValue(
-                            allForms,
-                            setAllForms,
-                            'general',
-                            'full_name'
-                        )}
+                        field="full_name"
                     />
                 </Grid>
                 <Grid span={2} columns="1fr 1fr 1fr">
@@ -102,17 +33,12 @@ export const UserGeneralTab = ({ loading, allForms, setAllForms }: any) => {
                                 label: 'Pessoa Jurídica',
                             },
                         ]}
-                        {...FormUtils.inputFieldValue(
-                            allForms,
-                            setAllForms,
-                            'general',
-                            'person_type'
-                        )}
+                        field="person_type"
                     />
                     <Select
                         label="Tipo de Documento"
                         options={
-                            allForms?.general?.person_type === 'PF'
+                            form.form?.person_type === 'PF'
                                 ? [
                                       {
                                           key: 'CPF',
@@ -130,30 +56,19 @@ export const UserGeneralTab = ({ loading, allForms, setAllForms }: any) => {
                                       },
                                   ]
                         }
-                        disabled={!allForms?.general?.person_type}
-                        {...FormUtils.inputFieldValue(
-                            allForms,
-                            setAllForms,
-                            'general',
-                            'document_type'
-                        )}
+                        disabled={!form.form?.person_type}
+                        field="document_type"
                     />
                     <Text
                         label={
-                            allForms?.general?.document_type?.toUpperCase() ||
+                            form.form?.document_type?.toUpperCase() ||
                             'CPF/RG/CNPJ'
                         }
-                        mask={allForms?.general?.document_type?.toLowerCase()}
+                        mask={form.form?.document_type?.toLowerCase()}
                         disabled={
-                            !allForms?.general?.person_type ||
-                            !allForms?.general?.document_type
+                            !form.form?.person_type || !form.form?.document_type
                         }
-                        {...FormUtils.inputFieldValue(
-                            allForms,
-                            setAllForms,
-                            'general',
-                            'document_number'
-                        )}
+                        field="document_number"
                     />
                 </Grid>
                 <Grid span={2} columns="1fr 1fr 1fr">
@@ -161,44 +76,13 @@ export const UserGeneralTab = ({ loading, allForms, setAllForms }: any) => {
                         label="Data de Nascimento"
                         placeholder="99/99/9999"
                         mask="date"
-                        {...FormUtils.inputFieldValue(
-                            allForms,
-                            setAllForms,
-                            'general',
-                            'birthday'
-                        )}
+                        field="birthday"
                     />
-                    <Text
-                        label="E-mail"
-                        type="email"
-                        {...FormUtils.inputFieldValue(
-                            allForms,
-                            setAllForms,
-                            'general',
-                            'email'
-                        )}
-                    />
-                    <Text
-                        label="Telefone"
-                        {...FormUtils.inputFieldValue(
-                            allForms,
-                            setAllForms,
-                            'general',
-                            'phone'
-                        )}
-                    />
+                    <Text label="E-mail" type="email" field="email" />
+                    <Text label="Telefone" field="phone" />
                 </Grid>
                 <Grid span={2}>
-                    <Text
-                        label="Biografia"
-                        type="textarea"
-                        {...FormUtils.inputFieldValue(
-                            allForms,
-                            setAllForms,
-                            'general',
-                            'bio'
-                        )}
-                    />
+                    <Text label="Biografia" type="textarea" field="biography" />
                 </Grid>
             </Grid>
         </Grid>

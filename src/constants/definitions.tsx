@@ -1,5 +1,4 @@
 import { HomeMenu } from '@/app/page.menu'
-import { SettingsMenu } from '@/app/private/settings/page.menu'
 import { ExampleModal } from '@/modals/example/index.modal'
 import { MessageModal } from '@/modals/message/index.modal'
 import { QuestionModal } from '@/modals/question/index.modal'
@@ -14,11 +13,6 @@ export const Definitions = {
             path: '/private',
             label: 'Início',
             menu: <HomeMenu />,
-        },
-        {
-            path: '/private/settings',
-            label: 'Configuração',
-            menu: <SettingsMenu />,
         },
         {
             path: '/private/user',
@@ -83,41 +77,5 @@ export const Definitions = {
         example: <ExampleModal />,
         message: <MessageModal />,
         question: <QuestionModal />,
-    },
-    settings: {
-        remote: {
-            rememberMe: {
-                label: 'Lembrar-me',
-                type: 'boolean',
-                initialValue: true,
-            },
-            cookies: {
-                label: 'Aceito Cookies',
-                type: 'boolean',
-                initialValue: true,
-            },
-            apiVersion: {
-                label: 'Versão da API',
-                type: 'string',
-                initialValue: '1.0',
-            },
-        },
-        local: {
-            colorSchema: {
-                label: 'Cor Principal',
-                type: 'color',
-                initialValue: '#3399ff',
-            },
-            configuration1: {
-                label: 'Configuração 1',
-                type: 'string',
-                initialValue: 'asd',
-            },
-            configuration2: {
-                label: 'Configuração 2',
-                type: 'string',
-                initialValue: 'qwe',
-            },
-        },
     },
 }

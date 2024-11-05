@@ -77,4 +77,10 @@
         padding-top: 1em !important;
         resize: vertical;
     }
+
+    &.error {
+        .input {
+            outline-color: red;
+        }
+    }
 }

@@ -5,8 +5,10 @@ import { ErrorCollection, FormContextType } from './form.context.type'
 
 export const FormContext = createContext<FormContextType>({
     error: (x) => ({}) as any,
+    errorField: () => '',
     updateErrors: () => {},
     form: (x) => '' as any,
+    formField: () => null,
     updateForm: () => {},
     updateFormField: () => {},
 })
@@ -19,12 +21,42 @@ export const FormProvider = ({ children }: { children: ReactNode }) => {
         [key: string]: any
     }>({})
 
+    console.log(form)
+
     const getForm = (formName: string) => {
         return form?.[formName]
     }
 
-    const getErrors = (formName: string) => {
+    const getFormField = (formName: string, field: string) => {
+        if (field.includes('.')) {
+            const fields = field.split('.')
+            const length = fields.length
+            if (length === 2) {
+                return form?.[formName]?.[fields[0]]?.[fields[1]]
+            } else {
+                return form?.[formName]?.[fields[0]]?.[fields[1]]?.[fields[2]]
+            }
+        } else {
+            return form?.[formName]?.[field]
+        }
+    }
+
+    const getError = (formName: string) => {
         return errors?.[formName]
+    }
+
+    const getErrorField = (formName: string, field: string) => {
+        if (field.includes('.')) {
+            const fields = field.split('.')
+            const length = fields.length
+            if (length === 2) {
+                return errors?.[formName]?.[fields[0]]?.[fields[1]]
+            } else {
+                return errors?.[formName]?.[fields[0]]?.[fields[1]]?.[fields[2]]
+            }
+        } else {
+            return errors?.[formName]?.[field]
+        }
     }
 
     const updateForm = <T,>(formName: string, value: (oldValue: T) => T) => {
@@ -46,7 +78,28 @@ export const FormProvider = ({ children }: { children: ReactNode }) => {
             if (!x[formName]) {
                 x[formName] = {}
             }
-            x[formName][field] = value
+            if (field.includes('.')) {
+                const fields = field.split('.')
+                const length = fields.length
+                if (length >= 2) {
+                    if (!x[formName]?.[fields[0]]) {
+                        x[formName][fields[0]] = {}
+                    }
+                    if (!x[formName][fields[0]]?.[fields[1]]) {
+                        x[formName][fields[0]][fields[1]] = {}
+                    }
+                    if (length === 3) {
+                        if (!x[formName][fields[0]]?.[fields[1]]) {
+                            x[formName][fields[0]][fields[1]] = {}
+                        }
+                        x[formName][fields[0]][fields[1]][fields[2]] = value
+                    } else {
+                        x[formName][fields[0]][fields[1]] = value
+                    }
+                }
+            } else {
+                x[formName][field] = value
+            }
             return { ...x }
         })
     }
@@ -55,7 +108,9 @@ export const FormProvider = ({ children }: { children: ReactNode }) => {
         <FormContext.Provider
             value={{
                 form: getForm,
-                error: getErrors,
+                formField: getFormField,
+                error: getError,
+                errorField: getErrorField,
                 updateErrors,
                 updateForm,
                 updateFormField,

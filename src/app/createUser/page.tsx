@@ -9,7 +9,7 @@ import Text from '@/components/form/text'
 import Grid from '@/components/grid'
 import Page from '@/components/page'
 import { UserContext } from '@/context/user.context'
-import { useApi } from '@/hook/useMessage/useApi'
+import useApi from '@/hook/useApi'
 import { UserType } from '@/types/user.type'
 import { FormUtils } from '@/utils/form.utils'
 import { useRouter } from 'next/navigation'
@@ -42,48 +42,22 @@ const CreateUserPage = () => {
                         )}
                     />
                     <Grid>
-                        <Text
-                            label="Nome Completo"
-                            {...FormUtils.inputFieldValue(
-                                userForm,
-                                setUserForm,
-                                'full_name'
-                            )}
-                        />
+                        <Text label="Nome Completo" field="full_name" />
                         <Text
                             label="Data de Nascimento"
+                            field="birthday"
                             mask="date"
-                            {...FormUtils.inputFieldValue(
-                                userForm,
-                                setUserForm,
-                                'birthday'
-                            )}
                         />
-                        <Text
-                            label="E-mail"
-                            {...FormUtils.inputFieldValue(
-                                userForm,
-                                setUserForm,
-                                'email'
-                            )}
-                        />
+                        <Text label="E-mail" field="email" />
                         <Text
                             type="password"
                             label="Senha de Acesso"
-                            {...FormUtils.inputFieldValue(
-                                userForm,
-                                setUserForm,
-                                'password'
-                            )}
+                            field="password"
                         />
                         <Text
                             type="password"
                             label="Confirmação da Senha"
-                            {...FormUtils.inputFieldValue(
-                                userForm,
-                                setUserForm,
-                                'password_confirm'
-                            )}
+                            field="password_confirm"
                         />
                     </Grid>
                 </Grid>

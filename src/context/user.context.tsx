@@ -3,6 +3,7 @@
 import { createContext, ReactNode, useEffect, useMemo, useState } from 'react'
 import { UserContextType } from './user.context.type'
 import { usePathname, useRouter } from 'next/navigation'
+import useApi from '@/hook/useApi'
 
 export const UserContext = createContext<UserContextType>({
     isLogedIn: false,
@@ -15,6 +16,7 @@ export const UserContext = createContext<UserContextType>({
 export const UserProvider = ({ children }: { children: ReactNode }) => {
     const pathname = usePathname()
     const router = useRouter()
+    const api = useApi()
     const [token, setToken] = useState<string | undefined>()
     const [loading, setLoading] = useState<boolean>(true)
 
@@ -46,9 +48,20 @@ export const UserProvider = ({ children }: { children: ReactNode }) => {
         const existingToken = localStorage.getItem('token')
 
         if (existingToken) {
-            setToken(existingToken)
+            api.user
+                .me()
+                .then((response) => {
+                    setToken(existingToken)
+                })
+                .catch(() => {
+                    localStorage.removeItem('token')
+                })
+                .finally(() => {
+                    setLoading(false)
+                })
+        } else {
+            setLoading(false)
         }
-        setLoading(false)
     }, [])
 
     return (

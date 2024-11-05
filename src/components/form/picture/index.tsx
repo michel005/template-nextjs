@@ -3,23 +3,42 @@ import { PictureType } from '@/components/form/picture/index.type'
 import { FileUtils } from '@/utils/file.utils'
 import Button from '@/components/button'
 import Icon from '@/components/icon'
-import { CSSProperties, useRef } from 'react'
+import { CSSProperties, useMemo, useRef } from 'react'
 import clsx from 'clsx'
+import useClosestDataForm from '@/hook/useClosestDataForm'
+import useForm from '@/hook/useForm/useForm'
 
-const Component = ({ label, value, size = '260px', onChange }: PictureType) => {
+const Component = ({
+    label,
+    field,
+    value,
+    size = '260px',
+    onChange,
+}: PictureType) => {
     const fileRef = useRef<HTMLInputElement>(null)
+    const { dataForm, errorForm } = useClosestDataForm(fileRef)
+    const form = useForm(dataForm || 'form')
 
     const loadPicture = (file: File) => {
         if (file) {
             FileUtils.fileToBase64(file, (response) => {
-                onChange?.(response)
+                if (field) {
+                    form.updateFormField(field, response)
+                } else {
+                    onChange?.(response)
+                }
             })
         }
     }
 
+    const finalValue = useMemo(
+        () => (field ? form.form?.[field] || null : value),
+        [field, form.form?.[field || ''], value]
+    )
+
     return (
         <div
-            className={clsx(style.picture, !!value && style.haveValue)}
+            className={clsx(style.picture, !!finalValue && style.haveValue)}
             style={{ '--picture-size': size } as CSSProperties}
             onDragOver={(e) => {
                 e.preventDefault()
@@ -47,7 +66,7 @@ const Component = ({ label, value, size = '260px', onChange }: PictureType) => {
                 type="button"
                 style={
                     {
-                        '--picture': `url(${value})`,
+                        '--picture': `${finalValue ? `url(${finalValue})` : ''}`,
                     } as CSSProperties
                 }
                 onClick={() => {
@@ -66,7 +85,7 @@ const Component = ({ label, value, size = '260px', onChange }: PictureType) => {
                         const newWindow = window.open()
                         if (newWindow) {
                             newWindow.document.write(
-                                '<img src="' + value + '" />'
+                                '<img src="' + finalValue + '" />'
                             )
                             newWindow.document.close()
                         }
@@ -88,7 +107,11 @@ const Component = ({ label, value, size = '260px', onChange }: PictureType) => {
                     type="button"
                     title="Remover"
                     onClick={() => {
-                        onChange?.('')
+                        if (field) {
+                            form.updateFormField(field, null)
+                        } else {
+                            onChange?.('')
+                        }
                     }}
                 />
             </div>
