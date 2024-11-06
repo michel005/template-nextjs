@@ -6,6 +6,7 @@ export interface TextType {
     placeholder?: string
     disabled?: boolean
     grow?: number
+    onBlur?: () => void
     mask?: 'date' | 'time' | 'rg' | 'cpf' | 'cnpj' | 'cep'
     type?:
         | 'email'

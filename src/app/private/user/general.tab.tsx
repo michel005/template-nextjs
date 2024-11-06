@@ -34,6 +34,7 @@ export const UserGeneralTab = () => {
                             },
                         ]}
                         field="person_type"
+                        disabled={true}
                     />
                     <Select
                         label="Tipo de Documento"
@@ -56,8 +57,8 @@ export const UserGeneralTab = () => {
                                       },
                                   ]
                         }
-                        disabled={!form.form?.person_type}
                         field="document_type"
+                        disabled={true}
                     />
                     <Text
                         label={
@@ -65,10 +66,8 @@ export const UserGeneralTab = () => {
                             'CPF/RG/CNPJ'
                         }
                         mask={form.form?.document_type?.toLowerCase()}
-                        disabled={
-                            !form.form?.person_type || !form.form?.document_type
-                        }
                         field="document_number"
+                        disabled={true}
                     />
                 </Grid>
                 <Grid span={2} columns="1fr 1fr 1fr">
@@ -78,7 +77,12 @@ export const UserGeneralTab = () => {
                         mask="date"
                         field="birthday"
                     />
-                    <Text label="E-mail" type="email" field="email" />
+                    <Text
+                        label="E-mail"
+                        type="email"
+                        field="email"
+                        disabled={true}
+                    />
                     <Text label="Telefone" field="phone" />
                 </Grid>
                 <Grid span={2}>

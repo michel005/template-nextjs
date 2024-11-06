@@ -16,6 +16,9 @@ import { ModalContext } from '@/context/modal.context'
 import useMessage from '@/hook/useMessage'
 import Footer from '@/components/footer'
 import { UserContext } from '@/context/user.context'
+import useApi from '@/hook/useApi'
+import { UserType } from '@/types/user.type'
+import useForm from '@/hook/useForm/useForm'
 
 const hexToRgbA = (hex: string, opacity: number) => {
     let r = parseInt(hex.slice(1, 3), 16)
@@ -30,6 +33,8 @@ const Component = ({ children }: { children: ReactNode }) => {
     const { isLogedIn, loading, logout } = useContext(UserContext)
     const message = useMessage()
     const pathname = usePathname()
+    const form = useForm<UserType>('myUser')
+    const api = useApi()
 
     const bottomHeader = useMemo(() => {
         const current = Definitions.privateRoutes.find((x) =>
@@ -39,10 +44,13 @@ const Component = ({ children }: { children: ReactNode }) => {
     }, [pathname])
 
     useLayoutEffect(() => {
-        const settings = localStorage.getItem('settings')
-        const colorSchema = settings
-            ? JSON.parse(settings)?.colorSchema
-            : '#3399ff'
+        api.user.me().then((user: UserType) => {
+            form.updateForm(() => user)
+        })
+    }, [])
+
+    useLayoutEffect(() => {
+        const colorSchema = form.form?.settings?.color_schema || '#3399ff'
 
         const body = document.getElementsByTagName('body').item(0) as any
 
@@ -59,7 +67,7 @@ const Component = ({ children }: { children: ReactNode }) => {
                 hexToRgbA(colorSchema, i)
             )
         }
-    }, [])
+    }, [form.form])
 
     return (
         <body>

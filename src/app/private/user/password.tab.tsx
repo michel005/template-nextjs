@@ -4,6 +4,7 @@ import Button from '@/components/button'
 import useForm from '@/hook/useForm/useForm'
 import useError from '@/hook/useError'
 import useApi from '@/hook/useApi'
+import style from './page.module.scss'
 
 export const UserPasswordTab = () => {
     const form = useForm<{
@@ -40,6 +41,14 @@ export const UserPasswordTab = () => {
             >
                 Alterar Senha
             </Button>
+            {error.error && (
+                <p
+                    className={style.errors}
+                    dangerouslySetInnerHTML={{
+                        __html: Object.values(error.error).join('<br />'),
+                    }}
+                />
+            )}
         </Grid>
     )
 }

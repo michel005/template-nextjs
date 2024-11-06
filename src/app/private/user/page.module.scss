@@ -1,0 +1,33 @@
+@import '../../../styles/mediaQuery';
+
+.errors {
+    color: red;
+    display: flex;
+    flex-direction: column;
+    gap: 1em;
+    font-size: 0.8em;
+}
+
+.colors {
+    display: flex;
+    flex-direction: row;
+    flex-wrap: wrap;
+    gap: 1em;
+}
+
+.square {
+    height: 74px;
+    width: 74px;
+
+    &:hover {
+        scale: 1.1;
+    }
+}
+
+@include small-desktop {
+    .colors {
+        > button {
+            flex-grow: 1;
+        }
+    }
+}

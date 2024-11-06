@@ -16,6 +16,9 @@ export const UserMenu = () => {
                     error.clear()
                     try {
                         await user.update(form.form)
+
+                        const usr = await user.me()
+                        form.updateForm(() => usr)
                     } catch (e: any) {
                         error.updateErrors(e)
                     }

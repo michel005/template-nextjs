@@ -18,4 +18,7 @@ export interface UserType {
         state?: string
         country?: string
     }
+    settings: {
+        color_schema?: string
+    }
 }

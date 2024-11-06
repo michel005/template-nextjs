@@ -19,6 +19,7 @@ const Component = ({
     grow = 1,
     mask,
     disabled,
+    onBlur,
 }: TextType) => {
     const ref = useRef<any>(null)
     const { dataForm } = useClosestDataForm(ref)
@@ -71,6 +72,7 @@ const Component = ({
                     ref={ref}
                     placeholder={placeholder || label}
                     disabled={disabled}
+                    onBlur={onBlur}
                     onChange={(e) => {
                         if (field) {
                             form.updateFormField(field, e.target.value)
@@ -105,6 +107,7 @@ const Component = ({
                 value={currentValue || ''}
                 placeholder={defaultPlaceholder}
                 disabled={disabled}
+                onBlur={onBlur}
                 onChange={(e) => {
                     if (field) {
                         if (mask) {

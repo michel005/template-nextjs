@@ -9,9 +9,13 @@ import Tabs from '@/components/tabs'
 import { UserGeneralTab } from '@/app/private/user/general.tab'
 import { UserAddressTab } from '@/app/private/user/address.tab'
 import { UserPasswordTab } from '@/app/private/user/password.tab'
+import style from '@/app/private/user/page.module.scss'
+import useError from '@/hook/useError'
+import { UserSettingsTab } from '@/app/private/user/settings.tab'
 
 const Component = () => {
     const form = useForm('myUser')
+    const error = useError('myUser')
     const { user } = useApi()
 
     useEffect(() => {
@@ -37,6 +41,11 @@ const Component = () => {
                             content: <UserAddressTab />,
                         },
                         {
+                            id: 'settings',
+                            label: 'Configurações',
+                            content: <UserSettingsTab />,
+                        },
+                        {
                             id: 'password',
                             label: 'Senha de Acesso',
                             content: <UserPasswordTab />,
@@ -44,6 +53,15 @@ const Component = () => {
                     ]}
                     initialSelected={'general'}
                 />
+
+                {error.error && (
+                    <p
+                        className={style.errors}
+                        dangerouslySetInnerHTML={{
+                            __html: Object.values(error.error).join('<br />'),
+                        }}
+                    />
+                )}
             </Page>
         </Suspense>
     )

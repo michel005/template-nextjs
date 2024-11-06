@@ -3,12 +3,25 @@
 import style from './index.module.scss'
 import { ColorType } from '@/components/form/color/index.type'
 import clsx from 'clsx'
-import { useRef } from 'react'
+import { useMemo, useRef } from 'react'
+import useClosestDataForm from '@/hook/useClosestDataForm'
+import useForm from '@/hook/useForm/useForm'
 
-const Component = ({ label, value, onChange, disabled }: ColorType) => {
+const Component = ({ label, field, value, onChange, disabled }: ColorType) => {
     const inputRef = useRef<HTMLInputElement>(null)
+    const { dataForm } = useClosestDataForm(inputRef)
+    const form = useForm(dataForm || 'form')
+
+    const currentValue = useMemo(() => {
+        if (!field) {
+            return value
+        } else {
+            return form.formField(field)
+        }
+    }, [field, form, value])
+
     return (
-        <div className={clsx(style.color, !!value && style.haveValue)}>
+        <div className={clsx(style.color, !!currentValue && style.haveValue)}>
             <div
                 className={style.input}
                 tabIndex={0}
@@ -16,15 +29,19 @@ const Component = ({ label, value, onChange, disabled }: ColorType) => {
                     inputRef.current?.click()
                 }}
             >
-                <span>{value || 'Nenhuma cor selecionada'}</span>
+                <span>{currentValue || 'Nenhuma cor selecionada'}</span>
                 <div className={style.inputContainer}>
                     <input
                         className={style.colorInput}
                         type="color"
-                        value={value || ''}
+                        value={currentValue || ''}
                         disabled={disabled}
                         onChange={(e) => {
-                            onChange?.(e.target.value)
+                            if (field) {
+                                form.updateFormField(field, e.target.value)
+                            } else {
+                                onChange?.(e.target.value)
+                            }
                         }}
                         ref={inputRef}
                     />

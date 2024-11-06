@@ -16,7 +16,7 @@ const Component = ({
     onChange,
 }: PictureType) => {
     const fileRef = useRef<HTMLInputElement>(null)
-    const { dataForm, errorForm } = useClosestDataForm(fileRef)
+    const { dataForm } = useClosestDataForm(fileRef)
     const form = useForm(dataForm || 'form')
 
     const loadPicture = (file: File) => {
@@ -85,7 +85,7 @@ const Component = ({
                         const newWindow = window.open()
                         if (newWindow) {
                             newWindow.document.write(
-                                '<img src="' + finalValue + '" />'
+                                `<img src="${finalValue}" />`
                             )
                             newWindow.document.close()
                         }

@@ -21,8 +21,6 @@ export const FormProvider = ({ children }: { children: ReactNode }) => {
         [key: string]: any
     }>({})
 
-    console.log(form)
-
     const getForm = (formName: string) => {
         return form?.[formName]
     }
