@@ -9,7 +9,7 @@ import useForm from '@/hook/useForm/useForm'
 
 const Component = ({ label, field, value, onChange }: ToggleType) => {
     const ref = useRef<any>(null)
-    const { dataForm, errorForm } = useClosestDataForm(ref)
+    const { dataForm } = useClosestDataForm(ref)
     const form = useForm(dataForm || 'form')
 
     return (
