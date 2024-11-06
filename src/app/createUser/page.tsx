@@ -11,15 +11,15 @@ import Page from '@/components/page'
 import { UserContext } from '@/context/user.context'
 import useApi from '@/hook/useApi'
 import { UserType } from '@/types/user.type'
-import { FormUtils } from '@/utils/form.utils'
 import { useRouter } from 'next/navigation'
 import { useContext, useState } from 'react'
 import style from './page.module.scss'
+import useForm from '@/hook/useForm/useForm'
 
 const CreateUserPage = () => {
-    const [userForm, setUserForm] = useState<UserType>({})
     const [error, setError] = useState<string | undefined>(undefined)
     const { setToken } = useContext(UserContext)
+    const form = useForm<UserType>('createUser')
     const router = useRouter()
     const api = useApi()
 
@@ -32,15 +32,7 @@ const CreateUserPage = () => {
                     Assim você tem acesso a funcionalidades gratuitas.
                 </p>
                 <Grid columns="auto 1fr">
-                    <Picture
-                        label="Foto"
-                        size="200px"
-                        {...FormUtils.inputFieldValue(
-                            userForm,
-                            setUserForm,
-                            'picture'
-                        )}
-                    />
+                    <Picture label="Foto" size="200px" field="picture" />
                     <Grid>
                         <Text label="Nome Completo" field="full_name" />
                         <Text
@@ -81,8 +73,9 @@ const CreateUserPage = () => {
                         onClickAsync={async () => {
                             setError(undefined)
                             try {
-                                const response: any =
-                                    await api.user.create(userForm)
+                                const response: any = await api.user.create(
+                                    form.form
+                                )
                                 setToken(response?.token)
                             } catch (e: any) {
                                 setError(e.error)
