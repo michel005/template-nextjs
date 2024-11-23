@@ -5,43 +5,43 @@
 $base-color: #3399ff;
 
 @property --primary-color {
-    syntax: '<color>';
-    inherits: true;
-    initial-value: #3399ff;
+  syntax: '<color>';
+  inherits: true;
+  initial-value: #3399ff;
 }
 
 :root {
-    --box-shaddow: 7px 7px 7px #6661, -7px -7px 4px #ccc1;
+  --box-shaddow: 7px 7px 7px #6661, -7px -7px 4px #ccc1;
 
-    --button-effect-color: #fff4;
-    --button-height: 52px;
+  --button-effect-color: #fff4;
+  --button-height: 52px;
 
-    --header-height: 92px;
+  --header-height: 92px;
 
-    --input-border: 1px solid #ddd;
-    --input-height: 50px;
-    --input-border-color-focus: var(--primary-color);
+  --input-border: 1px solid #ddd;
+  --input-height: 50px;
+  --input-border-color-focus: var(--primary-color);
 
-    --screen-width: 1500px;
+  --screen-width: 1500px;
 
-    --sidebar-width: 250px;
+  --sidebar-width: 250px;
 
-    --zindex-header-top: 100;
-    --zindex-header-botom: 90;
-    --zindex-modal-background: 110;
-    --zindex-modal-content: 120;
+  --zindex-header-top: 100;
+  --zindex-header-botom: 90;
+  --zindex-modal-background: 110;
+  --zindex-modal-content: 120;
 
-    --radius: 10px;
+  --radius: 10px;
 }
 
 * {
-    box-sizing: border-box;
-    -webkit-font-smoothing: antialiased;
-    -moz-osx-font-smoothing: grayscale;
-    font-family: 'Montserrat', monospace;
-    margin: 0;
-    padding: 0;
-    text-decoration: none;
+  box-sizing: border-box;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+  font-family: 'Montserrat', monospace;
+  margin: 0;
+  padding: 0;
+  text-decoration: none;
 }
 
 h1,
@@ -49,58 +49,61 @@ h2,
 h3,
 h4,
 h5 {
-    color: var(--primary-color);
-    line-height: 1em;
+  line-height: 1em;
+}
+
+h1, h2 {
+  color: var(--primary-color);
 }
 
 h1 {
-    font-size: 2.25em;
+  font-size: 2.25em;
 }
 
 h2 {
-    font-size: 2em;
+  font-size: 2em;
 }
 
 h3 {
-    font-size: 1.75em;
+  font-size: 1.75em;
 }
 
 h4 {
-    font-size: 1.5em;
+  font-size: 1.5em;
 }
 
 h5 {
-    font-size: 1.25em;
+  font-size: 1.25em;
 }
 
 hr {
-    border: none;
-    height: 1em;
-    outline: transparent;
-    position: relative;
+  border: none;
+  height: 1em;
+  outline: transparent;
+  position: relative;
 
-    &:before {
-        background-color: #ddd;
-        content: '';
-        height: 1px;
-        left: 0;
-        position: absolute;
-        top: calc(50% - 0.5px);
-        width: 100%;
-    }
+  &:before {
+    background-color: #ddd;
+    content: '';
+    height: 1px;
+    left: 0;
+    position: absolute;
+    top: calc(50% - 0.5px);
+    width: 100%;
+  }
 
-    &:after {
-        align-self: center;
-        background-color: #fff;
-        color: #999;
-        content: attr(data-text);
-        left: 50%;
-        padding-inline: 7px;
-        position: absolute;
-        white-space: nowrap;
-        top: 50%;
-        transform: translateY(-50%) translateX(-50%);
-    }
+  &:after {
+    align-self: center;
+    background-color: #fff;
+    color: #999;
+    content: attr(data-text);
+    left: 50%;
+    padding-inline: 7px;
+    position: absolute;
+    white-space: nowrap;
+    top: 50%;
+    transform: translateY(-50%) translateX(-50%);
+  }
 }
 
 article,
@@ -110,49 +113,49 @@ div,
 header,
 nav,
 section {
-    display: flex;
-    flex-direction: column;
+  display: flex;
+  flex-direction: column;
 }
 
 img {
-    object-fit: cover;
+  object-fit: cover;
 }
 
 a,
 p,
 span {
-    color: #999;
-    font-size: 16px;
-    line-height: 1.2em;
+  color: #999;
+  font-size: 16px;
+  line-height: 1.2em;
 }
 
 body {
-    display: flex;
-    flex-direction: column;
-    overflow: auto;
+  display: flex;
+  flex-direction: column;
+  overflow: auto;
 }
 
 a {
-    color: #39f;
-    transition: all 0.25s;
+  color: #39f;
+  transition: all 0.25s;
 
-    &:hover {
-        opacity: 0.6;
-    }
+  &:hover {
+    opacity: 0.6;
+  }
 
-    &:active {
-        opacity: 1;
-    }
+  &:active {
+    opacity: 1;
+  }
 }
 
 @include full-hd-desktop {
-    :root {
-        --screen-width: 1300px;
-    }
+  :root {
+    --screen-width: 1300px;
+  }
 }
 
 @include medium-desktop {
-    :root {
-        --screen-width: 100%;
-    }
+  :root {
+    --screen-width: 100%;
+  }
 }

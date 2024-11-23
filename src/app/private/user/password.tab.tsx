@@ -3,8 +3,7 @@ import Text from '@/components/form/text'
 import Button from '@/components/button'
 import useForm from '@/hook/useForm/useForm'
 import useError from '@/hook/useError'
-import useApi from '@/hook/useApi'
-import style from './page.module.scss'
+import useApiService from '../../../hook/useApiService'
 
 export const UserPasswordTab = () => {
     const form = useForm<{
@@ -13,7 +12,7 @@ export const UserPasswordTab = () => {
         confirmation?: string
     }>('changePassword')
     const error = useError('changePassword')
-    const { user } = useApi()
+    const { user } = useApiService()
 
     return (
         <Grid columns="1fr 1fr auto" data-form="changePassword">
@@ -41,14 +40,6 @@ export const UserPasswordTab = () => {
             >
                 Alterar Senha
             </Button>
-            {error.error && (
-                <p
-                    className={style.errors}
-                    dangerouslySetInnerHTML={{
-                        __html: Object.values(error.error).join('<br />'),
-                    }}
-                />
-            )}
         </Grid>
     )
 }

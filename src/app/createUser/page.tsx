@@ -9,7 +9,7 @@ import Text from '@/components/form/text'
 import Grid from '@/components/grid'
 import Page from '@/components/page'
 import { UserContext } from '@/context/user.context'
-import useApi from '@/hook/useApi'
+import useApiService from '../../hook/useApiService'
 import { UserType } from '@/types/user.type'
 import { useRouter } from 'next/navigation'
 import { useContext, useState } from 'react'
@@ -21,7 +21,7 @@ const CreateUserPage = () => {
     const { setToken } = useContext(UserContext)
     const form = useForm<UserType>('createUser')
     const router = useRouter()
-    const api = useApi()
+    const api = useApiService()
 
     return (
         <Page className={style.loginPage}>

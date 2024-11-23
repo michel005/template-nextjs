@@ -1,12 +1,12 @@
 import Button from '@/components/button'
-import useApi from '@/hook/useApi'
+import useApiService from '../../../hook/useApiService'
 import useForm from '@/hook/useForm/useForm'
 import useError from '@/hook/useError'
 
 export const UserMenu = () => {
     const form = useForm('myUser')
     const error = useError('myUser')
-    const { user } = useApi()
+    const { user } = useApiService()
 
     return (
         <>

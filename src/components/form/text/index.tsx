@@ -88,6 +88,11 @@ const Component = ({
                     }}
                 />
                 {label && <label className={style.label}>{label}</label>}
+                {error.errorField(field || '') && (
+                    <label className={style.error}>
+                        {error.errorField(field || '')}
+                    </label>
+                )}
             </div>
         )
     }
@@ -128,6 +133,11 @@ const Component = ({
                 }}
             />
             {label && <label className={style.label}>{label}</label>}
+            {error.errorField(field || '') && (
+                <label className={style.error}>
+                    {error.errorField(field || '')}
+                </label>
+            )}
         </div>
     )
 }

@@ -1,16 +1,37 @@
+@keyframes pageLoadingAnimation {
+    100% {
+        rotate: 360deg;
+    }
+}
+
 .page {
     align-self: center;
     display: flex;
     flex-direction: column;
     flex-grow: 1;
-    gap: 2em;
+    gap: 1em;
     min-height: 690px;
     padding: 1em 1em 2em;
     position: relative;
     transition: all 0.25s;
     width: min(100%, var(--screen-width));
+}
 
-    > h1 {
-        padding-top: 0.5em;
+.loading {
+    background-color: #fff3;
+    backdrop-filter: blur(4px);
+    color: var(--primary-color);
+    display: flex;
+    flex-direction: column;
+    height: 100%;
+    justify-content: center;
+    left: 0;
+    position: absolute;
+    top: 0;
+    width: 100%;
+
+    > i {
+        animation: pageLoadingAnimation 1.5s infinite linear reverse;
+        font-size: 5em;
     }
 }

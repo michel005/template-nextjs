@@ -1,0 +1,31 @@
+.card {
+  background-color: #fff;
+  margin: 0 auto;
+  position: relative;
+  user-select: none;
+  width: 600px;
+
+  &.dragEffect {
+    scale: 1.1;
+  }
+
+  .exerciseMenu {
+    position: absolute;
+    right: 1.5em;
+    top: 1.5em;
+  }
+
+  > h4 {
+    color: var(--primary-color);
+  }
+
+  > label {
+    align-self: flex-start;
+    background-color: #eee;
+    border-radius: var(--radius);
+    color: #777;
+    font-size: 0.8em;
+    margin: -0.7em 0 0;
+    padding: 0.3em 0.8em;
+  }
+}

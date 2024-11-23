@@ -52,6 +52,11 @@ const Component = ({
                 })}
             </select>
             {label && <label className={style.label}>{label}</label>}
+            {error.error?.[field || ''] && (
+                <label className={style.error}>
+                    {error.error?.[field || '']}
+                </label>
+            )}
         </div>
     )
 }

@@ -10,9 +10,10 @@ const Component = ({
     className,
     children,
     header,
+    initiallyExpanded = false,
     ...props
 }: AccordionType) => {
-    const [expand, setExpand] = useState(false)
+    const [expand, setExpand] = useState(initiallyExpanded)
     return (
         <div
             {...props}

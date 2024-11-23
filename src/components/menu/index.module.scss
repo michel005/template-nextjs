@@ -2,6 +2,10 @@
     align-self: flex-end;
     margin-left: auto;
     position: relative;
+
+    .show {
+        display: flex;
+    }
 }
 
 .menu {
@@ -29,12 +33,4 @@
 .background {
     background-color: transparent !important;
     backdrop-filter: none !important;
-}
-
-.checkbox:checked ~ .menu {
-    display: flex;
-}
-
-.checkbox:checked ~ .background {
-    display: flex;
 }

@@ -1,24 +1,12 @@
 @import '../../styles/mediaQuery';
 
 .homePage {
-    > h1 {
-        padding-top: 1em;
-    }
-
-    .article {
-        background-color: #fff;
-        display: flex;
+    header {
         flex-direction: column;
-        gap: 1.5em;
-        height: 100%;
-        padding: 1.5em;
-
-        > h1 {
-            font-size: 2em;
-        }
+        gap: 0.5em;
 
         > p {
-            color: #999;
+            color: #666;
         }
     }
 }

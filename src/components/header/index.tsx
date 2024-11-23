@@ -20,7 +20,7 @@ const Component = ({
     onExit: () => void
 }) => {
     const router = useRouter()
-    const { loading, isLogedIn } = useContext(UserContext)
+    const { loading, isLoggedIn } = useContext(UserContext)
 
     const closeSidebar = () => {
         const sidebar = document.getElementById(
@@ -29,35 +29,7 @@ const Component = ({
         sidebar.checked = true
     }
 
-    if (loading) {
-        return (
-            <header className={style.header}>
-                <div className={style.top}>
-                    <center>
-                        <AppName />
-                        <div className={style.options}>
-                            <Button
-                                icon="person"
-                                onClick={() => {
-                                    router.push('/login')
-                                }}
-                            >
-                                Cadastrar-se / Entrar
-                            </Button>
-                        </div>
-                        <label
-                            className={style.reducerButton}
-                            htmlFor="controlSidebarVisibility"
-                        >
-                            <Icon icon="menu" />
-                        </label>
-                    </center>
-                </div>
-            </header>
-        )
-    }
-
-    if (!isLogedIn) {
+    if (!isLoggedIn) {
         return (
             <>
                 <input
@@ -121,6 +93,18 @@ const Component = ({
         )
     }
 
+    if (loading) {
+        return (
+            <header className={style.header}>
+                <div className={style.top}>
+                    <center>
+                        <AppName />
+                    </center>
+                </div>
+            </header>
+        )
+    }
+
     return (
         <>
             <input
@@ -134,20 +118,22 @@ const Component = ({
                     <center>
                         <AppName />
                         <div className={style.options}>
-                            {Definitions.privateRoutes.map((rout) => {
-                                return (
-                                    <Link
-                                        key={rout.path}
-                                        href={rout.path}
-                                        className={clsx(
-                                            pathname === rout.path &&
-                                                style.current
-                                        )}
-                                    >
-                                        {rout.label}
-                                    </Link>
-                                )
-                            })}
+                            {Definitions.privateRoutes
+                                .filter((rout) => !rout?.hide)
+                                .map((rout) => {
+                                    return (
+                                        <Link
+                                            key={rout.path}
+                                            href={rout.path}
+                                            className={clsx(
+                                                pathname === rout.path &&
+                                                    style.current
+                                            )}
+                                        >
+                                            {rout.label}
+                                        </Link>
+                                    )
+                                })}
                             <label
                                 className={style.link}
                                 onClick={() => onExit()}
@@ -170,20 +156,22 @@ const Component = ({
                 </div>
             )}
             <aside className={clsx(style.sidebar)}>
-                {Definitions.privateRoutes.map((rout) => {
-                    return (
-                        <Link
-                            key={rout.path}
-                            href={rout.path}
-                            className={clsx(
-                                pathname === rout.path && style.current
-                            )}
-                            onClick={() => closeSidebar()}
-                        >
-                            {rout.label}
-                        </Link>
-                    )
-                })}
+                {Definitions.privateRoutes
+                    .filter((rout) => !rout?.hide)
+                    .map((rout) => {
+                        return (
+                            <Link
+                                key={rout.path}
+                                href={rout.path}
+                                className={clsx(
+                                    pathname === rout.path && style.current
+                                )}
+                                onClick={() => closeSidebar()}
+                            >
+                                {rout.label}
+                            </Link>
+                        )
+                    })}
                 <Link
                     href={pathname}
                     onClick={() => {

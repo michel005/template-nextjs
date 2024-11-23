@@ -5,9 +5,9 @@ const useForm = <T = any>(formName: string) => {
     const formContext = useContext(FormContext)
 
     return {
-        form: formContext.form(formName),
+        form: formContext.form(formName) as T,
         formField: (field: string) => formContext.formField(formName, field),
-        updateForm: (value: (oldValue: T) => T) =>
+        updateForm: (value: (oldValue: T) => T | undefined) =>
             formContext.updateForm(formName, value),
         updateFormField: (field: string, value: any) =>
             formContext.updateFormField(formName, field, value),

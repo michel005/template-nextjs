@@ -1,8 +1,10 @@
-import { HomeMenu } from '@/app/page.menu'
 import { ExampleModal } from '@/modals/example/index.modal'
 import { MessageModal } from '@/modals/message/index.modal'
 import { QuestionModal } from '@/modals/question/index.modal'
 import { UserMenu } from '@/app/private/user/page.menu'
+import { TrainingMenu } from '@/app/private/training/page.menu'
+import { TrainingFormMenu } from '@/app/private/training/[id]/page.menu'
+import { ExerciseModal } from '@/modals/exercise/index.modal'
 
 export const Definitions = {
     api: 'http://localhost:8080/api',
@@ -12,7 +14,17 @@ export const Definitions = {
         {
             path: '/private',
             label: 'Início',
-            menu: <HomeMenu />,
+        },
+        {
+            path: '/private/training',
+            label: 'Treino',
+            menu: <TrainingMenu />,
+        },
+        {
+            path: '/private/training/[id]',
+            label: 'Treino',
+            menu: <TrainingFormMenu />,
+            hide: true,
         },
         {
             path: '/private/user',
@@ -75,6 +87,7 @@ export const Definitions = {
     footerDetails: 'Template é um projeto com direitos reservados. 2024',
     modal: {
         example: <ExampleModal />,
+        exercise: <ExerciseModal />,
         message: <MessageModal />,
         question: <QuestionModal />,
     },

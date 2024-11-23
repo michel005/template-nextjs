@@ -1,17 +1,23 @@
 'use client'
 
 import Page from '@/components/page'
-import Skeleton from '@/components/skeleton'
-import { Suspense } from 'react'
 import style from './page.module.scss'
+import useForm from '@/hook/useForm/useForm'
+import { UserType } from '@/types/user.type'
+import { useContext } from 'react'
+import { UserContext } from '@/context/user.context'
 
 const HomePage = () => {
+    const form = useForm<UserType>('myUser')
+    const userContext = useContext(UserContext)
+
     return (
-        <Suspense fallback={<Skeleton style={{ height: '300px' }} />}>
-            <Page className={style.homePage}>
-                <h1>Bem vindo usuário</h1>
-            </Page>
-        </Suspense>
+        <Page className={style.homePage} loading={userContext.loading}>
+            <header>
+                <p>Bem vindo</p>
+                <h1>{form.form?.full_name}</h1>
+            </header>
+        </Page>
     )
 }
 

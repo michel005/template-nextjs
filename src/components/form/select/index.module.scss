@@ -16,6 +16,20 @@
         transition: all 0.25s;
     }
 
+    .error {
+        background-color: #fff;
+        border-radius: var(--radius);
+        bottom: -0.7em;
+        color: red;
+        font-size: 0.8em;
+        left: 1em;
+        padding: 0 4px;
+        pointer-events: none;
+        position: absolute;
+        transition: all 0.25s;
+        user-select: none;
+    }
+
     &::before {
         align-content: center;
         bottom: 17px;

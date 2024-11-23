@@ -1,19 +1,10 @@
 @import '../../styles/mediaQuery';
 
 .buttons {
-    background-color: #fff;
-    box-shadow: var(--box-shaddow);
     border-radius: var(--radius);
     flex-direction: row;
-    height: calc(var(--button-height) + 28px);
-    overflow: auto;
-    padding: 1em;
-    position: sticky;
-    right: 0;
-    top: 0;
     transition: all 0.25s;
     width: 100%;
-    z-index: 1;
 
     &::-webkit-scrollbar {
         height: 0;
@@ -23,7 +14,7 @@
     > section {
         display: flex;
         flex-direction: row;
-        gap: 1.5em;
+        gap: 1em;
     }
 }
 

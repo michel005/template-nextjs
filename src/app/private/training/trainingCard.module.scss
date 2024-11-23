@@ -1,0 +1,159 @@
+@import "../../../styles/mediaQuery";
+@import "../../../styles/variables";
+
+.card {
+  background-color: #fff;
+  box-shadow: var(--box-shaddow);
+  overflow: hidden;
+  padding: 2em;
+  position: relative;
+  transition: all 0.25s;
+
+  .background {
+    @include absolute;
+    background: linear-gradient(90deg, var(--primary-color-1), transparent);
+    height: 100%;
+    inset: 0;
+    width: 100%;
+    z-index: 0;
+  }
+
+  &:before {
+    @include absolute;
+    background-color: var(--primary-color-1);
+    clip-path: polygon(50% 100%, 90% 0, 100% 0, 100% 100%);
+    height: 100%;
+    right: 0;
+    top: 0;
+    transition: all 0.25s;
+    width: 100px;
+    z-index: 1;
+  }
+
+  &:after {
+    @include absolute;
+    background-color: var(--primary-color-1);
+    clip-path: polygon(20% 100%, 70% 0, 100% 0, 100% 100%);
+    height: 100%;
+    right: 0;
+    top: 0;
+    transition: all 0.25s;
+    width: 100px;
+    z-index: 2;
+  }
+
+  * {
+    z-index: 1;
+  }
+
+  .icon {
+    background-color: var(--primary-color);
+    border-radius: 50%;
+    color: #fff;
+    display: flex;
+    flex-direction: column;
+    font-size: 64px;
+    justify-content: center;
+    height: 100px;
+    pointer-events: none;
+    position: absolute;
+    right: 0;
+    top: 50%;
+    transition: all 0.25s;
+    transform: translateY(-50%) translateX(30%);
+    width: 100px;
+    z-index: 1;
+
+    &::before {
+      background-color: var(--primary-color-1);
+      content: '';
+      box-shadow: 0 0 10px var(--primary-color-2);
+      position: absolute;
+      bottom: -70%; /* Ajuste para posicionar o reflexo */
+      right: 10%;
+      width: 80%;
+      height: 30px; /* Altura do reflexo */
+      border-radius: 50%;
+      transform: scaleY(-1); /* Inverte o reflexo verticalmente */
+      opacity: 1; /* Torna o reflexo mais sutil */
+      pointer-events: none; /* Garante que o reflexo não seja clicável */
+      z-index: 0;
+    }
+
+    > i {
+      transition: all 0.25s;
+    }
+  }
+
+  > a {
+    color: var(--primary-color);
+    cursor: pointer;
+    margin-bottom: 1em;
+  }
+
+  > label {
+    align-self: flex-start;
+    background-color: var(--primary-color-1);
+    border-radius: var(--radius);
+    color: var(--primary-color);
+    font-size: 0.8em;
+    padding: 0.3em 0.8em;
+  }
+
+  &:hover {
+    &:before {
+      width: 150px;
+    }
+
+    &:after {
+      width: 150px;
+    }
+
+    .icon {
+      transform: translateY(-50%) translateX(0);
+      right: 7px;
+    }
+  }
+
+  &.ARCHIVED {
+    --primary-color: #111;
+    --primary-color-05: #1111;
+    --primary-color-1: #1111;
+    --primary-color-2: #1112;
+
+    > a {
+      color: #555;
+    }
+
+    .icon {
+      background-color: #555;
+    }
+  }
+
+  &.CLOSED {
+    --primary-color: #008000;
+    --primary-color-05: #00800011;
+    --primary-color-1: #00800022;
+    --primary-color-2: #00800044;
+
+    > a {
+      color: green;
+    }
+
+    label {
+      background-color: var(--primary-color-1);
+      color: var(--primary-color);
+    }
+
+    .icon {
+      background-color: green;
+    }
+  }
+}
+
+@include small-desktop {
+  .card {
+    min-width: 280px;
+    width: 100%;
+  }
+}

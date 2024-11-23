@@ -2,7 +2,7 @@ import Grid from '@/components/grid'
 import Color from '@/components/form/color'
 import style from './page.module.scss'
 import Button from '@/components/button'
-import useApi from '@/hook/useApi'
+import useApiService from '../../../hook/useApiService'
 import useForm from '@/hook/useForm/useForm'
 import { UserType } from '@/types/user.type'
 import { CSSProperties } from 'react'
@@ -20,7 +20,7 @@ const allColors = [
 ]
 
 export const UserSettingsTab = () => {
-    const { user } = useApi()
+    const { user } = useApiService()
     const form = useForm('myUser')
 
     return (

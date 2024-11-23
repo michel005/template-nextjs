@@ -1,6 +1,7 @@
 import { LoginType } from '@/types/login.type'
 import { AbstractService } from './service'
 import { UserType } from '@/types/user.type'
+import { LoginResponseType } from '@/types/loginResponse.type'
 
 export class UserService extends AbstractService {
     constructor({ token }: { token?: string }) {
@@ -9,6 +10,7 @@ export class UserService extends AbstractService {
     }
 
     me = async () => {
+        console.log(this.token)
         const resposne = await fetch(`${this.HOST}/user/me`, {
             method: 'GET',
             headers: {
@@ -21,7 +23,7 @@ export class UserService extends AbstractService {
             throw await resposne.json()
         }
 
-        return await resposne.json()
+        return await resposne.json() as UserType
     }
 
     login = async ({ email, password }: LoginType) => {
@@ -40,7 +42,7 @@ export class UserService extends AbstractService {
             throw await response.json()
         }
 
-        return await response.json()
+        return await response.json() as LoginResponseType
     }
 
     create = async (user: UserType) => {

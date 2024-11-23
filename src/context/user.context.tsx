@@ -3,70 +3,90 @@
 import { createContext, ReactNode, useEffect, useMemo, useState } from 'react'
 import { UserContextType } from './user.context.type'
 import { usePathname, useRouter } from 'next/navigation'
+import { UserService } from '@/services/user.service'
+import useForm from '@/hook/useForm/useForm'
+import { UserType } from '@/types/user.type'
 import useApi from '@/hook/useApi'
 
 export const UserContext = createContext<UserContextType>({
-    isLogedIn: false,
+    isLoggedIn: false,
     loading: false,
     token: '',
     setToken: () => {},
     logout: () => {},
+    dragEvent: null,
+    setDragEvent: () => {},
 })
 
 export const UserProvider = ({ children }: { children: ReactNode }) => {
     const pathname = usePathname()
     const router = useRouter()
-    const api = useApi()
+    const form = useForm<UserType>('myUser')
     const [token, setToken] = useState<string | undefined>()
-    const [loading, setLoading] = useState<boolean>(true)
+    const [dragEvent, setDragEvent] = useState<any>(null)
+    const userApi = useApi(async () => {
+        return await new UserService({ token }).me()
+    })
 
-    const isLogedIn = useMemo(() => !!token, [token])
+    const isLoggedIn = useMemo(() => !!token, [token])
 
     const logout = () => {
+        form.updateForm(() => undefined)
         setToken(undefined)
         localStorage.removeItem('token')
         router.push('/')
     }
 
     useEffect(() => {
-        if (loading) {
-            return
-        }
-        if (token) {
-            if (!pathname.startsWith('/private')) {
-                router.push('/private')
-            }
-            localStorage.setItem('token', token)
-        } else {
-            if (pathname.startsWith('/private')) {
-                router.push('/')
-            }
-        }
-    }, [loading, token, pathname])
+        const currentToken = localStorage.getItem('token')
 
-    useEffect(() => {
-        const existingToken = localStorage.getItem('token')
-
-        if (existingToken) {
-            api.user
-                .me()
-                .then((response) => {
-                    setToken(existingToken)
-                })
-                .catch(() => {
-                    localStorage.removeItem('token')
-                })
-                .finally(() => {
-                    setLoading(false)
-                })
-        } else {
-            setLoading(false)
+        if (!!currentToken) {
+            setToken(currentToken)
+            userApi.run()
         }
     }, [])
 
+    useEffect(() => {
+        if (token) {
+            userApi.run()
+        }
+    }, [token])
+
+    useEffect(() => {
+        if (userApi.status === 'SUCCESS') {
+            form.updateForm(() => userApi.response)
+        }
+        if (userApi.status === 'ERROR') {
+            setToken(undefined)
+            localStorage.removeItem('token')
+        }
+    }, [userApi.status])
+
+    useEffect(() => {
+        if (['SUCCESS', 'ERROR'].includes(userApi.status)) {
+            if (token) {
+                if (!pathname.startsWith('/private')) {
+                    router.push('/private')
+                }
+            } else {
+                if (pathname.startsWith('/private')) {
+                    router.push('/')
+                }
+            }
+        }
+    }, [pathname, token, userApi.status])
+
     return (
         <UserContext.Provider
-            value={{ token, setToken, loading, isLogedIn, logout }}
+            value={{
+                token,
+                setToken,
+                loading: !['SUCCESS', 'ERROR'].includes(userApi.status),
+                isLoggedIn,
+                logout,
+                dragEvent,
+                setDragEvent,
+            }}
         >
             {children}
         </UserContext.Provider>

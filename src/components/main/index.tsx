@@ -16,7 +16,6 @@ import { ModalContext } from '@/context/modal.context'
 import useMessage from '@/hook/useMessage'
 import Footer from '@/components/footer'
 import { UserContext } from '@/context/user.context'
-import useApi from '@/hook/useApi'
 import { UserType } from '@/types/user.type'
 import useForm from '@/hook/useForm/useForm'
 
@@ -30,11 +29,10 @@ const hexToRgbA = (hex: string, opacity: number) => {
 
 const Component = ({ children }: { children: ReactNode }) => {
     const { modalList } = useContext(ModalContext)
-    const { isLogedIn, loading, logout } = useContext(UserContext)
+    const { isLoggedIn, loading, logout } = useContext(UserContext)
     const message = useMessage()
     const pathname = usePathname()
     const form = useForm<UserType>('myUser')
-    const api = useApi()
 
     const bottomHeader = useMemo(() => {
         const current = Definitions.privateRoutes.find((x) =>
@@ -42,12 +40,6 @@ const Component = ({ children }: { children: ReactNode }) => {
         )
         return current?.menu || null
     }, [pathname])
-
-    useLayoutEffect(() => {
-        api.user.me().then((user: UserType) => {
-            form.updateForm(() => user)
-        })
-    }, [])
 
     useLayoutEffect(() => {
         const colorSchema = form.form?.settings?.color_schema || '#3399ff'
@@ -67,7 +59,7 @@ const Component = ({ children }: { children: ReactNode }) => {
                 hexToRgbA(colorSchema, i)
             )
         }
-    }, [form.form])
+    }, [pathname, form.form?.settings?.color_schema])
 
     return (
         <body>
@@ -85,8 +77,8 @@ const Component = ({ children }: { children: ReactNode }) => {
                         )
                     }}
                 />
-                <section>{!loading && children}</section>
-                {!isLogedIn && <Footer />}
+                <section>{(!isLoggedIn || !loading) && children}</section>
+                {!loading && !isLoggedIn && <Footer />}
                 {modalList.map((modal) => {
                     return (
                         <Fragment key={modal.name}>

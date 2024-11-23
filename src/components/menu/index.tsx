@@ -1,21 +1,30 @@
+'use client'
+
 import style from './index.module.scss'
 import clsx from 'clsx'
 import { MenuType } from '@/components/menu/index.type'
 import Button from '@/components/button'
 import Background from '@/components/background'
+import { useEffect, useState } from 'react'
 
-const Component = ({ id, className, button, ...props }: MenuType) => {
+const Component = ({
+    className,
+    onChange,
+    children,
+    button,
+    ...props
+}: MenuType) => {
+    const [show, setShow] = useState<boolean>(false)
+
+    useEffect(() => {
+        onChange?.(show)
+    }, [show])
+
     return (
-        <div className={style.menuContainer}>
-            <input
-                type="checkbox"
-                id={`menu_${id}`}
-                className={style.checkbox}
-            />
+        <div className={clsx(style.menuContainer, className)}>
             {button ? (
                 button(() => {
-                    const sidebar = document.getElementById(`menu_${id}`) as any
-                    sidebar.checked = !sidebar.checked
+                    setShow((x) => !x)
                 })
             ) : (
                 <Button
@@ -23,19 +32,17 @@ const Component = ({ id, className, button, ...props }: MenuType) => {
                     icon="more_horiz"
                     type="button"
                     onClick={() => {
-                        const sidebar = document.getElementById(
-                            `menu_${id}`
-                        ) as any
-                        sidebar.checked = !sidebar.checked
+                        setShow((x) => !x)
                     }}
                 />
             )}
-            <div {...props} className={clsx(style.menu, className)} />
+            <div {...props} className={clsx(style.menu, show && style.show)}>
+                {children?.(show, setShow)}
+            </div>
             <Background
-                className={style.background}
+                className={clsx(style.background, show && style.show)}
                 onClick={() => {
-                    const sidebar = document.getElementById(`menu_${id}`) as any
-                    sidebar.checked = false
+                    setShow((x) => !x)
                 }}
             />
         </div>
