@@ -1,0 +1,42 @@
+.trainingList {
+  --line-height: 1em;
+
+  align-items: center;
+  display: flex;
+  flex-direction: column;
+  gap: 0;
+
+  > p {
+    margin-top: 1em;
+  }
+}
+
+.connectionLine {
+  background-color: var(--primary-color);
+  height: var(--line-height);
+  width: 2px;
+}
+
+.addButton {
+  border-radius: 50%;
+  height: 30px;
+  justify-content: center;
+  padding: 0;
+  width: 30px;
+
+  &.dragEffect {
+    background-color: var(--primary-color-2);
+    border-radius: var(--radius);
+    box-shadow: var(--box-shaddow);
+    height: var(--button-height);
+    width: 100px;
+
+    * {
+      pointer-events: none;
+    }
+  }
+
+  &:active {
+    translate: 0 0 !important;
+  }
+}
