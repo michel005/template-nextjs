@@ -14,15 +14,10 @@ export const UserGeneralTab = () => {
             <Picture label="Imagem de Perfil" size="250px" field="picture" />
             <Grid columns="1fr 1fr">
                 <Grid span={2}>
-                    <Text
-                        label="Nome Completo"
-                        placeholder="Ex: João da Silva"
-                        field="full_name"
-                    />
+                    <Text placeholder="Ex: João da Silva" field="full_name" />
                 </Grid>
                 <Grid span={2} columns="1fr 1fr 1fr">
                     <Select
-                        label="Tipo de Pessoa"
                         options={[
                             {
                                 key: 'PF',
@@ -37,7 +32,6 @@ export const UserGeneralTab = () => {
                         disabled={true}
                     />
                     <Select
-                        label="Tipo de Documento"
                         options={
                             form.form?.person_type === 'PF'
                                 ? [
@@ -72,21 +66,15 @@ export const UserGeneralTab = () => {
                 </Grid>
                 <Grid span={2} columns="1fr 1fr 1fr">
                     <Text
-                        label="Data de Nascimento"
                         placeholder="99/99/9999"
                         mask="date"
                         field="birthday"
                     />
-                    <Text
-                        label="E-mail"
-                        type="email"
-                        field="email"
-                        disabled={true}
-                    />
+                    <Text type="email" field="email" disabled={true} />
                     <Text label="Telefone" field="phone" />
                 </Grid>
                 <Grid span={2}>
-                    <Text label="Biografia" type="textarea" field="biography" />
+                    <Text type="textarea" field="biography" />
                 </Grid>
             </Grid>
         </Grid>

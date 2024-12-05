@@ -16,7 +16,11 @@ export const FormContext = createContext<FormContextType>({
 export const FormProvider = ({ children }: { children: ReactNode }) => {
     const [form, setForm] = useState<{
         [key: string]: any
-    }>({})
+    }>({
+        trainingMenu: {
+            viewMode: 'dashboard',
+        },
+    } as any)
     const [errors, setErrors] = useState<{
         [key: string]: any
     }>({})

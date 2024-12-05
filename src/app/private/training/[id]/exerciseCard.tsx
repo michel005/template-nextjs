@@ -50,16 +50,6 @@ export const ExerciseCard = ({
                     })
                 }
             }}
-            onDragOver={(e) => {
-                if (!dragButtonEffect) {
-                    setDragButtonEffect(true)
-                }
-                e.preventDefault()
-            }}
-            onDragLeave={(e) => {
-                setDragButtonEffect(false)
-                e.preventDefault()
-            }}
             onDrop={(e) => {
                 apiUpdate.run({
                     exercise: {
@@ -76,20 +66,10 @@ export const ExerciseCard = ({
             <h4>
                 {index + 1}. {exercise.name}
             </h4>
-            <label>{ExerciseMeasureType[exercise.measure_type || '']}</label>
             {!disableForm && (
                 <Menu
                     id={`exercise_${exercise.id}`}
                     className={style.exerciseMenu}
-                    button={(event) => {
-                        return (
-                            <Button
-                                icon="more_vert"
-                                variant="link"
-                                onClick={() => event()}
-                            />
-                        )
-                    }}
                     onChange={(show) => {
                         setDisableDragDrop(show)
                     }}

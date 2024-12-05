@@ -16,8 +16,7 @@ import { ModalContext } from '@/context/modal.context'
 import useMessage from '@/hook/useMessage'
 import Footer from '@/components/footer'
 import { UserContext } from '@/context/user.context'
-import { UserType } from '@/types/user.type'
-import useForm from '@/hook/useForm/useForm'
+import Page from '@/components/page'
 
 const hexToRgbA = (hex: string, opacity: number) => {
     let r = parseInt(hex.slice(1, 3), 16)
@@ -28,11 +27,10 @@ const hexToRgbA = (hex: string, opacity: number) => {
 }
 
 const Component = ({ children }: { children: ReactNode }) => {
-    const { modalList } = useContext(ModalContext)
-    const { isLoggedIn, loading, logout } = useContext(UserContext)
+    const modalContext = useContext(ModalContext)
+    const userContext = useContext(UserContext)
     const message = useMessage()
     const pathname = usePathname()
-    const form = useForm<UserType>('myUser')
 
     const bottomHeader = useMemo(() => {
         const current = Definitions.privateRoutes.find((x) =>
@@ -42,7 +40,8 @@ const Component = ({ children }: { children: ReactNode }) => {
     }, [pathname])
 
     useLayoutEffect(() => {
-        const colorSchema = form.form?.settings?.color_schema || '#3399ff'
+        const colorSchema =
+            userContext.user?.settings?.color_schema || '#3399ff'
 
         const body = document.getElementsByTagName('body').item(0) as any
 
@@ -59,37 +58,49 @@ const Component = ({ children }: { children: ReactNode }) => {
                 hexToRgbA(colorSchema, i)
             )
         }
-    }, [pathname, form.form?.settings?.color_schema])
+    }, [pathname, userContext.user])
+
+    const loading = useMemo(
+        () => userContext.isLoggedIn && userContext.loading,
+        [userContext.isLoggedIn, userContext.loading]
+    )
+
+    if (loading) {
+        return (
+            <div className={style.body}>
+                <section>
+                    <Page>
+                        <h1>Carregando...</h1>
+                    </Page>
+                </section>
+            </div>
+        )
+    }
 
     return (
-        <body>
-            <div className={style.body}>
-                <Header
-                    pathname={pathname}
-                    bottom={bottomHeader}
-                    onExit={() => {
-                        message.question(
-                            'Você realmente quer sair?',
-                            '',
-                            () => {
-                                logout()
-                            }
-                        )
-                    }}
-                />
-                <section>{(!isLoggedIn || !loading) && children}</section>
-                {!loading && !isLoggedIn && <Footer />}
-                {modalList.map((modal) => {
-                    return (
-                        <Fragment key={modal.name}>
-                            {Definitions.modal?.[
-                                modal.name as keyof typeof Definitions.modal
-                            ] || <></>}
-                        </Fragment>
-                    )
-                })}
-            </div>
-        </body>
+        <div className={style.body}>
+            <Header
+                pathname={pathname}
+                bottom={bottomHeader}
+                onExit={() => {
+                    message.question('Você realmente quer sair?', '', () => {
+                        userContext.logout()
+                    })
+                }}
+            />
+
+            <section>{!loading && children}</section>
+            {!userContext.loading && !userContext.isLoggedIn && <Footer />}
+            {modalContext.modalList.map((modal) => {
+                return (
+                    <Fragment key={modal.name}>
+                        {Definitions.modal?.[
+                            modal.name as keyof typeof Definitions.modal
+                        ] || <></>}
+                    </Fragment>
+                )
+            })}
+        </div>
     )
 }
 

@@ -17,6 +17,9 @@ export const TrainingCard = ({ training }: { training: TrainingType }) => {
                 {training.status === 'OPEN' && <Icon icon="play_arrow" />}
                 {training.status === 'ARCHIVED' && <Icon icon="archive" />}
                 {training.status === 'CLOSED' && <Icon icon="check" />}
+                {training.status === 'EXPIRED' && (
+                    <Icon icon="calendar_month" />
+                )}
             </div>
             <Link href={`/private/training/${training.id}`}>
                 <h3>{training.name}</h3>

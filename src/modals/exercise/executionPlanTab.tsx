@@ -27,6 +27,11 @@ export const ExecutionPlanTab = ({ exercise }: { exercise: ExerciseType }) => {
     if (exercise?.measure_type === 'REPETITIONS') {
         return (
             <>
+                <p>
+                    Realize o exercício com o número de repetições informadas,
+                    tome um tempo para se recompor e tente repetir o número de
+                    repetições novamente pelo número de séries configurado.
+                </p>
                 <Text
                     label="Número de Séries"
                     field="execution_plan.total_series"
@@ -48,6 +53,7 @@ export const ExecutionPlanTab = ({ exercise }: { exercise: ExerciseType }) => {
     if (exercise?.measure_type === 'TIME') {
         return (
             <>
+                <p></p>
                 <Text
                     label="Tempo de Execução"
                     field="execution_plan.target_time"

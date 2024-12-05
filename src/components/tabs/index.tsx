@@ -3,11 +3,21 @@
 import style from './index.module.scss'
 import clsx from 'clsx'
 import { TabsType } from '@/components/tabs/index.type'
-import { Suspense, useEffect, useMemo, useState } from 'react'
+import { useEffect, useMemo, useState } from 'react'
 import Skeleton from '@/components/skeleton'
+import { usePathname, useRouter, useSearchParams } from 'next/navigation'
 
-const Component = ({ tabs, initialSelected, onChangeTab }: TabsType) => {
-    const [current, setCurrent] = useState<string | null>(initialSelected)
+const Component = ({
+    tabs,
+    initialSelected,
+    onChangeTab,
+    tabName,
+}: TabsType) => {
+    const router = useRouter()
+    const pathname = usePathname()
+    const searchParams = useSearchParams()
+    const [loading, setLoading] = useState(true)
+    const [current, setCurrent] = useState<string | null>(null)
 
     const currentTab = useMemo(
         () => tabs.find((x) => x.id === current) || null,
@@ -17,6 +27,44 @@ const Component = ({ tabs, initialSelected, onChangeTab }: TabsType) => {
     useEffect(() => {
         setCurrent(initialSelected)
     }, [initialSelected])
+
+    useEffect(() => {
+        if (!tabName) {
+            return
+        }
+        if (
+            !!searchParams.get(tabName || '') &&
+            current !== searchParams.get(tabName || '')
+        ) {
+            setCurrent(searchParams.get(tabName || ''))
+        }
+        if (!searchParams.get(tabName || '')) {
+            setCurrent(tabs?.[0].id || null)
+        }
+    }, [searchParams])
+
+    useEffect(() => {
+        if (!tabName) {
+            setLoading(false)
+            return
+        }
+        if (loading) {
+            setCurrent(searchParams.get(tabName || '') || initialSelected)
+            setLoading(false)
+        } else {
+            const params = new URLSearchParams(searchParams)
+            if (current) {
+                params.set(tabName, current)
+            } else {
+                params.set(tabName, tabs[0].id)
+            }
+            router.push(`${pathname}?${params.toString()}`)
+        }
+    }, [loading, current, tabName])
+
+    if (loading) {
+        return <></>
+    }
 
     return (
         <div className={style.tabs}>
@@ -42,18 +90,11 @@ const Component = ({ tabs, initialSelected, onChangeTab }: TabsType) => {
                 })}
             </div>
             <div className={style.tabContent}>
-                {tabs.map((tab, tabIndex) => {
-                    return (
-                        <section
-                            key={tab.id}
-                            className={clsx(
-                                current === tab.id && style.currentTab
-                            )}
-                        >
-                            {tab.content}
-                        </section>
-                    )
-                })}
+                {currentTab && (
+                    <section key={currentTab.id} className={style.currentTab}>
+                        {currentTab.content}
+                    </section>
+                )}
             </div>
         </div>
     )

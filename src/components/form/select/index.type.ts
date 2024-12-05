@@ -1,7 +1,7 @@
 import { ReactNode } from 'react'
 
 export interface SelectType {
-    label: string
+    label?: string
     field?: string
     value?: string
     onChange?: (newValue: string) => void

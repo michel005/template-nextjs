@@ -40,6 +40,6 @@ export type TrainingType = {
     name?: string
     expiration_date?: string
     exercises?: ExerciseType[]
-    status?: 'OPEN' | 'ARCHIVED' | 'CLOSED'
+    status?: 'OPEN' | 'ARCHIVED' | 'CLOSED' | 'EXPIRED'
     weekday?: number
 }

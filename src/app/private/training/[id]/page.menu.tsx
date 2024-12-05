@@ -7,14 +7,13 @@ import { TrainingType } from '@/types/training.type'
 import { useParams, useRouter } from 'next/navigation'
 import { useEffect, useMemo } from 'react'
 import useError from '@/hook/useError'
-import Buttons from '@/components/buttons'
 
 export const TrainingFormMenu = () => {
     const searchParams = useParams()
     const router = useRouter()
     const { question } = useMessage()
-    const form = useForm<TrainingType>('trainingForm')
-    const error = useError('trainingForm')
+    const form = useForm<TrainingType>('training')
+    const error = useError('training')
     const apiService = useApiService()
     const newTraining = searchParams.id === 'new'
     const apiSave = useApi(async () => {
@@ -46,25 +45,44 @@ export const TrainingFormMenu = () => {
         }
     }, [apiRemove.status])
 
-    const disableForm = useMemo(
-        () => form.form?.status !== 'OPEN',
+    const isOpen = useMemo(
+        () => form.form?.status === 'OPEN',
+        [form.form?.status]
+    )
+    const isClosed = useMemo(
+        () => form.form?.status === 'CLOSED',
+        [form.form?.status]
+    )
+    const isArchived = useMemo(
+        () => form.form?.status === 'ARCHIVED',
+        [form.form?.status]
+    )
+    const isExpired = useMemo(
+        () => form.form?.status === 'EXPIRED',
         [form.form?.status]
     )
 
     return (
         <>
             <Button
+                icon="keyboard_arrow_left"
+                variant="ghost"
+                onClick={() => {
+                    router.push('/private/training')
+                }}
+            />
+            <Button
                 icon="save"
                 onClick={() => {
                     apiSave.run()
                 }}
-                disabled={disableForm}
+                disabled={!isOpen && !isExpired}
             >
                 Salvar
             </Button>
             {!newTraining && (
                 <>
-                    {form.form?.status === 'OPEN' ? (
+                    {isOpen || isExpired ? (
                         <>
                             <Button
                                 icon="archive"
@@ -125,12 +143,12 @@ export const TrainingFormMenu = () => {
                     )}
                 </>
             )}
-            {!newTraining ? (
+            {!newTraining && (
                 <>
-                    {form.form?.status !== 'CLOSED' && (
+                    {!isClosed && (
                         <Button
                             icon="delete"
-                            variant="ghost"
+                            variant="secondary"
                             onClick={() => {
                                 question(
                                     'Deseja realmente remover este treino?',
@@ -144,18 +162,6 @@ export const TrainingFormMenu = () => {
                             Excluir
                         </Button>
                     )}
-                </>
-            ) : (
-                <>
-                    <Button
-                        icon="undo"
-                        variant="secondary"
-                        onClick={() => {
-                            router.push('/private/training')
-                        }}
-                    >
-                        Cancelar
-                    </Button>
                 </>
             )}
         </>

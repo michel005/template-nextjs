@@ -7,6 +7,7 @@ import { CSSProperties, useMemo, useRef } from 'react'
 import clsx from 'clsx'
 import useClosestDataForm from '@/hook/useClosestDataForm'
 import useForm from '@/hook/useForm/useForm'
+import useCopyDeck from '@/hook/useCopyDeck'
 
 const Component = ({
     label,
@@ -18,6 +19,8 @@ const Component = ({
     const fileRef = useRef<HTMLInputElement>(null)
     const { dataForm } = useClosestDataForm(fileRef)
     const form = useForm(dataForm || 'form')
+    const copyDeck = useCopyDeck('form', dataForm || 'form')
+    const finalLabel = label || copyDeck?.[field || '']
 
     const loadPicture = (file: File) => {
         if (file) {
@@ -51,7 +54,7 @@ const Component = ({
                 loadPicture(e.dataTransfer.files[0])
             }}
         >
-            {label && <label className={style.label}>{label}</label>}
+            {finalLabel && <label className={style.label}>{finalLabel}</label>}
             <input
                 accept="image/*"
                 className={style.input}

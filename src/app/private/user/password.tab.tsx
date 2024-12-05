@@ -1,9 +1,13 @@
+'use client'
+
 import Grid from '@/components/grid'
 import Text from '@/components/form/text'
 import Button from '@/components/button'
 import useForm from '@/hook/useForm/useForm'
 import useError from '@/hook/useError'
 import useApiService from '../../../hook/useApiService'
+import { useContext } from 'react'
+import { CopyDeckContext } from '@/context/copydeck.context'
 
 export const UserPasswordTab = () => {
     const form = useForm<{
@@ -12,18 +16,15 @@ export const UserPasswordTab = () => {
         confirmation?: string
     }>('changePassword')
     const error = useError('changePassword')
+    const { others } = useContext(CopyDeckContext)
     const { user } = useApiService()
 
     return (
         <Grid columns="1fr 1fr auto" data-form="changePassword">
-            <Text label="Senha Atual" type="password" field="current" />
-            <Text label="Nova Senha" type="password" field="new_password" />
+            <Text type="password" field="current" />
+            <Text type="password" field="new_password" />
             <Grid span={2}>
-                <Text
-                    label="Confirmação da Nova Senha"
-                    type="password"
-                    field="confirmation"
-                />
+                <Text type="password" field="confirmation" />
             </Grid>
             <Button
                 icon="save"
@@ -38,7 +39,7 @@ export const UserPasswordTab = () => {
                     }
                 }}
             >
-                Alterar Senha
+                {others?.buttons?.change_password}
             </Button>
         </Grid>
     )

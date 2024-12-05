@@ -8,6 +8,7 @@ import useForm from '@/hook/useForm/useForm'
 import useClosestDataForm from '@/hook/useClosestDataForm'
 import useError from '@/hook/useError'
 import clsx from 'clsx'
+import useCopyDeck from '@/hook/useCopyDeck'
 
 const Component = ({
     label,
@@ -25,6 +26,8 @@ const Component = ({
     const { dataForm } = useClosestDataForm(ref)
     const form = useForm(dataForm || 'form')
     const error = useError(dataForm || 'form')
+    const copyDeck = useCopyDeck('form', dataForm || 'form')
+    const finalLabel = label || copyDeck?.[field || '']
 
     const currentValue = useMemo(() => {
         if (!field) {
@@ -53,8 +56,8 @@ const Component = ({
         if (mask === 'time') {
             return '99:99:99'
         }
-        return placeholder || label
-    }, [mask, placeholder])
+        return placeholder || finalLabel
+    }, [mask, placeholder, finalLabel])
 
     if (type === 'textarea') {
         return (
@@ -70,7 +73,7 @@ const Component = ({
                     className={style.input}
                     value={currentValue || ''}
                     ref={ref}
-                    placeholder={placeholder || label}
+                    placeholder={placeholder || finalLabel}
                     disabled={disabled}
                     onBlur={onBlur}
                     onChange={(e) => {
@@ -87,7 +90,9 @@ const Component = ({
                         }
                     }}
                 />
-                {label && <label className={style.label}>{label}</label>}
+                {finalLabel && (
+                    <label className={style.label}>{finalLabel}</label>
+                )}
                 {error.errorField(field || '') && (
                     <label className={style.error}>
                         {error.errorField(field || '')}
@@ -132,7 +137,11 @@ const Component = ({
                     }
                 }}
             />
-            {label && <label className={style.label}>{label}</label>}
+            {finalLabel && (
+                <label data-text={finalLabel} className={style.label}>
+                    {finalLabel}
+                </label>
+            )}
             {error.errorField(field || '') && (
                 <label className={style.error}>
                     {error.errorField(field || '')}

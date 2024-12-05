@@ -6,11 +6,14 @@ import clsx from 'clsx'
 import { useMemo, useRef } from 'react'
 import useClosestDataForm from '@/hook/useClosestDataForm'
 import useForm from '@/hook/useForm/useForm'
+import useCopyDeck from '@/hook/useCopyDeck'
 
 const Component = ({ label, field, value, onChange, disabled }: ColorType) => {
     const inputRef = useRef<HTMLInputElement>(null)
     const { dataForm } = useClosestDataForm(inputRef)
     const form = useForm(dataForm || 'form')
+    const copyDeck = useCopyDeck('form', dataForm || 'form')
+    const finalLabel = label || copyDeck?.[field || '']
 
     const currentValue = useMemo(() => {
         if (!field) {
@@ -47,7 +50,7 @@ const Component = ({ label, field, value, onChange, disabled }: ColorType) => {
                     />
                 </div>
             </div>
-            {label && <label className={style.label}>{label}</label>}
+            {finalLabel && <label className={style.label}>{finalLabel}</label>}
         </div>
     )
 }

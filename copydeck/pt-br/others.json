@@ -1,0 +1,13 @@
+{
+  "buttons": {
+    "change_password": "Alterar Senha",
+    "login": "Entrar",
+    "signin": "Cadastrar-se"
+  },
+  "login": {
+    "create_account_header": "Crie uma conta",
+    "login_description": "Tenha acesso a várias funcionalidades gratuitas.",
+    "login_header": "Acesse sua conta",
+    "or": "OU"
+  }
+}

@@ -135,6 +135,12 @@ body {
   overflow: auto;
 }
 
+ul, ol {
+  li {
+    margin-left: 1.5em;
+  }
+}
+
 a {
   color: #39f;
   transition: all 0.25s;

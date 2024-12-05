@@ -5,17 +5,25 @@ import Tabs from '@/components/tabs'
 import { UserGeneralTab } from '@/app/private/user/general.tab'
 import { UserAddressTab } from '@/app/private/user/address.tab'
 import { UserPasswordTab } from '@/app/private/user/password.tab'
-import style from '@/app/private/user/page.module.scss'
-import useError from '@/hook/useError'
 import { UserSettingsTab } from '@/app/private/user/settings.tab'
+import { useContext, useEffect } from 'react'
+import { UserContext } from '@/context/user.context'
+import useForm from '@/hook/useForm/useForm'
+import { UserType } from '@/types/user.type'
 
 const Component = () => {
-    const error = useError('myUser')
+    const userContext = useContext(UserContext)
+    const form = useForm<UserType>('myUser')
+
+    useEffect(() => {
+        form.updateForm(() => userContext.user)
+    }, [userContext.user])
 
     return (
         <Page data-form="myUser">
             <h1>Meu Usuário</h1>
             <Tabs
+                tabName="user"
                 tabs={[
                     {
                         id: 'general',
@@ -40,15 +48,6 @@ const Component = () => {
                 ]}
                 initialSelected={'general'}
             />
-
-            {error.error && (
-                <p
-                    className={style.errors}
-                    dangerouslySetInnerHTML={{
-                        __html: Object.values(error.error).join('<br />'),
-                    }}
-                />
-            )}
         </Page>
     )
 }

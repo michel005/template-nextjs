@@ -7,6 +7,7 @@ export interface TabsDefinitionType {
 }
 
 export interface TabsType {
+    tabName?: string
     tabs: TabsDefinitionType[]
     initialSelected: string
     onChangeTab?: (

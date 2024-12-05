@@ -28,7 +28,7 @@ const Component = ({
                 })
             ) : (
                 <Button
-                    variant="ghost"
+                    variant="link"
                     icon="more_horiz"
                     type="button"
                     onClick={() => {

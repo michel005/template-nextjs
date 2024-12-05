@@ -1,3 +1,5 @@
+'use client'
+
 import Grid from '@/components/grid'
 import Color from '@/components/form/color'
 import style from './page.module.scss'
@@ -5,7 +7,8 @@ import Button from '@/components/button'
 import useApiService from '../../../hook/useApiService'
 import useForm from '@/hook/useForm/useForm'
 import { UserType } from '@/types/user.type'
-import { CSSProperties } from 'react'
+import { CSSProperties, useContext } from 'react'
+import { UserContext } from '@/context/user.context'
 
 const allColors = [
     '#b03689',
@@ -21,11 +24,11 @@ const allColors = [
 
 export const UserSettingsTab = () => {
     const { user } = useApiService()
-    const form = useForm('myUser')
+    const userContext = useContext(UserContext)
 
     return (
         <Grid columns="1fr">
-            <Color label="Cor Primária" field="settings.color_schema" />
+            <Color field="settings.color_schema" />
             <div className={style.colors}>
                 {allColors.map((color) => {
                     return (
@@ -39,8 +42,7 @@ export const UserSettingsTab = () => {
                                 const usr1: UserType = await user.me()
                                 usr1.settings.color_schema = color
                                 await user.update(usr1)
-                                const usr2: UserType = await user.me()
-                                form.updateForm(() => usr2)
+                                userContext.refresh()
                             }}
                         />
                     )

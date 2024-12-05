@@ -7,6 +7,7 @@ import useClosestDataForm from '@/hook/useClosestDataForm'
 import useForm from '@/hook/useForm/useForm'
 import clsx from 'clsx'
 import useError from '@/hook/useError'
+import useCopyDeck from '@/hook/useCopyDeck'
 
 const Component = ({
     label,
@@ -20,6 +21,8 @@ const Component = ({
     const { dataForm } = useClosestDataForm(ref)
     const form = useForm(dataForm || 'form')
     const error = useError(dataForm || 'form')
+    const copyDeck = useCopyDeck('form', dataForm || 'form')
+    const finalLabel = label || copyDeck?.[field || '']
 
     return (
         <div
@@ -51,7 +54,7 @@ const Component = ({
                     )
                 })}
             </select>
-            {label && <label className={style.label}>{label}</label>}
+            {finalLabel && <label className={style.label}>{finalLabel}</label>}
             {error.error?.[field || ''] && (
                 <label className={style.error}>
                     {error.error?.[field || '']}

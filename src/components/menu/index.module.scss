@@ -14,7 +14,7 @@
     box-shadow: var(--box-shaddow);
     display: none;
     flex-direction: column;
-    gap: 21px;
+    gap: 1em;
     justify-content: flex-start;
     opacity: 1;
     padding: 14px;
@@ -23,6 +23,14 @@
     top: calc(100% - 14px);
     transition: all 0.25s;
     z-index: 100;
+
+    > button {
+        font-size: 0.8em;
+
+        span {
+            font-size: 1em;
+        }
+    }
 }
 
 .checkbox,

@@ -1,0 +1,43 @@
+{
+  "login": {
+    "email": "E-mail",
+    "password": "Senha de Acesso"
+  },
+  "createUser": {
+    "picture": "Foto do Usuário",
+    "full_name": "Nome Completo",
+    "birthday": "Data de Nascimento",
+    "email": "E-mail",
+    "password": "Senha de Acesso",
+    "password_confirm": "Confirmação da Acesso"
+  },
+  "myUser": {
+    "picture": "Foto do Usuário",
+    "full_name": "Nome Completo",
+    "birthday": "Data de Nascimento",
+    "person_type": "Tipo de Pessoa",
+    "document_type": "Tipo de Documento",
+    "email": "E-mail",
+    "biography": "Biografia",
+    "address.zip_code": "CEP",
+    "address.street_name": "Nome da Rua",
+    "address.street_number": "Número",
+    "address.complement": "Complemento",
+    "address.neighborhood": "Bairro",
+    "address.city": "Cidade",
+    "address.state": "Estado",
+    "address.country": "País",
+    "settings.color_schema": "Cor Primária"
+  },
+  "trainingMenu": {
+    "filter": "Busca por Treino"
+  },
+  "training": {
+    "name": "Nome do Treino"
+  },
+  "changePassword": {
+    "current": "Senha Atual",
+    "new_password": "Nova Senha",
+    "confirmation": "Confirmação"
+  }
+}

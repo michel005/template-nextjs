@@ -16,15 +16,18 @@ import useForm from '@/hook/useForm/useForm'
 import useApi from '@/hook/useApi'
 import { LoginResponseType } from '@/types/loginResponse.type'
 import useError from '@/hook/useError'
+import useCopyDeck from '@/hook/useCopyDeck'
+import { CopyDeckContext } from '@/context/copydeck.context'
 
 const LoginPage = () => {
-    const loginForm = useForm<LoginType>('loginForm')
-    const loginError = useError('loginForm')
+    const loginForm = useForm<LoginType>('login')
+    const loginError = useError('login')
     const { setToken } = useContext(UserContext)
     const apiService = useApiService()
     const api = useApi<LoginResponseType>(async () => {
         return await apiService.user.login(loginForm.form || {})
     })
+    const { others: copyDeck } = useContext(CopyDeckContext)
     const router = useRouter()
 
     useEffect(() => {
@@ -40,15 +43,11 @@ const LoginPage = () => {
 
     return (
         <Page className={style.loginPage}>
-            <Card className={style.modal} data-form="loginForm">
-                <h1>Entre em sua conta agora</h1>
-                <p>Tenha acesso a várias funcionalidades gratuitas.</p>
-                <Text label="E-mail" field="email" />
-                <Text
-                    type="password"
-                    label="Senha de Acesso"
-                    field="password"
-                />
+            <Card className={style.modal} data-form="login">
+                <h1>{copyDeck?.login?.login_header}</h1>
+                <p>{copyDeck?.login?.login_description}</p>
+                <Text field="email" />
+                <Text type="password" field="password" />
                 {loginError.error?.error && (
                     <Alert icon="error" variant="error">
                         {loginError.error?.error}
@@ -61,11 +60,11 @@ const LoginPage = () => {
                             api.run()
                         }}
                     >
-                        Entrar
+                        {copyDeck?.buttons?.login}
                     </Button>
                 </Grid>
-                <hr data-text="OU" />
-                <h3>Crie uma conta</h3>
+                <hr data-text={copyDeck?.login?.or} />
+                <h3>{copyDeck?.login?.create_account_header}</h3>
                 <Grid className={style.buttons}>
                     <Button
                         icon="person_add"
@@ -74,7 +73,7 @@ const LoginPage = () => {
                             router.push('/createUser')
                         }}
                     >
-                        Cadastrar-se
+                        {copyDeck?.buttons?.signin}
                     </Button>
                 </Grid>
             </Card>

@@ -32,25 +32,13 @@ const CreateUserPage = () => {
                     Assim você tem acesso a funcionalidades gratuitas.
                 </p>
                 <Grid columns="auto 1fr">
-                    <Picture label="Foto" size="200px" field="picture" />
+                    <Picture size="200px" field="picture" />
                     <Grid>
-                        <Text label="Nome Completo" field="full_name" />
-                        <Text
-                            label="Data de Nascimento"
-                            field="birthday"
-                            mask="date"
-                        />
-                        <Text label="E-mail" field="email" />
-                        <Text
-                            type="password"
-                            label="Senha de Acesso"
-                            field="password"
-                        />
-                        <Text
-                            type="password"
-                            label="Confirmação da Senha"
-                            field="password_confirm"
-                        />
+                        <Text field="full_name" />
+                        <Text field="birthday" mask="date" />
+                        <Text field="email" />
+                        <Text type="password" field="password" />
+                        <Text type="password" field="password_confirm" />
                     </Grid>
                 </Grid>
                 {error && (

@@ -21,7 +21,7 @@ const Component = ({
     }, [])
 
     return (
-        <span
+        <div
             {...props}
             data-form={form}
             data-errors={JSON.stringify(error.error)}
@@ -33,7 +33,7 @@ const Component = ({
                 </h3>
             )}
             <section>{children}</section>
-        </span>
+        </div>
     )
 }
 

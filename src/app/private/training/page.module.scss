@@ -15,9 +15,66 @@
     width: 20px;
   }
 
+  .header {
+    input {
+      background-color: #fff !important;
+    }
+  }
+
   .trainingList {
     gap: 1.5em;
   }
+}
+
+.noTrainingDefined {
+  color: #ddd;
+  font-size: 1.5em;
+}
+
+.card {
+  position: relative;
+
+  ol {
+    max-width: 500px;
+  }
+
+  ul {
+    margin-bottom: 0.5em;
+    margin-top: 0.25em;
+  }
+
+  li {
+    small {
+      border: 1px solid #eee;
+      box-shadow: var(--box-shaddow);
+      border-radius: var(--radius);
+      color: #666;
+      display: block;
+      margin: 1em 0;
+      padding: 1em;
+    }
+  }
+
+  &.currentWeekday {
+    outline: 1px solid var(--primary-color);
+  }
+
+  button {
+    align-self: flex-end;
+  }
+}
+
+.expirationDate {
+  background-color: #ddd;
+  border-radius: 0 var(--radius);
+  color: var(--primary-color);
+  flex-direction: row;
+  font-size: 0.8em;
+  gap: 0.5em;
+  right: 0;
+  padding: 0.8em 1em;
+  position: absolute;
+  top: 0;
 }
 
 @include medium-desktop {
